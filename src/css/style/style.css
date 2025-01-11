@@ -94,4 +94,71 @@ button:hover {
 .school__image {
   max-width: 550px;
   margin-left: 10px;
+}
+
+.services {
+  border-radius: 10px;
+}
+.services__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #EAF2F5;
+  border: 1px solid #0387FC;
+  border-radius: 50px;
+}
+.services__title {
+  font-size: 48px;
+  text-align: center;
+  font-weight: 700;
+  padding: 40px 0;
+}
+.services__content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+.services__image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+.services__description {
+  max-width: 600px;
+}
+.services__tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.services__tag {
+  padding: 15px 25px;
+  margin-top: 20px;
+  border-radius: 20px;
+  color: #FFFFFF;
+  font-size: 19px;
+  font-weight: bold;
+}
+.services__tag--blue {
+  background-color: #4285f4;
+}
+.services__tag--orange {
+  background-color: #fbbc04;
+}
+.services__tag--red {
+  background-color: #ea4335;
+}
+.services__tag--green {
+  background-color: #34a853;
+}
+.services__tag--purple {
+  background-color: #9c27b0;
+}
+.services__note {
+  font-size: 19px;
+  font-weight: 700;
+  text-align: center;
 }/*# sourceMappingURL=style.css.map */
