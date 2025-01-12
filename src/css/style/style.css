@@ -11,13 +11,10 @@ button:hover {
   max-width: 1160px;
   width: 100%;
   margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .header {
-  padding-top: 10px;
+  padding: 10px 0;
 }
 .header__logo {
   max-width: 100%;
@@ -30,7 +27,6 @@ button:hover {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding-left: 50px;
 }
 .header__menu {
   display: flex;
@@ -64,14 +60,19 @@ button:hover {
 }
 .school__content {
   display: flex;
-  flex-direction: column;
-  max-width: 600px;
 }
 .school__title {
   font-size: 48px;
 }
 .school__bracket {
   color: #0387FC;
+  font-size: 48px;
+}
+.school__block {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  justify-content: center;
 }
 .school__bold {
   font-weight: 700;
@@ -99,14 +100,6 @@ button:hover {
 .services {
   border-radius: 10px;
 }
-.services__container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #EAF2F5;
-  border: 1px solid #0387FC;
-  border-radius: 50px;
-}
 .services__title {
   font-size: 48px;
   text-align: center;
@@ -115,14 +108,20 @@ button:hover {
 }
 .services__content {
   display: flex;
+  width: 100%;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  background-color: #EAF2F5;
+  border: 1px solid #0387FC;
+  border-radius: 30px;
+  margin-bottom: 40px;
 }
 .services__image img {
   max-width: 100%;
+  padding-left: 80px;
   height: auto;
-  border-radius: 10px;
+  border-radius: 50px;
 }
 .services__description {
   max-width: 600px;
@@ -161,4 +160,66 @@ button:hover {
   font-size: 19px;
   font-weight: 700;
   text-align: center;
+  color: gray;
+}
+
+.ourEducation__content {
+  display: flex;
+  padding-bottom: 40px;
+}
+.ourEducation__textBlock {
+  max-width: 580px;
+  padding-top: 10.5px;
+}
+.ourEducation__textBlock-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ourEducation__textBlock-subtitle {
+  font-size: 19px;
+}
+.ourEducation__textBlock-subtitle p {
+  padding: 25px;
+}
+.ourEducation__textBlock-subtitle span {
+  font-weight: 700;
+}
+.ourEducation__textBlock-button {
+  text-align: center;
+}
+.ourEducation__title {
+  font-size: 48px;
+  font-weight: 700;
+  text-align: center;
+  padding-bottom: 40px;
+}
+.ourEducation__list {
+  display: flex;
+  justify-content: center;
+  gap: 27px;
+  max-width: 570px;
+  flex-wrap: wrap;
+}
+.ourEducation__item {
+  display: flex;
+  flex-direction: column;
+  max-width: 270px;
+  background-color: #EAF2F5;
+  border-radius: 30px;
+  border: 1px solid #0387FC;
+}
+.ourEducation__img {
+  max-width: 60px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 50px 0 18px 0;
+}
+.ourEducation__item-title {
+  text-align: center;
+  font-weight: 700;
+}
+.ourEducation__item-description {
+  text-align: center;
+  padding: 30px 10px 50px 10px;
 }/*# sourceMappingURL=style.css.map */
