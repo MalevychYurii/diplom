@@ -4,8 +4,14 @@
   font-family: Ubuntu;
 }
 
+button:not(.header__button--signup) {
+  box-shadow: #0387FC 0px 5px 15px;
+}
 button:hover {
   cursor: pointer;
+}
+button:focus, button:focus-visible {
+  outline: none;
 }
 
 .container {
@@ -36,10 +42,14 @@ button:hover {
 }
 .header__menu-item {
   font-size: 19px;
+  outline: none;
 }
 .header__menu-item--active {
   color: #0387FC;
   font-weight: 700;
+}
+.header__link {
+  outline: none;
 }
 .header__actions {
   display: flex;
@@ -80,7 +90,7 @@ button:hover {
   font-size: 48px;
 }
 .school__subtext {
-  color: gray;
+  color: #F3F3F3;
   font-size: 19px;
   padding: 20px 0;
 }
@@ -161,7 +171,7 @@ button:hover {
   font-size: 19px;
   font-weight: 700;
   text-align: center;
-  color: gray;
+  color: #F3F3F3;
 }
 
 .ourEducation {
@@ -256,7 +266,7 @@ button:hover {
 .results__list {
   display: flex;
   flex-direction: row;
-  padding: 20px;
+  padding: 60px 20px 20px 20px;
   gap: 20px;
 }
 .results__item {
@@ -279,4 +289,41 @@ button:hover {
 }
 .results__image {
   max-width: 580px;
+}
+
+.contact__titlе {
+  text-align: center;
+  margin: 40px 0;
+  font-weight: 700;
+  font-size: 48px;
+}
+.contact__form {
+  display: flex;
+}
+.contact__image {
+  max-width: 580px;
+}
+.contact__group--item {
+  padding: 20px;
+  margin: 0 20px 20px 0;
+  background-color: #F3F3F3;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.contact__group--textarea {
+  width: 350px;
+  padding: 20px;
+  min-height: 100px;
+  max-height: 100px;
+  resize: none;
+  background-color: #F3F3F3;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.contact__button {
+  margin: 20px auto;
+  max-width: 50%;
+  text-align: center;
+  background-color: #0387FC;
+  border-radius: 30px;
+  color: #FFFFFF;
+  font-size: 40px;
 }/*# sourceMappingURL=style.css.map */

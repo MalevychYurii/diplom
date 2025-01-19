@@ -9,10 +9,19 @@
     font-family: $font;
 }
 
-button {       
-    &:hover {
-        cursor: pointer;
-    }
+button {
+  &:not(.header__button--signup) {
+      box-shadow: $blue 0px 5px 15px;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:focus,
+  &:focus-visible {
+    outline: none;
+  }
 }
 
 .container {
@@ -47,14 +56,16 @@ button {
 
   &__menu-item {
       font-size: 19px;
+      outline: none;
   }
 
-&__menu-item--active {
+  &__menu-item--active {
       color: $blue;
       font-weight: 700;
-}
+  }
 
   &__link {
+    outline: none;
   }
 
   &__actions {
@@ -321,7 +332,7 @@ button {
   &__list {
     display: flex;
     flex-direction: row;
-    padding: 20px;
+    padding: 60px 20px 20px 20px;
     gap: 20px;
   }
 
@@ -348,5 +359,59 @@ button {
 
   &__image {
     max-width: 580px;
+  }
+}
+
+.contact {
+
+  &__titlе {
+    text-align: center;
+    margin: 40px 0;
+    font-weight: 700;
+    font-size: 48px;
+  }
+
+  &__form {
+    display: flex;
+  }
+
+  &__image {
+    max-width: 580px;
+  }
+
+  &__block {
+  }
+
+  &__group {   
+  }
+
+  &__group--item {
+    padding: 20px;
+    margin: 0 20px 20px 0;
+    background-color: $gray;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+
+  &__group--textarea {
+    width: 350px;
+    padding: 20px;
+    min-height: 100px;
+    max-height: 100px;
+    resize: none;
+    background-color: $gray;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+
+  &__button {
+    margin: 20px auto;
+    max-width: 50%;
+    text-align: center;
+    background-color: #0387FC;
+    border-radius: 30px;
+    color: #FFFFFF;
+    font-size: 40px;
+  }
+
+  &__message {
   }
 }
