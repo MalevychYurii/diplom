@@ -21,6 +21,7 @@ button:focus, button:focus-visible {
 }
 
 .header {
+  background-color: #F3F3F3;
   padding: 10px 0;
 }
 .header__logo {
@@ -299,31 +300,92 @@ button:focus, button:focus-visible {
 }
 .contact__form {
   display: flex;
+  background-color: #EAF2F5;
+  border-radius: 30px;
+  border: 1px solid #0387FC;
 }
 .contact__image {
   max-width: 580px;
+  padding: 20px;
+}
+.contact__group--top {
+  margin-top: 30px;
 }
 .contact__group--item {
   padding: 20px;
   margin: 0 20px 20px 0;
   background-color: #F3F3F3;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  outline: none;
 }
 .contact__group--textarea {
   width: 350px;
-  padding: 20px;
+  padding: 10px;
   min-height: 100px;
   max-height: 100px;
   resize: none;
   background-color: #F3F3F3;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  outline: none;
 }
 .contact__button {
-  margin: 20px auto;
+  margin: 30px auto;
   max-width: 50%;
   text-align: center;
   background-color: #0387FC;
   border-radius: 30px;
   color: #FFFFFF;
   font-size: 40px;
+}
+.footer {
+  background-color: #F3F3F3;
+  padding-top: 20px;
+  margin-top: 40px;
+}
+.footer__block {
+  display: flex;
+  justify-content: space-between;
+}
+.footer__item ul li {
+  padding-bottom: 25px;
+}
+.footer__item ul li a {
+  outline: none;
+}
+.footer__contact {
+  font-family: Ubuntu;
+}
+.footer__contact--title {
+  padding-bottom: 25px;
+}
+.footer__contact--tel {
+  padding-bottom: 10px;
+  opacity: 0.6;
+}
+.footer__contact--tel a {
+  outline: none;
+}
+.footer__contact--mail {
+  opacity: 0.6;
+}
+.footer__contact--mail a {
+  outline: none;
+}
+.footer__social {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 350px;
+}
+.footer__img {
+  max-width: 200px;
+}
+.footer__social--list {
+  display: flex;
+  flex-direction: column;
+  max-height: 160px;
+}
+.footer__social--item {
+  max-width: 30px;
 }/*# sourceMappingURL=style.css.map */

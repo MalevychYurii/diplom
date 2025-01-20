@@ -32,6 +32,7 @@ button {
 
 .header {
 
+  background-color: $gray;
   padding: 10px 0;
   &__logo {
       max-width: 100%;
@@ -364,6 +365,7 @@ button {
 
 .contact {
 
+
   &__titlе {
     text-align: center;
     margin: 40px 0;
@@ -373,16 +375,21 @@ button {
 
   &__form {
     display: flex;
+    background-color: $lightGrayBackground;
+    border-radius: 30px;
+    border: 1px solid $blue;
   }
 
   &__image {
     max-width: 580px;
+    padding: 20px;
   }
 
   &__block {
   }
 
-  &__group {   
+  &__group--top { 
+    margin-top: 30px;  
   }
 
   &__group--item {
@@ -390,20 +397,22 @@ button {
     margin: 0 20px 20px 0;
     background-color: $gray;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    outline: none;
   }
 
   &__group--textarea {
     width: 350px;
-    padding: 20px;
+    padding: 10px;
     min-height: 100px;
     max-height: 100px;
     resize: none;
     background-color: $gray;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    outline: none;
   }
 
   &__button {
-    margin: 20px auto;
+    margin: 30px auto;
     max-width: 50%;
     text-align: center;
     background-color: #0387FC;
@@ -413,5 +422,75 @@ button {
   }
 
   &__message {
+  }
+}
+
+.footer {
+
+  background-color: $gray;
+  padding-top: 20px;
+  margin-top: 40px;
+  &__content {
+  }
+
+  &__block {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__item {
+    ul {
+      li {
+        padding-bottom: 25px;
+        a {
+          outline: none;
+        }
+      }
+    }
+  }
+
+  &__contact {
+    font-family: $font;
+  }
+
+  &__contact--title {
+    padding-bottom: 25px;
+  }
+
+  &__contact--tel {
+    padding-bottom: 10px;
+    opacity: 0.6;
+    a {
+      outline: none;
+    }
+  }
+
+  &__contact--mail {
+    opacity: 0.6;
+    a {
+      outline: none;
+    }
+  }
+
+  &__social {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 350px;
+  }
+
+  &__img {
+    max-width: 200px;
+  }
+
+  &__social--list {
+    display: flex;
+    flex-direction: column;
+    max-height: 160px;
+  }
+
+  &__social--item {
+    max-width: 30px;
   }
 }
