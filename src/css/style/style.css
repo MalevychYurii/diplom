@@ -218,7 +218,7 @@ a:hover {
 }
 
 .ourEducation {
-  background-image: url("../../img/bg.jpg"); /* Шлях до вашого фонового зображення */
+  background-image: url("../../img/BG.jpg"); /* Шлях до вашого фонового зображення */
   background-size: cover; /* Робить фон адаптивним по ширині та висоті */
   background-repeat: no-repeat; /* Забороняє повторення фону */
   background-position: center; /* Розташовує фон по центру */
@@ -358,7 +358,7 @@ a:hover {
   margin: 0 20px 20px 0;
   background-color: #F3F3F3;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  outline: none;
+  outline: none !important;
 }
 .contact__group--textarea {
   width: 350px;
@@ -368,7 +368,7 @@ a:hover {
   resize: none;
   background-color: #F3F3F3;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  outline: none;
+  outline: none !important;
 }
 .contact__button {
   text-align: center;
