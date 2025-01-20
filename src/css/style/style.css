@@ -176,7 +176,7 @@ button:focus, button:focus-visible {
 }
 
 .ourEducation {
-  background-image: url("/src/img/cutted_BG.jpg"); /* Шлях до вашого фонового зображення */
+  background-image: url(./src/img/cutted_BG.jpg); /* Шлях до вашого фонового зображення */
   background-size: cover; /* Робить фон адаптивним по ширині та висоті */
   background-repeat: no-repeat; /* Забороняє повторення фону */
   background-position: center; /* Розташовує фон по центру */
