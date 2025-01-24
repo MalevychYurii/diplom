@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700&display=swap');
-@import "./variables/variables";
+@import "../variables/variables";
 
 // * {
 //     outline: 2px solid brown;
@@ -75,6 +75,7 @@ a {
 
   background-color: $gray;
   padding: 10px 0;
+  
   &__logo {
       max-width: 100%;
   }
@@ -126,15 +127,13 @@ a {
       padding: 15px;
       color: $white;
   }
-
-  &__button--signup {
-  }
 }
 
 .school {
 
   background-color: $lightGrayBackground;
   padding-top: 10px;
+
   &__content {
       display: flex;
   }
@@ -161,7 +160,6 @@ a {
   }
 
   &__subtext {
-      color: $gray;
       font-size: 19px;
       padding: 20px 0;
   }
@@ -183,7 +181,6 @@ a {
 }
 
 .services {
-  border-radius: 10px;
 
   &__title {
     font-size: 48px;
@@ -256,9 +253,7 @@ a {
 
   &__note {
     font-size: 19px;
-    font-weight: 700;
     text-align: center;
-    color: $gray;
   }
 }
 
@@ -406,7 +401,6 @@ a {
 
 .contact {
 
-
   &__titlе {
     text-align: center;
     margin: 40px 0;
@@ -424,9 +418,6 @@ a {
   &__image {
     max-width: 580px;
     padding: 20px;
-  }
-
-  &__block {
   }
 
   &__group--top { 
@@ -456,9 +447,6 @@ a {
     text-align: center;
     margin: 20px;
   }
-
-  &__message {
-  }
 }
 
 .footer {
@@ -466,8 +454,6 @@ a {
   background-color: $gray;
   padding-top: 20px;
   margin-top: 40px;
-  &__content {
-  }
 
   &__block {
     display: flex;

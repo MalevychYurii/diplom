@@ -1,0 +1,196 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700&display=swap");
+*, a, button {
+  font-family: Ubuntu !important;
+}
+
+button {
+  transition: all 0.3s ease-in-out;
+}
+button:not(.header__button--signup) {
+  box-shadow: #0387FC 0px 5px 15px;
+}
+button:hover {
+  cursor: pointer;
+  background-color: #000080;
+}
+button:focus, button:focus-visible {
+  outline: none;
+}
+
+a {
+  transition: all 0.5s ease-in-out;
+  outline: none !important;
+  font-size: 19px;
+}
+a:hover {
+  color: #0387FC;
+}
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  width: 50px;
+  height: 50px;
+  background-color: #0387FC;
+  color: #fff;
+  text-align: center;
+  line-height: 50px;
+  font-size: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+}
+.scroll-to-top:hover {
+  background-color: #000080;
+  color: #FFFFFF;
+}
+
+.scroll-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.container {
+  max-width: 1160px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.header {
+  background-color: #F3F3F3;
+  padding: 10px 0;
+}
+.header__logo {
+  max-width: 100%;
+}
+.header__logo-image {
+  max-width: 120px;
+}
+.header__nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.header__menu {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+.header__menu-item {
+  font-size: 19px;
+  outline: none;
+}
+.header__menu-item--active {
+  color: #0387FC;
+  font-weight: 700;
+}
+.header__link {
+  outline: none;
+}
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+.header__button {
+  font-size: 20px;
+}
+.header__button--login {
+  background-color: #0387FC;
+  border-radius: 30px;
+  padding: 15px;
+  color: #FFFFFF;
+}
+
+.about {
+  background-color: #EAF2F5;
+}
+.about__content {
+  display: flex;
+  justify-content: center;
+}
+.about__image {
+  max-width: 550px;
+  margin-right: 10px;
+}
+.about__block {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  justify-content: center;
+}
+.about__title {
+  font-size: 48px;
+  font-weight: 700;
+  text-align: center;
+}
+.about__bracket {
+  color: #0387FC;
+  font-weight: 700;
+}
+.about__bold {
+  font-weight: 700;
+}
+.about__subtitle {
+  padding-top: 20px;
+  font-size: 19px;
+}
+
+.footer {
+  background-color: #F3F3F3;
+  padding-top: 20px;
+  margin-top: 40px;
+}
+.footer__block {
+  display: flex;
+  justify-content: space-between;
+}
+.footer__item ul li {
+  padding-bottom: 25px;
+}
+.footer__item ul li a {
+  outline: none;
+}
+.footer__contact {
+  font-family: Ubuntu;
+}
+.footer__contact--title {
+  padding-bottom: 25px;
+}
+.footer__contact--tel {
+  padding-bottom: 10px;
+  opacity: 0.6;
+}
+.footer__contact--tel a {
+  outline: none;
+}
+.footer__contact--mail {
+  opacity: 0.6;
+}
+.footer__contact--mail a {
+  outline: none;
+}
+.footer__social {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 350px;
+}
+.footer__img {
+  max-width: 200px;
+}
+.footer__social--list {
+  display: flex;
+  flex-direction: column;
+  max-height: 160px;
+}
+.footer__social--item {
+  max-width: 30px;
+}/*# sourceMappingURL=style.css.map */
