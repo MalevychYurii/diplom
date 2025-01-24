@@ -41,8 +41,8 @@ a {
   right: 50px;
   width: 50px;
   height: 50px;
-  background-color: #0387FC;
-  color: #fff;
+  background-color: $blue;
+  color: $white;
   text-align: center;
   line-height: 50px;
   font-size: 24px;
@@ -108,6 +108,7 @@ a {
 
   &__link {
     outline: none;
+    font-size: 19px;
   }
 
   &__actions {
@@ -166,7 +167,210 @@ a {
 
   &__subtitle {
     padding-top: 20px;
+    line-height: 1.5em;
     font-size: 19px;
+    padding: 20px 0;
+  }
+}
+
+.why-us {
+  text-align: center;
+
+  &__title {
+    font-size: 48px;
+    text-align: center;
+    font-weight: 700;
+    margin: 40px 0;
+  }
+
+  &__slider {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    overflow: hidden;
+
+    .swiper-wrapper {
+      display: flex;
+      align-items: center;
+    }
+
+    .swiper-slide {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: $white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      flex-shrink: 0; 
+      width: auto !important; 
+      max-width: 420px;
+      margin: 10px;
+      transition: all 0.3s ease-in-out;
+      border: 1px solid $blue;
+
+      &:hover {
+        transform: translateY(-10px);
+        border: 5px solid $blue;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .swiper-slide-title {
+        font-weight: 700;
+        padding-top: 20px;
+      }
+
+      .swiper-slide-text {
+        padding: 30px 10px 10px 10px;
+      }
+    }
+  }
+
+  .swiper-buttons {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap: 50px;
+    padding-top: 20px;
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    line-height: 50px;
+    font-size: 24px;
+    border-radius: 50%;
+    outline: none !important;
+    background-color: $blue;
+    width: 50px;
+    height: 50px;
+    color: $white;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      background-color: $darkblue;
+    }
+  }
+}
+
+.mission {
+
+  &__title {
+    font-size: 48px;
+    text-align: center;
+    font-weight: 700;
+    margin: 40px 0;
+  }
+
+  &__text {
+    font-size: 19px;
+    line-height: 1.1em;
+  }
+
+  &__text--p {
+    padding-bottom: 20px;
+  }
+
+  &__text--span {
+    font-weight: 700;
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 40px;
+  }
+
+  &__list--item {
+    background-color: $lightGrayBackground;
+    border: 1px solid #0387fc;
+    border-radius: 10px;
+    padding: 20px;
+    flex: 1 1 calc(50% - 20px); /* 50% ширини мінус відступ */
+    max-width: calc(50% - 20px); /* Запобігання розтягуванню */
+    box-sizing: border-box;
+  }
+
+  &__list--title {
+    text-align: center;
+    font-size: 19px;
+    font-weight: 700;
+    padding-bottom: 20px;
+  }
+
+  &__list--text {
+  }
+}
+
+.contact {
+
+  &__titlе {
+    text-align: center;
+    margin: 40px 0;
+    font-weight: 700;
+    font-size: 48px;
+  }
+
+  &__form {
+    display: flex;
+    background-color: $lightGrayBackground;
+    border-radius: 30px;
+    border: 1px solid $blue;
+  }
+
+  &__image {
+    max-width: 580px;
+    padding: 20px;
+  }
+
+  &__group--top { 
+    margin-top: 30px;  
+  }
+
+  &__group--title {
+    font-size: 19px;
+  }
+
+  &__group--p {
+    margin: 10px 0;
+    font-weight: 700;
+  }
+
+  &__group--item {
+    padding: 20px;
+    margin: 0 20px 20px 0;
+    background-color: $gray;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    outline: none !important;
+  }
+
+  &__group--textarea {
+    width: 350px;
+    padding: 10px;
+    min-height: 100px;
+    max-height: 100px;
+    resize: none;
+    background-color: $gray;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    outline: none !important;
+  }
+
+  &__button {
+    text-align: center;
+    margin: 20px;
+  }
+
+  &__button--b {
+    text-align: center;
+    margin: 0 auto;
+    padding: 10px 30px;
+    max-width: 100%;
+    background-color: #0387FC;
+    border-radius: 30px;
+    color: #FFFFFF;
+    font-size: 40px;
   }
 }
 
@@ -224,6 +428,9 @@ a {
 
   &__img {
     max-width: 200px;
+    img {
+      max-height: 150px;
+    }
   }
 
   &__social--list {

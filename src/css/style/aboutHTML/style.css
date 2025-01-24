@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700&display=swap");
 *, a, button {
   font-family: Ubuntu !important;
@@ -33,7 +34,7 @@ a:hover {
   width: 50px;
   height: 50px;
   background-color: #0387FC;
-  color: #fff;
+  color: #FFFFFF;
   text-align: center;
   line-height: 50px;
   font-size: 24px;
@@ -92,6 +93,7 @@ a:hover {
 }
 .header__link {
   outline: none;
+  font-size: 19px;
 }
 .header__actions {
   display: flex;
@@ -139,7 +141,176 @@ a:hover {
 }
 .about__subtitle {
   padding-top: 20px;
+  line-height: 1.5em;
   font-size: 19px;
+  padding: 20px 0;
+}
+
+.why-us {
+  text-align: center;
+}
+.why-us__title {
+  font-size: 48px;
+  text-align: center;
+  font-weight: 700;
+  margin: 40px 0;
+}
+.why-us__slider {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.why-us__slider .swiper-wrapper {
+  display: flex;
+  align-items: center;
+}
+.why-us__slider .swiper-slide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #FFFFFF;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  flex-shrink: 0;
+  width: auto !important;
+  max-width: 420px;
+  margin: 10px;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid #0387FC;
+}
+.why-us__slider .swiper-slide:hover {
+  transform: translateY(-10px);
+  border: 5px solid #0387FC;
+  transition: all 0.3s ease-in-out;
+}
+.why-us__slider .swiper-slide .swiper-slide-title {
+  font-weight: 700;
+  padding-top: 20px;
+}
+.why-us__slider .swiper-slide .swiper-slide-text {
+  padding: 30px 10px 10px 10px;
+}
+.why-us .swiper-buttons {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  gap: 50px;
+  padding-top: 20px;
+}
+.why-us .swiper-button-prev,
+.why-us .swiper-button-next {
+  line-height: 50px;
+  font-size: 24px;
+  border-radius: 50%;
+  outline: none !important;
+  background-color: #0387FC;
+  width: 50px;
+  height: 50px;
+  color: #FFFFFF;
+  transition: all 0.3s ease-in-out;
+}
+.why-us .swiper-button-prev:hover,
+.why-us .swiper-button-next:hover {
+  background-color: #000080;
+}
+
+.mission__title {
+  font-size: 48px;
+  text-align: center;
+  font-weight: 700;
+  margin: 40px 0;
+}
+.mission__text {
+  font-size: 19px;
+  line-height: 1.1em;
+}
+.mission__text--p {
+  padding-bottom: 20px;
+}
+.mission__text--span {
+  font-weight: 700;
+}
+.mission__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+}
+.mission__list--item {
+  background-color: #EAF2F5;
+  border: 1px solid #0387fc;
+  border-radius: 10px;
+  padding: 20px;
+  flex: 1 1 calc(50% - 20px); /* 50% ширини мінус відступ */
+  max-width: calc(50% - 20px); /* Запобігання розтягуванню */
+  box-sizing: border-box;
+}
+.mission__list--title {
+  text-align: center;
+  font-size: 19px;
+  font-weight: 700;
+  padding-bottom: 20px;
+}
+.contact__titlе {
+  text-align: center;
+  margin: 40px 0;
+  font-weight: 700;
+  font-size: 48px;
+}
+.contact__form {
+  display: flex;
+  background-color: #EAF2F5;
+  border-radius: 30px;
+  border: 1px solid #0387FC;
+}
+.contact__image {
+  max-width: 580px;
+  padding: 20px;
+}
+.contact__group--top {
+  margin-top: 30px;
+}
+.contact__group--title {
+  font-size: 19px;
+}
+.contact__group--p {
+  margin: 10px 0;
+  font-weight: 700;
+}
+.contact__group--item {
+  padding: 20px;
+  margin: 0 20px 20px 0;
+  background-color: #F3F3F3;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  outline: none !important;
+}
+.contact__group--textarea {
+  width: 350px;
+  padding: 10px;
+  min-height: 100px;
+  max-height: 100px;
+  resize: none;
+  background-color: #F3F3F3;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  outline: none !important;
+}
+.contact__button {
+  text-align: center;
+  margin: 20px;
+}
+.contact__button--b {
+  text-align: center;
+  margin: 0 auto;
+  padding: 10px 30px;
+  max-width: 100%;
+  background-color: #0387FC;
+  border-radius: 30px;
+  color: #FFFFFF;
+  font-size: 40px;
 }
 
 .footer {
@@ -185,6 +356,9 @@ a:hover {
 }
 .footer__img {
   max-width: 200px;
+}
+.footer__img img {
+  max-height: 150px;
 }
 .footer__social--list {
   display: flex;

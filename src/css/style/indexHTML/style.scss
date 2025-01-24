@@ -109,6 +109,7 @@ a {
 
   &__link {
     outline: none;
+    font-size: 19px;
   }
 
   &__actions {
@@ -161,7 +162,10 @@ a {
 
   &__subtext {
       font-size: 19px;
-      padding: 20px 0;
+      padding: 20px 0;  
+      text-align: center;
+      color: $darkgray;
+      font-weight: 700;
   }
 
   &__button {
@@ -254,16 +258,12 @@ a {
   &__note {
     font-size: 19px;
     text-align: center;
+    color: $darkgray;
+    font-weight: 700;
   }
 }
 
 .ourEducation {
-
-    background-image: url('../../img/BG.jpg');  /* Шлях до вашого фонового зображення */
-    background-size: cover; /* Робить фон адаптивним по ширині та висоті */
-    background-repeat: no-repeat; /* Забороняє повторення фону */
-    background-position: center; /* Розташовує фон по центру */
-    background-attachment: local; /* Фіксує фон, щоб він не рухався під час скролу */
     
     &__content {
       display: flex;
@@ -285,8 +285,9 @@ a {
       font-size: 19px;
     }
 
-    &__textBlock-p {
+    &__textBlock--p {
       padding: 20px;
+      line-height: 1.2em;
     }
   
     &__textBlock-button {
@@ -366,10 +367,14 @@ a {
     }
   }
 
+  &__textBlock--p {
+    line-height: 1.2em;
+  }
+
   &__list {
     display: flex;
     flex-direction: row;
-    padding: 60px 20px 20px 20px;
+    padding: 40px 20px 0 20px;
     gap: 20px;
   }
 
@@ -422,6 +427,15 @@ a {
 
   &__group--top { 
     margin-top: 30px;  
+  }
+
+  &__group--title {
+    font-size: 19px;
+  }
+
+  &__group--p {
+    margin: 10px 0;
+    font-weight: 700;
   }
 
   &__group--item {
@@ -504,6 +518,9 @@ a {
 
   &__img {
     max-width: 200px;
+    img {
+      max-height: 150px;
+    }
   }
 
   &__social--list {

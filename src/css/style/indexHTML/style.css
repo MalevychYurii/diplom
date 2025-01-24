@@ -93,6 +93,7 @@ a:hover {
 }
 .header__link {
   outline: none;
+  font-size: 19px;
 }
 .header__actions {
   display: flex;
@@ -136,6 +137,9 @@ a:hover {
 .school__subtext {
   font-size: 19px;
   padding: 20px 0;
+  text-align: center;
+  color: #a9a9a9;
+  font-weight: 700;
 }
 .school__button {
   margin: 0 auto;
@@ -210,15 +214,10 @@ a:hover {
 .services__note {
   font-size: 19px;
   text-align: center;
+  color: #a9a9a9;
+  font-weight: 700;
 }
 
-.ourEducation {
-  background-image: url("../../img/BG.jpg"); /* Шлях до вашого фонового зображення */
-  background-size: cover; /* Робить фон адаптивним по ширині та висоті */
-  background-repeat: no-repeat; /* Забороняє повторення фону */
-  background-position: center; /* Розташовує фон по центру */
-  background-attachment: local; /* Фіксує фон, щоб він не рухався під час скролу */
-}
 .ourEducation__content {
   display: flex;
   margin-bottom: 40px;
@@ -235,8 +234,9 @@ a:hover {
 .ourEducation__textBlock-subtitle {
   font-size: 19px;
 }
-.ourEducation__textBlock-p {
+.ourEducation__textBlock--p {
   padding: 20px;
+  line-height: 1.2em;
 }
 .ourEducation__textBlock-button {
   text-align: center;
@@ -301,10 +301,13 @@ a:hover {
 .results__description span {
   font-weight: 700;
 }
+.results__textBlock--p {
+  line-height: 1.2em;
+}
 .results__list {
   display: flex;
   flex-direction: row;
-  padding: 60px 20px 20px 20px;
+  padding: 40px 20px 0 20px;
   gap: 20px;
 }
 .results__item {
@@ -347,6 +350,13 @@ a:hover {
 }
 .contact__group--top {
   margin-top: 30px;
+}
+.contact__group--title {
+  font-size: 19px;
+}
+.contact__group--p {
+  margin: 10px 0;
+  font-weight: 700;
 }
 .contact__group--item {
   padding: 20px;
@@ -413,6 +423,9 @@ a:hover {
 }
 .footer__img {
   max-width: 200px;
+}
+.footer__img img {
+  max-height: 150px;
 }
 .footer__social--list {
   display: flex;
