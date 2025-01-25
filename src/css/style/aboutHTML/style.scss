@@ -10,14 +10,17 @@
 }
 
 button {
-  transition: all 0.3s ease-in-out;
+  transition: background-color 0.5s ease-in-out, transform 0.5s ease-in-out;
   &:not(.header__button--signup) {
       box-shadow: $blue 0px 5px 15px;
   }
 
   &:hover {
+    transform: translateY(5px);
+    margin-top: -5px;
     cursor: pointer;
     background-color: $darkblue;
+    border: 3px solid $white;
   }
 
   &:focus,
@@ -25,7 +28,6 @@ button {
     outline: none;
   }
 }
-
 a {
   transition: all 0.5s ease-in-out;
   outline: none !important;
@@ -74,6 +76,11 @@ a {
 .scroll-to-top.show {
   opacity: 1;
   visibility: visible;
+
+  &:hover {
+    border: 1px solid $white;
+    transition: all 0.5s ease-in-out;
+  }
 }
 
 .container {
@@ -86,12 +93,18 @@ a {
 
   background-color: $gray;
   padding: 10px 0;
+  
   &__logo {
-      max-width: 100%;
-  }
+    max-width: 100%;
+    transition: all 1s ease-in-out;
+
+    &:hover {
+      transform: rotate(5deg);
+    }
+}
 
   &__logo-image {
-      max-width: 120px;
+      max-width: 135px;
   }
 
   &__nav {
@@ -104,7 +117,7 @@ a {
   &__menu {
       display: flex;
       flex-direction: row;
-      gap: 30px;
+      gap: 50px;
   }
 
   &__menu-item {
@@ -137,6 +150,10 @@ a {
       border-radius: 30px;
       padding: 15px;
       color: $white;
+
+      &:hover {
+        margin-left: -5px;
+      }
   }
 }
 
@@ -221,11 +238,9 @@ a {
       margin: 10px;
       transition: all 0.3s ease-in-out;
       border: 1px solid $blue;
-
+      
       &:hover {
-        transform: translateY(-10px);
-        border: 5px solid $blue;
-        transition: all 0.3s ease-in-out;
+        box-shadow: $blue 0px 1px 4px, $blue 0px 0px 0px 3px;
       }
 
       .swiper-slide-title {
@@ -261,6 +276,7 @@ a {
 
     &:hover {
       background-color: $darkblue;
+      transition: all 0.5s ease-in-out;
     }
   }
 }
@@ -355,6 +371,12 @@ a {
     background-color: $gray;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     outline: none !important;
+    transition: all 0.5s ease-in-out;
+
+    &:focus {
+      background-color: $white;
+      transition: all 0.5s ease-in-out;
+    }
   }
 
   &__group--textarea {
@@ -366,6 +388,12 @@ a {
     background-color: $gray;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     outline: none !important;
+    transition: all 0.5s ease-in-out;
+
+    &:focus {
+      background-color: $white;
+      transition: all 0.5s ease-in-out;
+    }
   }
 
   &__button {

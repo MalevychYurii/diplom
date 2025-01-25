@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const swiper = new Swiper('.why-us__slider', {
         slidesPerView: 1,  // За замовчуванням 1 слайд на мобільних пристроях
         spaceBetween: 35,  // Відстань між слайдами
-        loop: true,        // Безкінечний цикл
+        loop: true,        // Безкінечний цикл прокруту
         navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',

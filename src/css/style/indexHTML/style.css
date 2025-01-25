@@ -5,14 +5,17 @@
 }
 
 button {
-  transition: all 0.3s ease-in-out;
+  transition: background-color 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 button:not(.header__button--signup) {
   box-shadow: #0387FC 0px 5px 15px;
 }
 button:hover {
+  transform: translateY(5px);
+  margin-top: -5px;
   cursor: pointer;
   background-color: #000080;
+  border: 3px solid #FFFFFF;
 }
 button:focus, button:focus-visible {
   outline: none;
@@ -66,6 +69,11 @@ a:hover {
   opacity: 1;
   visibility: visible;
 }
+.scroll-to-top.show:hover {
+  transform: translateY(10px);
+  border: 1px solid #FFFFFF;
+  transition: all 0.5s ease-in-out;
+}
 
 .container {
   max-width: 1160px;
@@ -79,9 +87,13 @@ a:hover {
 }
 .header__logo {
   max-width: 100%;
+  transition: all 1s ease-in-out;
+}
+.header__logo:hover {
+  transform: rotate(5deg);
 }
 .header__logo-image {
-  max-width: 120px;
+  max-width: 135px;
 }
 .header__nav {
   display: flex;
@@ -92,7 +104,7 @@ a:hover {
 .header__menu {
   display: flex;
   flex-direction: row;
-  gap: 30px;
+  gap: 50px;
 }
 .header__menu-item {
   font-size: 19px;
@@ -119,6 +131,9 @@ a:hover {
   border-radius: 30px;
   padding: 15px;
   color: #FFFFFF;
+}
+.header__button--login:hover {
+  margin-left: -5px;
 }
 
 .school {
@@ -375,6 +390,11 @@ a:hover {
   background-color: #F3F3F3;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   outline: none !important;
+  transition: all 0.5s ease-in-out;
+}
+.contact__group--item:focus {
+  background-color: #FFFFFF;
+  transition: all 0.5s ease-in-out;
 }
 .contact__group--textarea {
   width: 350px;
@@ -385,6 +405,11 @@ a:hover {
   background-color: #F3F3F3;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   outline: none !important;
+  transition: all 0.5s ease-in-out;
+}
+.contact__group--textarea:focus {
+  background-color: #FFFFFF;
+  transition: all 0.5s ease-in-out;
 }
 .contact__button {
   text-align: center;
