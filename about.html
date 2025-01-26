@@ -34,7 +34,9 @@
             </li>
           </ul>
           <div class="header__actions">
-            <a href="" class="header__link">Зареєструватися</a>
+            <a href="" class="header__link header__link--registration"
+              >Зареєструватися</a
+            >
             <button type="button" class="header__button header__button--login">
               Увійти
             </button>
@@ -204,57 +206,93 @@
           </div>
         </div>
       </section>
-      <section class="contact hidden-section">
+      <section class="history">
         <div class="container">
-          <div class="contact__titlе">Зв'язатись з нами:</div>
-          <div class="contact__form">
-            <img
-              src="./src/img/contact/img.png"
-              alt="Ілюстрація"
-              class="contact__image"
-            />
-            <div class="contact__block">
-              <div class="contact__group--top">
-                <div class="contact__group--title">
-                  Приєднуйтесь до нас! Не відкладайте свої мрії на потім.
-                  <p class="contact__group--p">
-                    Почніть навчання вже сьогодні!
-                  </p>
-                </div>
-                <input
-                  class="contact__group--item"
-                  type="text"
-                  placeholder="ПІБ"
-                />
-                <input
-                  class="contact__group--item"
-                  type="email"
-                  placeholder="Email"
-                />
-                <div class="contact__group">
-                  <input
-                    class="contact__group--item"
-                    type="tel"
-                    placeholder="Номер тел. (Формат +380)"
-                  />
-                  <input
-                    class="contact__group--item"
-                    type="text"
-                    placeholder="Тема"
-                  />
-                </div>
-                <div class="contact__message">
-                  <textarea
-                    class="contact__group--textarea"
-                    placeholder="Напишіть повідомлення"
-                  ></textarea>
-                </div>
-                <div class="contact__button">
-                  <button type="button" class="contact__button--b">
-                    Надіслати
-                  </button>
-                </div>
-              </div>
+          <div class="history__title">Наша історія:</div>
+          <div class="history__tabs">
+            <div
+              class="history__tabs-item history__tabs-item--active"
+              data-tab="1"
+            >
+              Перші кроки
+            </div>
+            <div class="history__tabs-item" data-tab="2">Розвиток</div>
+            <div class="history__tabs-item" data-tab="3">Плани на майбутнє</div>
+          </div>
+          <div class="history__content">
+            <div
+              class="history__content-item history__content-item--visible"
+              data-content="1"
+            >
+              <p>
+                Це перші кроки нашої компанії, коли ми тільки починали свій шлях
+                у сфері технологій. Спочатку ми зосереджувалися на розробці
+                невеликих проєктів і поступово накопичували досвід. Нашою
+                головною метою було створення якісного продукту, який би
+                задовольняв потреби клієнтів. Ми працювали з обмеженими
+                ресурсами, але завдяки злагодженій команді змогли закласти
+                міцний фундамент для подальшого зростання.
+              </p>
+              <p>
+                У цей період ми зіштовхнулися з численними викликами, такими як
+                пошук перших клієнтів, налагодження внутрішніх процесів та
+                формування корпоративної культури. Попри всі труднощі, нам
+                вдалося створити команду ентузіастів, яка поділяла спільне
+                бачення розвитку компанії.
+              </p>
+            </div>
+
+            <div class="history__content-item" data-content="2">
+              <p>
+                Наш розвиток включає багато етапів, серед яких розширення
+                спектру послуг, впровадження новітніх технологій та
+                масштабування бізнесу. Ми почали співпрацювати з великими
+                обсягами інформації, що дозволило нам розширити наші можливості
+                та підвищити рівень компетентності.
+              </p>
+              <p>
+                Одним з ключових моментів розвитку стало впровадження системи
+                управління якістю, яка допомогла стандартизувати наші робочі
+                процеси і забезпечити високу якість послуг. Ми також активно
+                працювали над створенням партнерських відносин з провідними
+                компаніями галузі, що дозволило нам отримати доступ до нових
+                ринків.
+              </p>
+              <p>
+                Важливим кроком стало впровадження програм навчання та
+                підвищення кваліфікації для наших співробітників, адже ми
+                розуміємо, що успіх компанії напряму залежить від
+                професіоналізму нашої команди.
+              </p>
+            </div>
+
+            <div class="history__content-item" data-content="3">
+              <p>
+                Наші плани на майбутнє зосереджені на розширенні можливостей для
+                всіх, хто хоче вдосконалити свою англійську. Ми прагнемо зробити
+                навчання ще більш доступним, інтерактивним та ефективним,
+                використовуючи сучасні технології та підходи.
+              </p>
+              <p>
+                Ми плануємо запровадити нові навчальні модулі, які
+                охоплюватимуть різні рівні володіння мовою – від початківців до
+                професіоналів. Особливу увагу буде приділено практичним
+                навичкам: розмовній практиці, граматиці, аудіюванню та письму.
+              </p>
+              <p>
+                Також у наших планах — інтеграція штучного інтелекту для
+                персоналізованого навчання. Завдяки адаптивним алгоритмам кожен
+                користувач зможе отримати індивідуальні рекомендації, що
+                відповідатимуть його рівню та цілям навчання.
+              </p>
+              <p>
+                Ми розробляємо мобільний застосунок, який дозволить займатися в
+                будь-який час і в будь-якому місці, а також впроваджуємо систему
+                гейміфікації, щоб зробити процес навчання захопливим і
+                мотивуючим. Нашою метою є створення платформи, яка не просто
+                навчає, а й допомагає застосовувати англійську в реальних
+                ситуаціях.
+              </p>
             </div>
           </div>
         </div>
@@ -266,7 +304,9 @@
         <div class="footer__content">
           <div class="footer__block">
             <div class="footer__img">
-              <img src="./src/img/logo.png" alt="Ілюстрація" />
+              <a href="./index.html"
+                ><img src="./src/img/logo.png" alt="Logo"
+              /></a>
             </div>
             <div class="footer__item">
               <ul>
@@ -324,10 +364,56 @@
       </div>
     </footer>
 
+    <div id="registerModal" class="modal modal--register">
+      <div class="modal__content">
+        <span class="modal__close">&times;</span>
+        <h2 class="modal__title">Реєстрація</h2>
+        <form class="modal__form">
+          <input class="modal__input" type="text" placeholder="ПІБ" required />
+          <input
+            class="modal__input"
+            type="email"
+            placeholder="Email"
+            required
+          />
+          <input
+            class="modal__input"
+            type="password"
+            placeholder="Пароль"
+            required
+          />
+          <button class="modal__button" type="submit">Зареєструватися</button>
+        </form>
+      </div>
+    </div>
+    <div id="loginModal" class="modal modal--login">
+      <div class="modal__content">
+        <span class="modal__close">&times;</span>
+        <h2 class="modal__title">Вхід</h2>
+        <form class="modal__form">
+          <input
+            class="modal__input"
+            type="email"
+            placeholder="Email"
+            required
+          />
+          <input
+            class="modal__input"
+            type="password"
+            placeholder="Пароль"
+            required
+          />
+          <button class="modal__button" type="submit">Увійти</button>
+        </form>
+      </div>
+    </div>
+
     <a href="#" class="scroll-to-top" id="scrollToTop">&#8679;</a>
     <script src="./src/js/upArrow.js"></script>
     <script src="./src/js/hideSection.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="./src/js/sliderAboutPage.js"></script>
+    <script src="./src/js/tabSwitcher.js"></script>
+    <script src="./src/js/modal.js"></script>
   </body>
 </html>

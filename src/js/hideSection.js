@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 observer.unobserve(entry.target);  // Вимикаємо спостереження після появи
             }
         });
-    }, { threshold: 0.2 });  // Відстеження при 20% видимості секції
+    }, { threshold: 0.15 });  // Відстеження при 20% видимості секції
 
     sections.forEach(section => observer.observe(section));
 });
