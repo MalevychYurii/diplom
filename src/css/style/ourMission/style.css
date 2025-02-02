@@ -176,14 +176,13 @@ a:hover {
 }
 
 .mission {
-  padding: 80px 0;
+  padding: 40px 0;
   background-color: #f4f7fc;
   text-align: center;
 }
 .mission__title {
-  font-size: 42px;
+  font-size: 48px;
   font-weight: 700;
-  color: #222;
   margin-bottom: 30px;
 }
 .mission__intro {
@@ -208,13 +207,15 @@ a:hover {
   background: #fff;
   padding: 25px;
   border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease-in-out;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  transition: all 0.3s ease-in-out;
   text-align: center;
   flex: 1 1 calc(50% - 30px);
+  border: 1px solid #0387FC;
+  outline: 1px solid transparent;
 }
 .mission__item:hover {
-  transform: translateY(-5px);
+  box-shadow: #0387FC 0px 1px 4px, #0387FC 0px 0px 0px 3px;
 }
 @media (max-width: 768px) {
   .mission__item {
@@ -224,7 +225,7 @@ a:hover {
 .mission__icon {
   width: 60px;
   height: 60px;
-  margin-bottom: 15px;
+  margin: 20px auto;
 }
 .mission__subtitle {
   font-size: 24px;
@@ -235,6 +236,7 @@ a:hover {
   font-size: 18px;
   color: #666;
   line-height: 1.5;
+  margin: 20px auto;
 }
 
 .footer {
