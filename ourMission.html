@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Diplom</title>
+    <link rel="stylesheet" href="./src/css/style/ourMission/style.css" />
+    <link rel="stylesheet" href="./src/css/nullstyle/nullstyle.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <nav class="header__nav">
+          <div class="header__logo">
+            <a href="./index.html"
+              ><img
+                src="./src/img/logo.png"
+                alt="Logo"
+                class="header__logo-image"
+            /></a>
+          </div>
+          <ul class="header__menu">
+            <li class="header__menu-item">
+              <a href="./about.html" class="header__link">Про нас</a>
+            </li>
+            <li class="header__menu-item header__menu-item--active">
+              <a href="./ourMission.html" class="header__link">Наша місія</a>
+            </li>
+            <li class="header__menu-item">
+              <a href="#" class="header__link">Контакти</a>
+            </li>
+            <li class="header__menu-item">
+              <a href="#" class="header__link">Процес навчання</a>
+            </li>
+          </ul>
+          <div class="header__actions">
+            <a href="" class="header__link header__link--registration"
+              >Зареєструватися</a
+            >
+            <button type="button" class="header__button header__button--login">
+              Увійти
+            </button>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="hero hidden-section">
+        <div class="container">
+          <div class="hero__content">
+            <div class="hero__block">
+              <h2 class="hero__title">Яка наша місія?</h2>
+              <div class="hero__description">
+                У <span class="hero__bracket">[</span>
+                <span class="hero__name">Fluentify</span>
+                <span class="hero__bracket">]</span>
+                ми віримо, що англійська – це не просто предмет у школі, а
+                реальний інструмент для досягнення ваших цілей. <br />
+                Наша місія – допомогти кожному опанувати мову швидко, ефективно
+                та з практичним підходом. Завдяки сучасним методикам,
+                інтерактивним матеріалам і підтримці досвідчених викладачів, ми
+                даємо вам не просто знання, а впевненість у спілкуванні.
+              </div>
+            </div>
+            <div class="hero__image">
+              <img
+                src="./src/img/ourMission/ourMission.png"
+                alt="Головний герой"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__content">
+          <div class="footer__block">
+            <div class="footer__img">
+              <a href="./index.html"
+                ><img src="./src/img/logo.png" alt="Logo"
+              /></a>
+            </div>
+            <div class="footer__item">
+              <ul>
+                <li><a href="">Про нас</a></li>
+                <li><a href="">Чому ви навчитесь?</a></li>
+                <li><a href="">Реєстрація</a></li>
+                <li><a href="">Локація</a></li>
+              </ul>
+            </div>
+            <div class="footer__item">
+              <div class="footer__contact">
+                <div class="footer__contact--title">Зв'язатись з нами:</div>
+                <div class="footer__contact--tel">
+                  <a href="tel:+38050549921">+38 (050) 549 921</a>
+                </div>
+                <div class="footer__contact--mail">
+                  <a href="mailto:test@gmail.com" target="_blank"
+                    >test@gmail.com</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="footer__item">
+              <div class="footer__social">
+                <ul class="footer__social--list">
+                  <li class="footer__social--item">
+                    <a href="">
+                      <img
+                        src="./src/img/svg/footerSocial/linkedIn.svg"
+                        alt=""
+                      />
+                    </a>
+                  </li>
+                  <li class="footer__social--item">
+                    <a href="">
+                      <img
+                        src="./src/img/svg/footerSocial/facebook.svg"
+                        alt=""
+                      />
+                    </a>
+                  </li>
+                  <li class="footer__social--item">
+                    <a href="">
+                      <img
+                        src="./src/img/svg/footerSocial/telegram.svg"
+                        alt=""
+                      />
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div id="registerModal" class="modal modal--register">
+      <div class="modal__content">
+        <span class="modal__close">&times;</span>
+        <h2 class="modal__title">Реєстрація</h2>
+        <form class="modal__form">
+          <input class="modal__input" type="text" placeholder="ПІБ" required />
+          <input
+            class="modal__input"
+            type="email"
+            placeholder="Email"
+            required
+          />
+          <input
+            class="modal__input"
+            type="password"
+            placeholder="Пароль"
+            required
+          />
+          <button class="modal__button" type="submit">Зареєструватися</button>
+        </form>
+      </div>
+    </div>
+    <div id="loginModal" class="modal modal--login">
+      <div class="modal__content">
+        <span class="modal__close">&times;</span>
+        <h2 class="modal__title">Вхід</h2>
+        <form class="modal__form">
+          <input
+            class="modal__input"
+            type="email"
+            placeholder="Email"
+            required
+          />
+          <input
+            class="modal__input"
+            type="password"
+            placeholder="Пароль"
+            required
+          />
+          <button class="modal__button" type="submit">Увійти</button>
+        </form>
+      </div>
+    </div>
+
+    <a href="#" class="scroll-to-top" id="scrollToTop">&#8679;</a>
+    <script src="./src/js/upArrow.js"></script>
+    <script src="./src/js/hideSection.js"></script>
+    <script src="./src/js/modal.js"></script>
+  </body>
+</html>
