@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Diplom</title>
-    <link rel="stylesheet" href="./src/css/style/contactHTML/style.css" />
+    <link rel="stylesheet" href="./src/css/style/learnProcessHTML/style.css" />
     <link rel="stylesheet" href="./src/css/nullstyle/nullstyle.css" />
   </head>
   <body>
@@ -26,10 +26,10 @@
             <li class="header__menu-item">
               <a href="./ourMission.html" class="header__link">Наша місія</a>
             </li>
-            <li class="header__menu-item header__menu-item--active">
+            <li class="header__menu-item">
               <a href="./contact.html" class="header__link">Контакти</a>
             </li>
-            <li class="header__menu-item">
+            <li class="header__menu-item header__menu-item--active">
               <a href="./learnProcess.html" class="header__link"
                 >Процес навчання</a
               >
@@ -48,47 +48,83 @@
     </header>
 
     <main class="main">
-      <section class="contact">
-        <div class="contact__container">
-          <div class="contact__info">
-            <h2 class="contact__title">Контактна інформація:</h2>
-            <div class="contact__details">
-              <div class="contact__item">
-                <span class="contact__item-title">Назва компанії:</span>
-                <span class="contact__item-description">Fluentify</span>
+      <section class="learning-stats">
+        <h2 class="learning-stats__title">Навчання у цифрах:</h2>
+        <p class="learning-stats__description">
+          Дослідження показують, що для досягнення кожного рівня англійської
+          мови необхідно виділити певну кількість годин активного навчання. На
+          кожному етапі студенти проходять різні типи занять, що охоплюють
+          граматику, лексику, розмовну практику та аудіювання.
+          <br />
+          <br />
+          Інтерактивні уроки, домашні завдання та участь у розмовних клубах
+          допомагають закріпити знання та розвивати навички. Регулярні
+          оцінювання дозволяють відстежувати прогрес та коригувати програму
+          навчання.
+        </p>
+        <canvas id="learningChart"></canvas>
+      </section>
+
+      <section class="timeline">
+        <div class="container">
+          <h2 class="timeline__title">Етапи вашого розвитку:</h2>
+          <div class="timeline__line">
+            <div class="timeline__step" data-step="1">
+              <div class="timeline__content">
+                <h3 class="timeline__step-title">Вступ</h3>
+                <p class="timeline__step-description">
+                  Перший крок у нашому процесі навчання – це знайомство з
+                  основними концепціями. Ми пояснюємо, як працює наша методика,
+                  які інструменти використовуються, і допомагаємо налаштувати
+                  навчальний процес відповідно до потреб кожного учня.
+                </p>
               </div>
-              <div class="contact__item">
-                <span class="contact__item-title">Адреса компанії:</span>
-                <span class="contact__item-description">
-                  55 Ludgate Hill, City of London, London EC4M 7JW, Велика
-                  Британія
-                </span>
+            </div>
+            <div class="timeline__step" data-step="2">
+              <div class="timeline__content">
+                <h3 class="timeline__step-title">Практика</h3>
+                <p class="timeline__step-description">
+                  Після ознайомлення ми переходимо до практичних завдань. Наші
+                  інтерактивні вправи допомагають застосовувати теоретичні
+                  знання на практиці, що значно покращує розуміння матеріалу.
+                </p>
               </div>
-              <div class="contact__item">
-                <span class="contact__item-title">E-mail:</span>
-                <a
-                  href="mailto:support@fluentify.com"
-                  class="contact__item-description"
-                >
-                  support@fluentify.com
-                </a>
+            </div>
+            <div class="timeline__step" data-step="3">
+              <div class="timeline__content">
+                <h3 class="timeline__step-title">Проектна робота</h3>
+                <p class="timeline__step-description">
+                  На цьому етапі студенти працюють над власними проектами,
+                  застосовуючи всі отримані знання. Проекти можуть бути
+                  індивідуальними або командними, що допомагає розвивати
+                  комунікативні навички.
+                </p>
               </div>
-              <div class="contact__item">
-                <span class="contact__item-title">Номер телефону:</span>
-                <a href="tel:+380500518846">+38 (050) 051 88 46</a>
+            </div>
+            <div class="timeline__step" data-step="4">
+              <div class="timeline__content">
+                <h3 class="timeline__step-title">Оцінювання</h3>
+                <p class="timeline__step-description">
+                  Ми надаємо докладний аналіз прогресу кожного студента.
+                  Використовуємо сучасні інструменти оцінювання та зворотного
+                  зв’язку, що дозволяє визначити сильні та слабкі сторони.
+                </p>
+              </div>
+            </div>
+            <div class="timeline__step" data-step="5">
+              <div class="timeline__content">
+                <h3 class="timeline__step-title">Майстерність</h3>
+                <p class="timeline__step-description">
+                  Завершальний етап – підготовка студентів до самостійного
+                  застосування знань. Ми надаємо ресурси, додаткові матеріали та
+                  можливості для подальшого розвитку.
+                </p>
               </div>
             </div>
           </div>
-          <div class="contact__map">
-            <iframe
-              class="contact__map-iframe"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.962476775719!2d-0.1028725!3d51.5139044!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487604ad20c2fccf%3A0x62f42ed731c6f861!2sFluentify!5e0!3m2!1suk!2sua!4v1738945519343!5m2!1suk!2sua"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-            >
-            </iframe>
-          </div>
+        </div>
+        <div class="timeline__button hidden-section">
+          <button type="button" class="school__button">Розпочати</button>
         </div>
       </section>
     </main>
@@ -206,5 +242,8 @@
     <script src="./src/js/upArrow.js"></script>
     <script src="./src/js/hideSection.js"></script>
     <script src="./src/js/modal.js"></script>
+    <script src="./src/js/schedule.js"></script>
+    <script src="./src/js/learnProcess.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </body>
 </html>
