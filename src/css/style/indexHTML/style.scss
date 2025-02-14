@@ -95,13 +95,13 @@ a {
 
   background-color: $gray;
   padding: 10px 0;
-  
+
   &__logo {
       max-width: 100%;
       transition: all 1s ease-in-out;
 
       &:hover {
-        transform: rotate(5deg);
+          transform: rotate(5deg);
       }
   }
 
@@ -128,7 +128,7 @@ a {
       transition: all 0.5s ease-in-out;
 
       &:hover {
-        transform: scale(1.2);
+          transform: scale(1.2);
       }
   }
 
@@ -138,8 +138,8 @@ a {
   }
 
   &__link {
-    outline: none;
-    font-size: 19px;
+      outline: none;
+      font-size: 19px;
   }
 
   &__actions {
@@ -159,67 +159,134 @@ a {
       color: $white;
 
       &:hover {
-        margin-left: -5px;
+          margin-left: -5px;
       }
   }
 }
 
 .school {
-
   background-color: $lightGrayBackground;
   padding-top: 10px;
 
   &__content {
-      display: flex;
+    display: flex;
   }
 
   &__title {
-      font-size: 48px;
+    font-size: 48px;
   }
 
   &__bracket {
-      color: $blue;
-      font-size: 48px;
+    color: $blue;
+    font-size: 48px;
   }
 
   &__block {
-      display: flex;
-      flex-direction: column;
-      max-width: 600px;
-      justify-content: center;
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    justify-content: center;
   }
 
   &__bold {
-      font-weight: 700;
-      font-size: 48px;
+    font-weight: 700;
+    font-size: 48px;
   }
 
   &__subtext {
-      font-size: 19px;
-      padding: 20px 0;  
-      text-align: center;
-      color: $darkgray;
-      font-weight: 700;
+    font-size: 19px;
+    padding: 20px 0;
+    text-align: center;
+    color: $darkgray;
+    font-weight: 700;
   }
 
   &__button {
-      margin: 0 auto;
-      padding: 10px 30px;
-      max-width: 100%;
-      background-color: $blue;
-      border-radius: 30px;
-      color: $white;
-      font-size: 40px;
+    margin: 0 auto;
+    padding: 10px 30px;
+    max-width: 100%;
+    background-color: $blue;
+    border-radius: 30px;
+    color: $white;
+    font-size: 40px;
   }
 
   &__image {
-      max-width: 550px;
-      margin-left: 10px;
+    max-width: 550px;
+    margin-left: 10px;
+  }
+
+  // Адаптив для планшетів (768px)
+  @media (max-width: 980px) {
+    &__title {
+      font-size: 30px;
+    }
+
+    &__button {
+      font-size: 30px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    &__content {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &__title, &__bracket, &__bold {
+      font-size: 32px;
+    }
+
+    &__block {
+      max-width: 100%;
+      padding: 0 20px;
+    }
+
+    &__subtext {
+      font-size: 16px;
+    }
+
+    &__button {
+      font-size: 32px;
+      padding: 8px 20px;
+    }
+
+    &__image {
+      max-width: 100%;
+      margin-left: 0;
+      img {
+        max-height: 300px;
+      }
+    }
+  }
+
+  // Адаптив для мобільних пристроїв (480px)
+  @media (max-width: 480px) {
+    &__title, &__bracket, &__bold {
+      font-size: 24px;
+      text-align: center;
+    }
+
+    &__subtext {
+      font-size: 14px;
+    }
+
+    &__button {
+      font-size: 28px;
+      padding: 6px 15px;
+    }
+
+    &__image {
+      max-width: 100%;
+      margin: 0 auto;
+      img {
+        max-height: 200px;
+      }
+    }
   }
 }
 
 .services {
-
   &__title {
     font-size: 48px;
     text-align: center;
@@ -294,6 +361,100 @@ a {
     text-align: center;
     color: $darkgray;
     font-weight: 700;
+  }
+
+  @media (max-width: 1105px) {
+    &__content {
+      display: flex;
+      flex-wrap: nowrap;
+    }
+    
+    &__image {
+      max-width: 500px;
+      min-width: 300px;
+      min-height: 210px;
+      img {
+        padding: 10px;
+      }
+    }
+  }
+
+  // Адаптив для планшетів (768px)
+  @media (max-width: 768px) {
+    &__title {
+      font-size: 36px;
+    }
+
+    &__content {
+      flex-direction: column;
+      align-items: center;
+      max-width: 768px;
+      margin: 0 auto;
+    }
+
+    &__image {
+      img {
+        padding-left: 0;
+        max-height: 300px;
+        margin: 0 auto;
+      }
+    }
+
+    &__description {
+      max-width: 100%;
+      padding: 0 20px;
+    }
+
+    &__tags {
+      display: flex;
+      justify-content: space-between;
+      max-width: 500px;
+    }
+
+    &__tag {
+      font-size: 16px;
+      padding: 10px 20px;
+    }
+
+    &__note {
+      font-size: 16px;
+      padding: 10px 0 20px 0;
+    }
+  }
+
+  // Адаптив для мобільних пристроїв (480px)
+  @media (max-width: 480px) {
+    &__title {
+      font-size: 24px;
+      margin: 20px 0;
+    }
+
+    &__content {
+      flex-direction: column;
+      padding: 10px;
+    }
+
+    &__image {
+      img {
+        max-width: 100%;
+        padding-left: 0;
+        max-height: 200px;
+      }
+    }
+
+    &__description {
+      text-align: center;
+    }
+
+    &__tag {
+      font-size: 14px;
+      padding: 8px 15px;
+      text-align: center;
+    }
+
+    &__note {
+      font-size: 14px;
+    }
   }
 }
 
