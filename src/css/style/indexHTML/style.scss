@@ -634,7 +634,7 @@ a {
     &__list {
       flex-direction: column;
       align-items: center;
-      gap: 15px;
+      gap: 25px;
     }
 
     &__item {
@@ -662,7 +662,7 @@ a {
     &__list {
       flex-direction: column;
       align-items: center;
-      gap: 10px;
+      gap: 20px;
     }
 
     &__item {
@@ -698,7 +698,7 @@ a {
   &__description {
     font-size: 19px;
     p {
-      padding: 20px;
+      padding: 0 30px;
       text-align: start;
     }
     span {
@@ -778,32 +778,58 @@ a {
 }
 
 .contact {
-
   &__titlе {
     text-align: center;
     margin: 40px 0;
     font-weight: 700;
     font-size: 48px;
+
+    @media (max-width: 768px) {
+      font-size: 36px;
+      margin: 0px 0px 20px 0px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 28px;
+    }
   }
 
   &__form {
     display: flex;
+    flex-wrap: nowrap;
     background-color: $lightGrayBackground;
     border-radius: 30px;
     border: 1px solid $blue;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+
+    @media (max-width: 1024px) {
+      flex-direction: column;
+      align-items: center;
+    }
   }
 
   &__image {
-    max-width: 580px;
-    padding: 20px;
+    max-width: 100%;
+    flex: 1;
+    text-align: center;
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 20px;
+    }
   }
 
-  &__group--top { 
-    margin-top: 30px;  
+  &__group--top {
+    margin-top: 30px;
+    width: 100%;
   }
 
   &__group--title {
     font-size: 19px;
+    text-align: center;
   }
 
   &__group--p {
@@ -812,12 +838,13 @@ a {
   }
 
   &__group--item {
-    padding: 20px;
-    margin: 0 20px 20px 0;
+    padding: 15px;
+    margin: 0 10px 20px 0;
     background-color: $gray;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     outline: none !important;
     transition: all 0.5s ease-in-out;
+    width: 100%;
 
     &:focus {
       background-color: $white;
@@ -826,7 +853,7 @@ a {
   }
 
   &__group--textarea {
-    width: 350px;
+    width: 100%;
     padding: 10px;
     min-height: 100px;
     max-height: 100px;
@@ -845,11 +872,11 @@ a {
   &__button {
     text-align: center;
     margin: 20px;
+    width: 100%;
   }
 }
 
 .footer {
-
   background-color: $gray;
   padding-top: 20px;
   margin-top: 40px;
@@ -857,12 +884,26 @@ a {
   &__block {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      text-align: center;
+    }
   }
 
   &__item {
+    @media (max-width: 768px) {
+      &:nth-child(3) {
+        display: none;
+      }
+    }
     ul {
       li {
         padding-bottom: 25px;
+        min-width: 30px;
         a {
           outline: none;
         }
@@ -878,16 +919,11 @@ a {
     padding-bottom: 25px;
   }
 
-  &__contact--tel {
+  &__contact--tel,
+  &__contact--mail {
     padding-bottom: 10px;
     opacity: 0.6;
-    a {
-      outline: none;
-    }
-  }
-
-  &__contact--mail {
-    opacity: 0.6;
+    text-align: center;
     a {
       outline: none;
     }
@@ -899,10 +935,11 @@ a {
     justify-content: center;
     align-items: center;
     max-width: 350px;
+    width: 100%;
   }
 
   &__img {
-    max-width: 200px; 
+    max-width: 200px;
     transition: all 0.5s ease-in-out;
     img {
       max-height: 150px;
@@ -917,6 +954,7 @@ a {
     display: flex;
     flex-direction: column;
     max-height: 160px;
+    align-items: center;
   }
 
   &__social--item {
