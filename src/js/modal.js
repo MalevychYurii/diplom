@@ -6,24 +6,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeButtons = document.querySelectorAll(".modal__close");
 
     function openModal(modal) {
-        modal.style.display = "flex";
-        requestAnimationFrame(() => {
+        modal.style.display = "flex"; // Відновлюємо перед анімацією
+        setTimeout(() => {
             modal.classList.add("modal--active");
             document.body.style.overflow = "hidden";
-        });
+        }, 10);
     }
 
     function closeModal(modal) {
-        modal.classList.add("modal--closing");
+        if (!modal.classList.contains("modal--active")) return; // Якщо вже закрито - виходимо
 
-        // Чекаємо завершення анімації перед видаленням класу
-        modal.addEventListener("transitionend", function handler() {
+        modal.classList.add("modal--closing"); // Додаємо анімацію закриття
+
+        setTimeout(() => {
             modal.classList.remove("modal--active", "modal--closing");
             modal.style.display = "none";
-            modal.removeEventListener("transitionend", handler);
-        });
-
-        document.body.style.overflow = "";
+            document.body.style.overflow = "";
+        }, 400); // Чекаємо завершення анімації (збігається з `transition: 0.4s`)
     }
 
     registerBtn.addEventListener("click", (e) => {
@@ -38,14 +37,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     closeButtons.forEach((button) => {
         button.addEventListener("click", () => {
-            closeModal(registerModal);
-            closeModal(loginModal);
+            closeModal(button.closest(".modal"));
         });
     });
 
-    window.addEventListener("click", (event) => {
-        if (event.target === registerModal) closeModal(registerModal);
-        if (event.target === loginModal) closeModal(loginModal);
+    // Закриття модального вікна при натисканні на сіру зону
+    document.addEventListener("click", (event) => {
+        if (event.target.classList.contains("modal")) {
+            closeModal(event.target);
+        }
     });
 
     document.addEventListener("keydown", (event) => {
