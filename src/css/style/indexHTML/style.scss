@@ -955,6 +955,11 @@ a {
     flex-direction: column;
     max-height: 160px;
     align-items: center;
+    
+    @media (max-width: 768px) {
+      flex-direction: row;
+      gap: 20px;
+    }
   }
 
   &__social--item {

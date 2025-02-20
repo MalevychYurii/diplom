@@ -12,16 +12,26 @@
       <div class="container">
         <nav class="header__nav">
           <div class="header__logo">
-            <a href="./index.html"
-              ><img
+            <a href="./index.html">
+              <img
                 src="./src/img/logo.png"
                 alt="Logo"
                 class="header__logo-image"
-            /></a>
+              />
+            </a>
+          </div>
+          <div class="header__burger">
+            <span></span>
+            <span></span>
+            <span></span>
           </div>
           <ul class="header__menu">
-            <li class="header__menu-item header__menu-item--active">
-              <a href="./about.html" class="header__link">Про нас</a>
+            <li class="header__menu-item">
+              <a
+                href="./about.html"
+                class="header__link header__menu-item--active"
+                >Про нас</a
+              >
             </li>
             <li class="header__menu-item">
               <a href="./ourMission.html" class="header__link">Наша місія</a>
@@ -34,15 +44,18 @@
                 >Процес навчання</a
               >
             </li>
+            <div class="header__actions">
+              <a href="" class="header__link header__link--registration"
+                >Зареєструватися</a
+              >
+              <button
+                type="button"
+                class="header__button header__button--login"
+              >
+                Увійти
+              </button>
+            </div>
           </ul>
-          <div class="header__actions">
-            <a href="" class="header__link header__link--registration"
-              >Зареєструватися</a
-            >
-            <button type="button" class="header__button header__button--login">
-              Увійти
-            </button>
-          </div>
         </nav>
       </div>
     </header>
@@ -417,5 +430,6 @@
     <script src="./src/js/sliderAboutPage.js"></script>
     <script src="./src/js/tabSwitcher.js"></script>
     <script src="./src/js/modal.js"></script>
+    <script src="./src/js/burger.js"></script>
   </body>
 </html>

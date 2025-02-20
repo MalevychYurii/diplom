@@ -1,19 +1,25 @@
 document.addEventListener("DOMContentLoaded", function () {
     const swiper = new Swiper('.why-us__slider', {
-        slidesPerView: 1,  // За замовчуванням 1 слайд на мобільних пристроях
-        spaceBetween: 35,  // Відстань між слайдами
-        loop: true,        // Безкінечний цикл прокруту
+        slidesPerView: 1, // За замовчуванням один слайд (до 1024px)
+        spaceBetween: 0,
+        loop: true,
         navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
         },
         breakpoints: {
+            1024: {
+                slidesPerView: 2, // 2 слайди на екранах від 1024px і більше
+                spaceBetween: 10,
+            },
             768: {
-                slidesPerView: 2, // 2 слайди на планшетах
+                slidesPerView: 1, // 1 слайд на планшетах (до 1024px)
+                spaceBetween: 10,
             },
-            1200: {
-                slidesPerView: 2, // 2 слайди на широких екранах
-            },
+            428: {
+                slidesPerView: 1,
+                spaceBetween: 10,
+            }
         },
     });
 });

@@ -812,6 +812,12 @@ a:hover {
   max-height: 160px;
   align-items: center;
 }
+@media (max-width: 768px) {
+  .footer__social--list {
+    flex-direction: row;
+    gap: 20px;
+  }
+}
 .footer__social--item {
   max-width: 30px;
 }
