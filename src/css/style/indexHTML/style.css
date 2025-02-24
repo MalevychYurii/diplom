@@ -380,6 +380,8 @@ a:hover {
   .services__content {
     display: flex;
     flex-wrap: nowrap;
+    width: 95%;
+    margin: 0 auto;
   }
   .services__image {
     max-width: 500px;
@@ -686,6 +688,12 @@ a:hover {
   .contact__form {
     flex-direction: column;
     align-items: center;
+  }
+}
+@media (max-width: 768px) {
+  .contact__form {
+    width: 95%;
+    margin: 0 auto;
   }
 }
 .contact__image {
