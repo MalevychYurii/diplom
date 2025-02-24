@@ -313,6 +313,7 @@ a {
     &__block {
       max-width: 100%;
       padding: 0 20px;
+      text-align: start;
     }
 
     &__subtext {
@@ -637,6 +638,7 @@ a {
       flex-direction: column;
       align-items: center;
       gap: 25px;
+      padding: 20px;
     }
 
     &__item {
