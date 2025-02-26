@@ -270,7 +270,7 @@ a:hover {
 }
 @media (max-width: 768px) {
   .timeline__line {
-    margin-left: 10px;
+    margin-left: 11px;
   }
 }
 .timeline__step {
@@ -290,6 +290,16 @@ a:hover {
   background: #0387FC;
   border-radius: 50%;
   box-shadow: 0 0 10px rgba(108, 92, 231, 0.6);
+}
+@media (max-width: 768px) {
+  .timeline__step::before {
+    top: 70px;
+  }
+}
+@media (max-width: 425px) {
+  .timeline__step::before {
+    top: 90px;
+  }
 }
 .timeline__content {
   background: #fff;

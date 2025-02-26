@@ -295,7 +295,7 @@ a {
       padding-left: 20px;
       border-left: 4px solid $blue;
       @media (max-width: 768px) {
-        margin-left: 10px;
+        margin-left: 11px;
       }
     }
   
@@ -316,6 +316,14 @@ a {
         background: $blue;
         border-radius: 50%;
         box-shadow: 0 0 10px rgba(108, 92, 231, 0.6);
+
+        @media (max-width: 768px) {
+          top: 70px;
+        }
+
+        @media (max-width: 425px) {
+          top: 90px
+        }
       }
     }
   
