@@ -1,11 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const registerBtn = document.querySelector(".header__link--registration");
+    const registerButtons = document.querySelectorAll(".school__button, .header__link--registration"); // Обираємо обидві кнопки
     const loginBtn = document.querySelector(".header__button--login");
     const registerModal = document.getElementById("registerModal");
     const loginModal = document.getElementById("loginModal");
     const closeButtons = document.querySelectorAll(".modal__close");
 
     function openModal(modal) {
+        if (!modal) return;
         modal.style.display = "flex"; // Відновлюємо перед анімацією
         setTimeout(() => {
             modal.classList.add("modal--active");
@@ -14,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function closeModal(modal) {
-        if (!modal.classList.contains("modal--active")) return; // Якщо вже закрито - виходимо
+        if (!modal || !modal.classList.contains("modal--active")) return; // Якщо вже закрито - виходимо
 
         modal.classList.add("modal--closing"); // Додаємо анімацію закриття
 
@@ -25,15 +26,20 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 400); // Чекаємо завершення анімації (збігається з `transition: 0.4s`)
     }
 
-    registerBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        openModal(registerModal);
+    // Додаємо обробник кліку для всіх кнопок реєстрації
+    registerButtons.forEach((button) => {
+        button.addEventListener("click", (e) => {
+            e.preventDefault();
+            openModal(registerModal);
+        });
     });
 
-    loginBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        openModal(loginModal);
-    });
+    if (loginBtn) {
+        loginBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            openModal(loginModal);
+        });
+    }
 
     closeButtons.forEach((button) => {
         button.addEventListener("click", () => {
@@ -48,10 +54,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    // Закриття модального вікна при натисканні "Escape"
     document.addEventListener("keydown", (event) => {
         if (event.key === "Escape") {
-            if (registerModal.classList.contains("modal--active")) closeModal(registerModal);
-            if (loginModal.classList.contains("modal--active")) closeModal(loginModal);
+            if (registerModal && registerModal.classList.contains("modal--active")) closeModal(registerModal);
+            if (loginModal && loginModal.classList.contains("modal--active")) closeModal(loginModal);
         }
     });
 });

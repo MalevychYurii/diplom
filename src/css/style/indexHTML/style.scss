@@ -11,7 +11,7 @@
 
 button {
   transition: background-color 0.5s ease-in-out, transform 1s ease-in-out;
-  &:not(.header__button--signup) {
+  &:not(.header__button--signup, .modal__button--lower) {
       box-shadow: $blue 0px 5px 15px;
   }
 
@@ -282,6 +282,16 @@ a {
     border-radius: 30px;
     color: $white;
     font-size: 40px;
+
+    &--send {
+      margin: 0 auto;
+      padding: 10px 30px;
+      max-width: 100%;
+      background-color: $blue;
+      border-radius: 30px;
+      color: $white;
+      font-size: 40px;
+    }
   }
 
   &__image {
