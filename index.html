@@ -256,7 +256,7 @@
       <section class="contact hidden-section">
         <div class="container">
           <div class="contact__titlе">Зв'язатись з нами:</div>
-          <div class="contact__form">
+          <form class="contact__form">
             <img
               src="./src/img/contact/img.png"
               alt="Ілюстрація"
@@ -305,7 +305,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </form>
         </div>
       </section>
     </main>
@@ -418,11 +418,23 @@
         </form>
       </div>
     </div>
+    <div id="submitModal" class="submitModal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <img src="./src/img/svg/success.svg" alt="Успішно" class="modal-icon" />
+        <h2>Дякуємо!</h2>
+        <p>
+          Ваше повідомлення відправлено, ми зв'яжемося з вами найближчим часом.
+        </p>
+        <button id="closeModalBtn">Повернутися назад</button>
+      </div>
+    </div>
 
     <a href="#" class="scroll-to-top" id="scrollToTop">&#8679;</a>
     <script src="./src/js/upArrow.js"></script>
     <script src="./src/js/hideSection.js"></script>
     <script src="./src/js/modal.js"></script>
     <script defer src="./src/js/burger.js"></script>
+    <script src="./src/js/ContactForm.js"></script>
   </body>
 </html>
