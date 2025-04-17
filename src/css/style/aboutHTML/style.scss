@@ -94,16 +94,19 @@ a {
   margin: 0 auto;
 }
 
+#user-email-display {
+  margin-right: 30px;
+  text-decoration: underline;
+  font-weight: 700;
+  font-size: 19px;
+}
+
+#user-email {
+  display: none;
+  /* Початково приховано */
+}
+
 .header {
-  #user-email-display {
-    margin-right: 10px;
-  }
-
-  #user-email {
-    display: none;
-    /* Початково приховано */
-  }
-
   background-color: $gray;
   padding: 10px 0;
 
@@ -216,10 +219,14 @@ a {
     align-items: center;
   }
 
-  &__button-logout {
-    background-color: #f44336;
-    /* Червона кнопка для виходу */
-    color: white;
+  &__button--logout {
+    margin: 0 auto;
+    padding: 5px 15px;
+    max-width: 100%;
+    background-color: #0387FC;
+    border-radius: 30px;
+    color: #FFFFFF;
+    font-size: 40px;
   }
 
   &__actions {

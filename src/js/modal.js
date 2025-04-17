@@ -7,11 +7,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const submitModal = document.getElementById("submitModal");
 
     const closeButtons = document.querySelectorAll(".modal__close, .close");
-    const closeModalBtn = document.getElementById("closeModalBtn");
 
-    const loginStatus = document.getElementById("loginStatus"); // елемент, де буде показуватись email
-    const userEmailDisplay = document.getElementById("user-email-display"); // елемент для email
-    const userEmailContainer = document.getElementById("user-email"); // контейнер для email
+    const loginStatus = document.getElementById("loginStatus");
+    const userEmailDisplay = document.getElementById("user-email-display");
+    const userEmailContainer = document.getElementById("user-email");
+
+    const registrationLink = document.querySelector(".header__link--registration");
+    const logoutBtn = document.getElementById("logoutBtn");
 
     // Відкриття модалки
     function openModal(modal) {
@@ -98,18 +100,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 const data = await res.json();
 
                 if (res.ok) {
-                    // Перевіряємо, чи є елемент для email
+                    localStorage.setItem("userEmail", email);
+
                     if (userEmailDisplay && userEmailContainer) {
-                        userEmailDisplay.textContent = email; // Показуємо email
-                        userEmailContainer.style.display = "block"; // Показуємо контейнер з email і кнопкою вийти
+                        userEmailDisplay.textContent = email;
+                        userEmailContainer.style.display = "flex";
                     }
+
+                    if (registrationLink) registrationLink.style.display = "none";
+                    if (loginBtn) loginBtn.style.display = "none";
 
                     openModal(submitModal);
 
                     setTimeout(() => {
                         loginForm.reset();
                         closeModal(loginModal);
-                    }, 5000);
+                    }, 1000);
                 } else {
                     alert("Помилка: " + data.error);
                 }
@@ -147,14 +153,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 const data = await res.json();
 
                 if (res.ok) {
-                    // Показуємо повідомлення про успіх
                     alert(data.message || "Реєстрація успішна!");
-
-                    // Закриваємо модалку реєстрації після успішної реєстрації
                     setTimeout(() => {
                         registerForm.reset();
                         closeModal(registerModal);
-                        openModal(submitModal); // Можна відкрити іншу модалку, якщо потрібно
+                        openModal(submitModal);
                     }, 1000);
                 } else {
                     alert("Помилка: " + data.error);
@@ -166,13 +169,23 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Кнопка "вийти"
-    const logoutBtn = document.getElementById("logoutBtn");
+    // Вихід
     if (logoutBtn) {
         logoutBtn.addEventListener("click", () => {
-            localStorage.removeItem("token");
-            userEmailContainer.style.display = "none"; // Ховаємо email і кнопку "Вийти"
-            window.location.reload(); // Перезавантажуємо сторінку
+            localStorage.removeItem("userEmail");
+
+            if (userEmailContainer) userEmailContainer.style.display = "none";
+            if (registrationLink) registrationLink.style.display = "inline-block";
+            if (loginBtn) loginBtn.style.display = "inline-block";
         });
+    }
+
+    // Показуємо email при завантаженні, якщо збережено
+    const storedEmail = localStorage.getItem("userEmail");
+    if (storedEmail && userEmailDisplay && userEmailContainer) {
+        userEmailDisplay.textContent = storedEmail;
+        userEmailContainer.style.display = "flex";
+        if (registrationLink) registrationLink.style.display = "none";
+        if (loginBtn) loginBtn.style.display = "none";
     }
 });

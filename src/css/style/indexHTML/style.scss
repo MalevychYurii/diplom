@@ -5,14 +5,17 @@
 //     outline: 2px solid brown;
 // }
 
-*, a, button {
-    font-family: $font !important;
+*,
+a,
+button {
+  font-family: $font !important;
 }
 
 button {
   transition: background-color 0.5s ease-in-out, transform 1s ease-in-out;
+
   &:not(.header__button--signup, .modal__button--lower) {
-      box-shadow: $blue 0px 5px 15px;
+    box-shadow: $blue 0px 5px 15px;
   }
 
   &:hover {
@@ -33,6 +36,7 @@ a {
   transition: all 0.5s ease-in-out;
   outline: none !important;
   font-size: 19px;
+
   &:hover {
     color: $blue;
   }
@@ -88,7 +92,19 @@ a {
 .container {
   max-width: 1160px;
   width: 100%;
-  margin: 0 auto; 
+  margin: 0 auto;
+}
+
+#user-email-display {
+  margin-right: 30px;
+  text-decoration: underline;
+  font-weight: 700;
+  font-size: 19px;
+}
+
+#user-email {
+  display: none;
+  /* Початково приховано */
 }
 
 .header {
@@ -197,6 +213,21 @@ a {
   &__link {
     outline: none;
     font-size: 19px;
+  }
+
+  &__user-info {
+    display: flex;
+    align-items: center;
+  }
+
+  &__button--logout {
+    margin: 0 auto;
+    padding: 5px 15px;
+    max-width: 100%;
+    background-color: #0387FC;
+    border-radius: 30px;
+    color: #FFFFFF;
+    font-size: 40px;
   }
 
   &__actions {
@@ -316,7 +347,9 @@ a {
       align-items: center;
     }
 
-    &__title, &__bracket, &__bold {
+    &__title,
+    &__bracket,
+    &__bold {
       font-size: 32px;
     }
 
@@ -338,6 +371,7 @@ a {
     &__image {
       max-width: 100%;
       margin-left: 0;
+
       img {
         max-height: 300px;
       }
@@ -346,7 +380,10 @@ a {
 
   // Адаптив для мобільних пристроїв (480px)
   @media (max-width: 480px) {
-    &__title, &__bracket, &__bold {
+
+    &__title,
+    &__bracket,
+    &__bold {
       font-size: 24px;
       text-align: center;
     }
@@ -363,6 +400,7 @@ a {
     &__image {
       max-width: 100%;
       margin: 0 auto;
+
       img {
         max-height: 200px;
       }
@@ -454,11 +492,12 @@ a {
       width: 95%;
       margin: 0 auto;
     }
-    
+
     &__image {
       max-width: 500px;
       min-width: 300px;
       min-height: 210px;
+
       img {
         padding: 10px;
       }
@@ -625,6 +664,7 @@ a {
     &__content {
       flex-wrap: wrap;
     }
+
     &__list {
       flex-wrap: wrap;
       max-width: 700px;
@@ -637,7 +677,7 @@ a {
       font-size: 36px;
       padding: 30px 0;
     }
-    
+
     &__textBlock {
       max-width: 100%;
       text-align: start;
@@ -663,16 +703,16 @@ a {
       font-size: 24px;
       padding: 20px 0;
     }
-    
+
     &__textBlock-subtitle {
       font-size: 16px;
     }
-    
+
     &__textBlock--p {
       font-size: 14px;
       padding: 10px;
     }
-    
+
     &__list {
       flex-direction: column;
       align-items: center;
@@ -711,10 +751,12 @@ a {
 
   &__description {
     font-size: 19px;
+
     p {
       padding: 0 30px;
       text-align: start;
     }
+
     span {
       font-weight: 700;
     }
@@ -741,7 +783,7 @@ a {
     font-weight: 700;
     font-size: 24px;
   }
-  
+
   @media (max-width: 1100px) {
     &__image {
       display: none;
@@ -758,7 +800,7 @@ a {
     &__subtitle {
       display: none;
     }
-    
+
     &__list {
       flex-direction: column;
       align-items: center;
@@ -779,11 +821,11 @@ a {
       font-size: 24px;
       font-weight: 700;
     }
-    
+
     &__description {
       font-size: 16px;
     }
-    
+
     &__list {
       flex-direction: column;
       align-items: center;
@@ -919,10 +961,12 @@ a {
         display: none;
       }
     }
+
     ul {
       li {
         padding-bottom: 25px;
         min-width: 30px;
+
         a {
           outline: none;
         }
@@ -943,6 +987,7 @@ a {
     padding-bottom: 10px;
     opacity: 0.6;
     text-align: center;
+
     a {
       outline: none;
     }
@@ -960,6 +1005,7 @@ a {
   &__img {
     max-width: 200px;
     transition: all 0.5s ease-in-out;
+
     img {
       max-height: 150px;
     }
@@ -974,7 +1020,7 @@ a {
     flex-direction: column;
     max-height: 160px;
     align-items: center;
-    
+
     @media (max-width: 768px) {
       flex-direction: row;
       gap: 20px;
@@ -983,9 +1029,11 @@ a {
 
   &__social--item {
     max-width: 30px;
+
     img {
       transition: all 0.5s ease-in-out;
       filter: brightness(0) saturate(100%) invert(55%) sepia(72%) saturate(7032%) hue-rotate(195deg) brightness(106%) contrast(98%);
+
       &:hover {
         filter: brightness(0) saturate(100%) invert(14%) sepia(20%) saturate(6358%) hue-rotate(225deg) brightness(117%) contrast(163%);
         transform: scale(1.2);
@@ -1144,6 +1192,7 @@ a {
       font-size: 20px;
       cursor: pointer;
       color: #333;
+
       &:hover {
         color: red;
       }
@@ -1177,6 +1226,7 @@ a {
       cursor: pointer;
       border-radius: 5px;
       transition: 0.3s;
+
       &:hover {
         background: $darkblue;
       }

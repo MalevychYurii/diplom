@@ -1,259 +1,230 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Diplom</title>
-    <link rel="stylesheet" href="./src/css/style/learnProcessHTML/style.css" />
-    <link rel="stylesheet" href="./src/css/nullstyle/nullstyle.css" />
-  </head>
-  <body>
-    <header class="header">
-      <div class="container">
-        <nav class="header__nav">
-          <div class="header__logo">
-            <a href="./index.html">
-              <img
-                src="./src/img/logo.png"
-                alt="Logo"
-                class="header__logo-image"
-              />
-            </a>
-          </div>
-          <div class="header__burger">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-          <ul class="header__menu">
-            <li class="header__menu-item">
-              <a href="./about.html" class="header__link">Про нас</a>
-            </li>
-            <li class="header__menu-item">
-              <a href="./ourMission.html" class="header__link">Наша місія</a>
-            </li>
-            <li class="header__menu-item">
-              <a href="./contact.html" class="header__link">Контакти</a>
-            </li>
-            <li class="header__menu-item header__menu-item--active">
-              <a href="./learnProcess.html" class="header__link"
-                >Процес навчання</a
-              >
-            </li>
-            <div class="header__actions">
-              <a href="" class="header__link header__link--registration"
-                >Зареєструватися</a
-              >
-              <button
-                type="button"
-                class="header__button header__button--login"
-              >
-                Увійти
-              </button>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diplom</title>
+  <link rel="stylesheet" href="./src/css/style/learnProcessHTML/style.css" />
+  <link rel="stylesheet" href="./src/css/nullstyle/nullstyle.css" />
+</head>
+
+<body>
+  <header class="header">
+    <div class="container">
+      <nav class="header__nav">
+        <div class="header__logo">
+          <a href="./index.html">
+            <img src="./src/img/logo.png" alt="Logo" class="header__logo-image" />
+          </a>
+        </div>
+        <div class="header__burger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <ul class="header__menu">
+          <li class="header__menu-item">
+            <a href="./about.html" class="header__link">Про нас</a>
+          </li>
+          <li class="header__menu-item">
+            <a href="./ourMission.html" class="header__link">Наша місія</a>
+          </li>
+          <li class="header__menu-item">
+            <a href="./contact.html" class="header__link">Контакти</a>
+          </li>
+          <li class="header__menu-item">
+            <a href="./learnProcess.html" class="header__link">Процес навчання</a>
+          </li>
+          <div class="header__actions">
+            <a href="" class="header__link header__link--registration">Зареєструватися</a>
+            <button type="button" class="header__button header__button--login">Увійти</button>
+
+            <!-- Місце для email користувача та кнопка виходу -->
+            <div id="user-email" class="header__user-info" style="display: none;">
+              <span id="user-email-display"></span> <!-- Для відображення email -->
+              <button id="logoutBtn" type="button" class="header__button header__button--logout">Вийти</button>
             </div>
-          </ul>
-        </nav>
+          </div>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="learning-stats">
+      <h2 class="learning-stats__title">Навчання у цифрах:</h2>
+      <p class="learning-stats__description">
+        Дослідження показують, що для досягнення кожного рівня англійської
+        мови необхідно виділити певну кількість годин активного навчання. На
+        кожному етапі студенти проходять різні типи занять, що охоплюють
+        граматику, лексику, розмовну практику та аудіювання.
+        <br />
+        <br />
+        Інтерактивні уроки, домашні завдання та участь у розмовних клубах
+        допомагають закріпити знання та розвивати навички. Регулярні
+        оцінювання дозволяють відстежувати прогрес та коригувати програму
+        навчання.
+      </p>
+      <canvas id="learningChart" class="learning-stats__shedule"></canvas>
+    </section>
+
+    <section class="timeline">
+      <div class="container">
+        <h2 class="timeline__title">Етапи вашого розвитку:</h2>
+        <div class="timeline__line">
+          <div class="timeline__step" data-step="1">
+            <div class="timeline__content">
+              <h3 class="timeline__step-title">Вступ</h3>
+              <p class="timeline__step-description">
+                Перший крок у нашому процесі навчання – це знайомство з
+                основними концепціями. Ми пояснюємо, як працює наша методика,
+                які інструменти використовуються, і допомагаємо налаштувати
+                навчальний процес відповідно до потреб кожного учня.
+              </p>
+            </div>
+          </div>
+          <div class="timeline__step" data-step="2">
+            <div class="timeline__content">
+              <h3 class="timeline__step-title">Практика</h3>
+              <p class="timeline__step-description">
+                Після ознайомлення ми переходимо до практичних завдань. Наші
+                інтерактивні вправи допомагають застосовувати теоретичні
+                знання на практиці, що значно покращує розуміння матеріалу.
+              </p>
+            </div>
+          </div>
+          <div class="timeline__step" data-step="3">
+            <div class="timeline__content">
+              <h3 class="timeline__step-title">Проектна робота</h3>
+              <p class="timeline__step-description">
+                На цьому етапі студенти працюють над власними проектами,
+                застосовуючи всі отримані знання. Проекти можуть бути
+                індивідуальними або командними, що допомагає розвивати
+                комунікативні навички.
+              </p>
+            </div>
+          </div>
+          <div class="timeline__step" data-step="4">
+            <div class="timeline__content">
+              <h3 class="timeline__step-title">Оцінювання</h3>
+              <p class="timeline__step-description">
+                Ми надаємо докладний аналіз прогресу кожного студента.
+                Використовуємо сучасні інструменти оцінювання та зворотного
+                зв’язку, що дозволяє визначити сильні та слабкі сторони.
+              </p>
+            </div>
+          </div>
+          <div class="timeline__step" data-step="5">
+            <div class="timeline__content">
+              <h3 class="timeline__step-title">Майстерність</h3>
+              <p class="timeline__step-description">
+                Завершальний етап – підготовка студентів до самостійного
+                застосування знань. Ми надаємо ресурси, додаткові матеріали та
+                можливості для подальшого розвитку.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
-    </header>
+      <div class="timeline__button hidden-section">
+        <button type="button" class="school__button">Розпочати</button>
+      </div>
+    </section>
+  </main>
 
-    <main class="main">
-      <section class="learning-stats">
-        <h2 class="learning-stats__title">Навчання у цифрах:</h2>
-        <p class="learning-stats__description">
-          Дослідження показують, що для досягнення кожного рівня англійської
-          мови необхідно виділити певну кількість годин активного навчання. На
-          кожному етапі студенти проходять різні типи занять, що охоплюють
-          граматику, лексику, розмовну практику та аудіювання.
-          <br />
-          <br />
-          Інтерактивні уроки, домашні завдання та участь у розмовних клубах
-          допомагають закріпити знання та розвивати навички. Регулярні
-          оцінювання дозволяють відстежувати прогрес та коригувати програму
-          навчання.
-        </p>
-        <canvas id="learningChart" class="learning-stats__shedule"></canvas>
-      </section>
-
-      <section class="timeline">
-        <div class="container">
-          <h2 class="timeline__title">Етапи вашого розвитку:</h2>
-          <div class="timeline__line">
-            <div class="timeline__step" data-step="1">
-              <div class="timeline__content">
-                <h3 class="timeline__step-title">Вступ</h3>
-                <p class="timeline__step-description">
-                  Перший крок у нашому процесі навчання – це знайомство з
-                  основними концепціями. Ми пояснюємо, як працює наша методика,
-                  які інструменти використовуються, і допомагаємо налаштувати
-                  навчальний процес відповідно до потреб кожного учня.
-                </p>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__content">
+        <div class="footer__block">
+          <div class="footer__img">
+            <a href="./index.html"><img src="./src/img/logo.png" alt="Logo" /></a>
+          </div>
+          <div class="footer__item">
+            <ul>
+              <li><a href="">Про нас</a></li>
+              <li><a href="">Чому ви навчитесь?</a></li>
+              <li><a href="">Реєстрація</a></li>
+              <li><a href="">Локація</a></li>
+            </ul>
+          </div>
+          <div class="footer__item">
+            <div class="footer__contact">
+              <div class="footer__contact--title">Зв'язатись з нами:</div>
+              <div class="footer__contact--tel">
+                <a href="tel:+38050549921">+38 (050) 549 921</a>
               </div>
-            </div>
-            <div class="timeline__step" data-step="2">
-              <div class="timeline__content">
-                <h3 class="timeline__step-title">Практика</h3>
-                <p class="timeline__step-description">
-                  Після ознайомлення ми переходимо до практичних завдань. Наші
-                  інтерактивні вправи допомагають застосовувати теоретичні
-                  знання на практиці, що значно покращує розуміння матеріалу.
-                </p>
-              </div>
-            </div>
-            <div class="timeline__step" data-step="3">
-              <div class="timeline__content">
-                <h3 class="timeline__step-title">Проектна робота</h3>
-                <p class="timeline__step-description">
-                  На цьому етапі студенти працюють над власними проектами,
-                  застосовуючи всі отримані знання. Проекти можуть бути
-                  індивідуальними або командними, що допомагає розвивати
-                  комунікативні навички.
-                </p>
-              </div>
-            </div>
-            <div class="timeline__step" data-step="4">
-              <div class="timeline__content">
-                <h3 class="timeline__step-title">Оцінювання</h3>
-                <p class="timeline__step-description">
-                  Ми надаємо докладний аналіз прогресу кожного студента.
-                  Використовуємо сучасні інструменти оцінювання та зворотного
-                  зв’язку, що дозволяє визначити сильні та слабкі сторони.
-                </p>
-              </div>
-            </div>
-            <div class="timeline__step" data-step="5">
-              <div class="timeline__content">
-                <h3 class="timeline__step-title">Майстерність</h3>
-                <p class="timeline__step-description">
-                  Завершальний етап – підготовка студентів до самостійного
-                  застосування знань. Ми надаємо ресурси, додаткові матеріали та
-                  можливості для подальшого розвитку.
-                </p>
+              <div class="footer__contact--mail">
+                <a href="mailto:test@gmail.com" target="_blank">test@gmail.com</a>
               </div>
             </div>
           </div>
-        </div>
-        <div class="timeline__button hidden-section">
-          <button type="button" class="school__button">Розпочати</button>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <div class="container">
-        <div class="footer__content">
-          <div class="footer__block">
-            <div class="footer__img">
-              <a href="./index.html"
-                ><img src="./src/img/logo.png" alt="Logo"
-              /></a>
-            </div>
-            <div class="footer__item">
-              <ul>
-                <li><a href="">Про нас</a></li>
-                <li><a href="">Чому ви навчитесь?</a></li>
-                <li><a href="">Реєстрація</a></li>
-                <li><a href="">Локація</a></li>
+          <div class="footer__item">
+            <div class="footer__social">
+              <ul class="footer__social--list">
+                <li class="footer__social--item">
+                  <a href="">
+                    <img src="./src/img/svg/footerSocial/linkedIn.svg" alt="linkedIn" />
+                  </a>
+                </li>
+                <li class="footer__social--item">
+                  <a href="">
+                    <img src="./src/img/svg/footerSocial/facebook.svg" alt="facebook" />
+                  </a>
+                </li>
+                <li class="footer__social--item">
+                  <a href="">
+                    <img src="./src/img/svg/footerSocial/telegram.svg" alt="telegram" />
+                  </a>
+                </li>
               </ul>
             </div>
-            <div class="footer__item">
-              <div class="footer__contact">
-                <div class="footer__contact--title">Зв'язатись з нами:</div>
-                <div class="footer__contact--tel">
-                  <a href="tel:+38050549921">+38 (050) 549 921</a>
-                </div>
-                <div class="footer__contact--mail">
-                  <a href="mailto:test@gmail.com" target="_blank"
-                    >test@gmail.com</a
-                  >
-                </div>
-              </div>
-            </div>
-            <div class="footer__item">
-              <div class="footer__social">
-                <ul class="footer__social--list">
-                  <li class="footer__social--item">
-                    <a href="">
-                      <img
-                        src="./src/img/svg/footerSocial/linkedIn.svg"
-                        alt="linkedIn"
-                      />
-                    </a>
-                  </li>
-                  <li class="footer__social--item">
-                    <a href="">
-                      <img
-                        src="./src/img/svg/footerSocial/facebook.svg"
-                        alt="facebook"
-                      />
-                    </a>
-                  </li>
-                  <li class="footer__social--item">
-                    <a href="">
-                      <img
-                        src="./src/img/svg/footerSocial/telegram.svg"
-                        alt="telegram"
-                      />
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
           </div>
         </div>
       </div>
-    </footer>
-
-    <div id="registerModal" class="modal modal--register">
-      <div class="modal__content">
-        <span class="modal__close">&times;</span>
-        <h2 class="modal__title">Реєстрація</h2>
-        <form class="modal__form">
-          <input class="modal__input" type="text" placeholder="ПІБ" required />
-          <input
-            class="modal__input"
-            type="email"
-            placeholder="Email"
-            required
-          />
-          <input
-            class="modal__input"
-            type="password"
-            placeholder="Пароль"
-            required
-          />
-          <button class="modal__button" type="submit">Зареєструватися</button>
-        </form>
-      </div>
     </div>
-    <div id="loginModal" class="modal modal--login">
-      <div class="modal__content">
-        <span class="modal__close">&times;</span>
-        <h2 class="modal__title">Вхід</h2>
-        <form class="modal__form">
-          <input
-            class="modal__input"
-            type="email"
-            placeholder="Email"
-            required
-          />
-          <input
-            class="modal__input"
-            type="password"
-            placeholder="Пароль"
-            required
-          />
-          <button class="modal__button" type="submit">Увійти</button>
-        </form>
-      </div>
-    </div>
+  </footer>
 
-    <a href="#" class="scroll-to-top" id="scrollToTop">&#8679;</a>
-    <script src="./src/js/upArrow.js"></script>
-    <script src="./src/js/hideSection.js"></script>
-    <script src="./src/js/modal.js"></script>
-    <script src="./src/js/schedule.js"></script>
-    <script src="./src/js/learnProcess.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="./src/js/burger.js"></script>
-  </body>
+  <div id="registerModal" class="modal modal--register">
+    <div class="modal__content">
+      <span class="modal__close">&times;</span>
+      <h2 class="modal__title">Реєстрація</h2>
+      <form class="modal__form">
+        <input class="modal__input" type="text" placeholder="ПІБ" required />
+        <input class="modal__input" type="email" placeholder="Email" required />
+        <input class="modal__input" type="password" placeholder="Пароль" required />
+        <button class="modal__button" type="submit">Зареєструватися</button>
+      </form>
+    </div>
+  </div>
+  <div id="loginModal" class="modal modal--login">
+    <div class="modal__content">
+      <span class="modal__close">&times;</span>
+      <h2 class="modal__title">Вхід</h2>
+      <form class="modal__form">
+        <input class="modal__input" type="email" placeholder="Email" required />
+        <input class="modal__input" type="password" placeholder="Пароль" required />
+        <button class="modal__button" type="submit">Увійти</button>
+      </form>
+    </div>
+  </div>
+  <div id="submitModal" class="submitModal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <img src="./src/img/svg/success.svg" alt="Успішно" class="modal-icon" />
+      <h2>Дякуємо!</h2>
+      <button id="closeModalBtn">Повернутися назад</button>
+    </div>
+  </div>
+
+  <a href="#" class="scroll-to-top" id="scrollToTop">&#8679;</a>
+  <script src="./src/js/upArrow.js"></script>
+  <script src="./src/js/hideSection.js"></script>
+  <script src="./src/js/modal.js"></script>
+  <script src="./src/js/schedule.js"></script>
+  <script src="./src/js/learnProcess.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="./src/js/burger.js"></script>
+</body>
+
 </html>
