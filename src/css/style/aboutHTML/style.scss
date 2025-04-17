@@ -5,14 +5,17 @@
 //     outline: 2px solid brown;
 // }
 
-*, a, button {
-    font-family: $font !important;
+*,
+a,
+button {
+  font-family: $font !important;
 }
 
 button {
   transition: background-color 0.5s ease-in-out, transform 1s ease-in-out;
+
   &:not(.header__button--signup, .tabs__button) {
-      box-shadow: $blue 0px 5px 15px;
+    box-shadow: $blue 0px 5px 15px;
   }
 
   &:hover {
@@ -28,10 +31,12 @@ button {
     outline: none;
   }
 }
+
 a {
   transition: all 0.5s ease-in-out;
   outline: none !important;
   font-size: 19px;
+
   &:hover {
     color: $blue;
   }
@@ -86,10 +91,19 @@ a {
 .container {
   max-width: 1160px;
   width: 100%;
-  margin: 0 auto; 
+  margin: 0 auto;
 }
 
 .header {
+  #user-email-display {
+    margin-right: 10px;
+  }
+
+  #user-email {
+    display: none;
+    /* Початково приховано */
+  }
+
   background-color: $gray;
   padding: 10px 0;
 
@@ -195,6 +209,17 @@ a {
   &__link {
     outline: none;
     font-size: 19px;
+  }
+
+  &__user-info {
+    display: flex;
+    align-items: center;
+  }
+
+  &__button-logout {
+    background-color: #f44336;
+    /* Червона кнопка для виходу */
+    color: white;
   }
 
   &__actions {
@@ -342,12 +367,12 @@ a {
       border-radius: 10px;
       box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
       flex-shrink: 0;
-      margin: 5px; 
+      margin: 5px;
       width: 100% !important;
       max-width: 435px;
       transition: all 0.3s ease-in-out;
       border: 1px solid $blue;
-      
+
       @media (max-width: 1024px) {
         width: 100% !important;
         max-width: 99.9%;
@@ -436,7 +461,7 @@ a {
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 40px;
-    
+
     @media (max-width: 768px) {
       padding: 20px;
       flex-direction: column;
@@ -448,8 +473,10 @@ a {
     border: 1px solid #0387fc;
     border-radius: 10px;
     padding: 20px;
-    flex: 1 1 calc(50% - 20px); /* 50% ширини мінус відступ */
-    max-width: calc(50% - 20px); /* Запобігання розтягуванню */
+    flex: 1 1 calc(50% - 20px);
+    /* 50% ширини мінус відступ */
+    max-width: calc(50% - 20px);
+    /* Запобігання розтягуванню */
     box-sizing: border-box;
 
     @media (max-width: 768px) {
@@ -466,11 +493,10 @@ a {
     padding-bottom: 20px;
   }
 
-  &__list--text {
-  }
+  &__list--text {}
 }
 
-.history {  
+.history {
 
   &__title {
     font-size: 48px;
@@ -539,10 +565,10 @@ a {
         display: block;
         opacity: 1;
         transform: translateY(0);
-        
-      @media (max-width: 768px) {
-        padding: 20px;
-      }
+
+        @media (max-width: 768px) {
+          padding: 20px;
+        }
       }
     }
   }
@@ -572,10 +598,12 @@ a {
         display: none;
       }
     }
+
     ul {
       li {
         padding-bottom: 25px;
         min-width: 30px;
+
         a {
           outline: none;
         }
@@ -596,6 +624,7 @@ a {
     padding-bottom: 10px;
     opacity: 0.6;
     text-align: center;
+
     a {
       outline: none;
     }
@@ -613,6 +642,7 @@ a {
   &__img {
     max-width: 200px;
     transition: all 0.5s ease-in-out;
+
     img {
       max-height: 150px;
     }
@@ -636,9 +666,11 @@ a {
 
   &__social--item {
     max-width: 30px;
+
     img {
       transition: all 0.5s ease-in-out;
       filter: brightness(0) saturate(100%) invert(55%) sepia(72%) saturate(7032%) hue-rotate(195deg) brightness(106%) contrast(98%);
+
       &:hover {
         filter: brightness(0) saturate(100%) invert(14%) sepia(20%) saturate(6358%) hue-rotate(225deg) brightness(117%) contrast(163%);
         transform: scale(1.2);
@@ -739,7 +771,7 @@ a {
     }
   }
 
-  &__social { 
+  &__social {
     margin-top: 20px;
 
     p {
