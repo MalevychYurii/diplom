@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const registrationLink = document.querySelector(".header__link--registration");
     const logoutBtn = document.getElementById("logoutBtn");
+    const courseLink = document.querySelector(".header__link--course"); // 🆕 додано
 
     // Відкриття модалки
     function openModal(modal) {
@@ -74,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Логіка входу
+    // Логін
     const loginForm = document.querySelector("#loginModal .modal__form");
 
     if (loginForm) {
@@ -109,12 +110,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     if (registrationLink) registrationLink.style.display = "none";
                     if (loginBtn) loginBtn.style.display = "none";
+                    if (logoutBtn) logoutBtn.style.display = "inline-block";
+
+                    // показуємо кнопку курсу
+                    if (courseLink) courseLink.style.display = "inline-block";
 
                     openModal(submitModal);
 
                     setTimeout(() => {
                         loginForm.reset();
                         closeModal(loginModal);
+                        window.location.href = "course.html";
                     }, 1000);
                 } else {
                     alert("Помилка: " + data.error);
@@ -177,6 +183,12 @@ document.addEventListener("DOMContentLoaded", () => {
             if (userEmailContainer) userEmailContainer.style.display = "none";
             if (registrationLink) registrationLink.style.display = "inline-block";
             if (loginBtn) loginBtn.style.display = "inline-block";
+            if (logoutBtn) logoutBtn.style.display = "none";
+
+            // 🆕 ховаємо кнопку курсу
+            if (courseLink) courseLink.style.display = "none";
+
+            window.location.href = "index.html";
         });
     }
 
@@ -187,5 +199,9 @@ document.addEventListener("DOMContentLoaded", () => {
         userEmailContainer.style.display = "flex";
         if (registrationLink) registrationLink.style.display = "none";
         if (loginBtn) loginBtn.style.display = "none";
+        if (logoutBtn) logoutBtn.style.display = "inline-block";
+
+        // показуємо кнопку курсу
+        if (courseLink) courseLink.style.display = "inline-block";
     }
 });
