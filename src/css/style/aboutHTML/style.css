@@ -377,7 +377,7 @@ a:hover {
   display: flex;
   justify-content: center;
   flex-direction: row;
-  gap: 15px;
+  gap: 20px;
   padding-top: 20px;
 }
 .why-us .swiper-button-prev,
@@ -456,6 +456,7 @@ a:hover {
   font-weight: 700;
   padding-bottom: 20px;
 }
+
 .history__title {
   font-size: 48px;
   font-weight: 700;

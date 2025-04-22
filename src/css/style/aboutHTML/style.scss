@@ -413,7 +413,7 @@ a {
     display: flex;
     justify-content: center;
     flex-direction: row;
-    gap: 15px;
+    gap: 20px;
     padding-top: 20px;
   }
 
@@ -499,8 +499,6 @@ a {
     font-weight: 700;
     padding-bottom: 20px;
   }
-
-  &__list--text {}
 }
 
 .history {
