@@ -9,7 +9,7 @@ button {
 button {
   transition: background-color 0.5s ease-in-out, transform 1s ease-in-out;
 }
-button:not(.header__button--signup, .modal__button--lower) {
+button:not(.header__button--signup, .modal__button--lower, .course__menu-item, .course__back) {
   box-shadow: #0387FC 0px 5px 15px;
 }
 button:hover {
@@ -494,4 +494,81 @@ a:hover {
 }
 #submitModal .modal-content #closeModalBtn:hover {
   background: #000080;
+}
+
+.course .course__info.hidden {
+  display: none;
+}
+.course__title {
+  font-size: 48px;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 40px;
+}
+.course__subtitle {
+  padding-top: 20px;
+  line-height: 1.5em;
+  font-size: 19px;
+  padding: 20px 0;
+  text-align: center;
+  max-width: 50%;
+  margin: 0 auto;
+}
+.course__menu {
+  display: flex;
+  margin-top: 20px;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+.course__menu-item {
+  box-sizing: border-box;
+  padding: 20px;
+  font-size: 20px;
+  background-color: #0387FC;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 25%;
+  transition: 0.5s ease;
+  color: #FFFFFF;
+}
+.course__menu-item:hover {
+  background-color: #000080;
+  border-color: #FFFFFF;
+  color: #FFFFFF;
+  font-weight: 700;
+}
+.course__section {
+  padding: 20px;
+  background-color: #fafafa;
+  border-radius: 10px;
+}
+.course__back {
+  margin-bottom: 20px;
+  background: none;
+  border: none;
+  font-size: 19px;
+  font-weight: 700;
+  color: #FFFFFF;
+  background-color: #0387FC;
+  cursor: pointer;
+  border-radius: 30px;
+  padding: 10px;
+  transition: 0.5s ease;
+}
+.course__back:hover {
+  border: 1px solid #FFFFFF;
+  transform: translateY(-5) !important;
+  margin-top: 0;
+  color: #FFFFFF;
+  background-color: #000080;
+}
+.course__content h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+.course__content p {
+  font-size: 18px;
+  line-height: 1.5;
 }/*# sourceMappingURL=style.css.map */

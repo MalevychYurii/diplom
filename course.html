@@ -56,7 +56,19 @@
     </header>
 
     <main class="main">
-
+        <section class="course">
+            <div id="course-info" class="course__info">
+                <h2 class="course__title">Ваш відділ знань</h2>
+                <h3 class="course__subtitle">
+                    Тут ми вчимо англійську крок за кроком, легко та з задоволенням. У кожному
+                    розділі — нові теми, практичні завдання та інструменти для закріплення знань. Обирай: вивчай слова,
+                    граматику, тренуй аудіювання чи розвивай навички мовлення. Усе, що потрібно для впевненого
+                    спілкування
+                    англійською — вже тут!
+                </h3>
+            </div>
+            <div id="course-root"></div>
+        </section>
     </main>
 
     <footer class="footer">
@@ -112,6 +124,68 @@
     </footer>
 
     <a href="#" class="scroll-to-top" id="scrollToTop">&#8679;</a>
+    <!-- React та Babel через CDN -->
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        function CourseApp() {
+            const [activeSection, setActiveSection] = useState(null);
+
+            useEffect(() => {
+                const infoBlock = document.getElementById('course-info');
+                if (infoBlock) {
+                    if (activeSection) {
+                        infoBlock.classList.add('hidden');
+                    } else {
+                        infoBlock.classList.remove('hidden');
+                    }
+                }
+            }, [activeSection]);
+
+            const sections = {
+                words: 'Тут буде навчання слів — список слів, вправи тощо.',
+                grammar: 'Тут буде граматика — правила, тести.',
+                listening: 'Тут буде аудіювання — аудіозаписи та питання.',
+                speaking: 'Тут буде говоріння — вправи на вимову, діалоги.'
+            };
+
+            const handleBack = () => setActiveSection(null);
+
+            return (
+                <div className="course">
+                    {!activeSection ? (
+                        <div className="course__menu">
+                            {Object.entries(sections).map(([key, content]) => (
+                                <button
+                                    key={key}
+                                    onClick={() => setActiveSection(key)}
+                                    className="course__menu-item"
+                                >
+                                    {key.toUpperCase()}
+                                </button>
+                            ))}
+                        </div>
+                    ) : (
+                        <div className="course__section">
+                            <button onClick={handleBack} className="course__back">⇦ Назад</button>
+                            <div className="course__content">
+                                <h2>{activeSection.toUpperCase()}</h2>
+                                <p>{sections[activeSection]}</p>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('course-root'));
+        root.render(<CourseApp />);
+    </script>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel" src="./src/js/CourseApp.jsx"></script>
     <script src="./src/js/upArrow.js"></script>
     <script src="./src/js/modal.js"></script>
     <script src="./src/js/hideSection.js"></script>

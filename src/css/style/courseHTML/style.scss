@@ -14,7 +14,7 @@ button {
 button {
     transition: background-color 0.5s ease-in-out, transform 1s ease-in-out;
 
-    &:not(.header__button--signup, .modal__button--lower) {
+    &:not(.header__button--signup, .modal__button--lower, .course__menu-item, .course__back) {
         box-shadow: $blue 0px 5px 15px;
     }
 
@@ -25,6 +25,7 @@ button {
         background-color: $darkblue;
         border: 3px solid $white;
     }
+
 
     &:focus,
     &:focus-visible {
@@ -561,6 +562,98 @@ a {
             &:hover {
                 background: $darkblue;
             }
+        }
+    }
+}
+
+.course {
+    .course__info.hidden {
+        display: none;
+    }
+
+    &__title {
+        font-size: 48px;
+        font-weight: 700;
+        text-align: center;
+        margin-top: 40px;
+    }
+
+    &__subtitle {
+        padding-top: 20px;
+        line-height: 1.5em;
+        font-size: 19px;
+        padding: 20px 0;
+        text-align: center;
+        max-width: 50%;
+        margin: 0 auto;
+    }
+
+    &__menu {
+        display: flex;
+        margin-top: 20px;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
+
+    &__menu-item {
+        box-sizing: border-box;
+        padding: 20px;
+        font-size: 20px;
+        background-color: $blue;
+        border: 2px solid transparent;
+        border-radius: 10px;
+        cursor: pointer;
+        width: 25%;
+        transition: 0.5s ease;
+        color: $white;
+
+        &:hover {
+            background-color: $darkblue;
+            border-color: $white;
+            color: $white;
+            font-weight: 700;
+        }
+    }
+
+
+    &__section {
+        padding: 20px;
+        background-color: #fafafa;
+        border-radius: 10px;
+    }
+
+    &__back {
+        margin-bottom: 20px;
+        background: none;
+        border: none;
+        font-size: 19px;
+        font-weight: 700;
+        color: $white;
+        background-color: $blue;
+        cursor: pointer;
+        border-radius: 30px;
+        padding: 10px;
+        transition: 0.5s ease;
+
+        &:hover {
+            border: 1px solid $white;
+            transform: translateY(-5) !important;
+            margin-top: 0;
+            color: $white;
+            background-color: $darkblue;
+        }
+    }
+
+    &__content {
+        h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.5;
         }
     }
 }
