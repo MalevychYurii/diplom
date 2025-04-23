@@ -11,6 +11,12 @@ button {
     font-family: $font !important;
 }
 
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
 button {
     transition: background-color 0.5s ease-in-out, transform 1s ease-in-out;
 
@@ -272,7 +278,6 @@ a {
 .footer {
     background-color: $gray;
     padding-top: 20px;
-    margin-top: 40px;
 
     &__block {
         display: flex;
@@ -567,6 +572,7 @@ a {
 }
 
 .course {
+
     .course__info.hidden {
         display: none;
     }
@@ -604,7 +610,7 @@ a {
         border: 2px solid transparent;
         border-radius: 10px;
         cursor: pointer;
-        width: 25%;
+        min-width: 25%;
         transition: 0.5s ease;
         color: $white;
 
@@ -616,11 +622,23 @@ a {
         }
     }
 
+    &__submenu {
+        display: flex;
+        flex-direction: column;
+
+        button {
+            margin: 20px 0;
+        }
+    }
 
     &__section {
         padding: 20px;
         background-color: #fafafa;
         border-radius: 10px;
+        min-height: 66vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     &__back {

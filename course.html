@@ -130,6 +130,39 @@
 
         function CourseApp() {
             const [activeSection, setActiveSection] = useState(null);
+            const [activeSubsection, setActiveSubsection] = useState(null);
+
+            const sections = {
+                words: {
+                    title: 'Слова',
+                    subsections: {
+                        vocabulary: 'Список слів і вправи',
+                        flashcards: 'Картки для запам’ятовування'
+                    }
+                },
+                grammar: {
+                    title: 'Граматика',
+                    subsections: {
+                        tenses: 'Часи англійської мови',
+                        articles: 'Артиклі',
+                        conditionals: 'Умовні речення'
+                    }
+                },
+                listening: {
+                    title: 'Аудіювання',
+                    subsections: {
+                        beginner: 'Аудіо для початківців',
+                        advanced: 'Аудіо для просунутих'
+                    }
+                },
+                speaking: {
+                    title: 'Говоріння',
+                    subsections: {
+                        pronunciation: 'Вправи на вимову',
+                        dialogue: 'Практика діалогів'
+                    }
+                }
+            };
 
             useEffect(() => {
                 const infoBlock = document.getElementById('course-info');
@@ -142,50 +175,69 @@
                 }
             }, [activeSection]);
 
-            const sections = {
-                words: 'Тут буде навчання слів — список слів, вправи тощо.',
-                grammar: 'Тут буде граматика — правила, тести.',
-                listening: 'Тут буде аудіювання — аудіозаписи та питання.',
-                speaking: 'Тут буде говоріння — вправи на вимову, діалоги.'
+            const handleBack = () => {
+                if (activeSubsection) {
+                    setActiveSubsection(null);
+                } else {
+                    setActiveSection(null);
+                }
             };
-
-            const handleBack = () => setActiveSection(null);
 
             return (
                 <div className="course">
-                    {!activeSection ? (
+                    {!activeSection && (
                         <div className="course__menu">
-                            {Object.entries(sections).map(([key, content]) => (
+                            {Object.entries(sections).map(([key, value]) => (
                                 <button
                                     key={key}
                                     onClick={() => setActiveSection(key)}
                                     className="course__menu-item"
                                 >
-                                    {key.toUpperCase()}
+                                    {value.title}
                                 </button>
                             ))}
                         </div>
-                    ) : (
+                    )}
+
+                    {activeSection && !activeSubsection && (
                         <div className="course__section">
                             <button onClick={handleBack} className="course__back">⇦ Назад</button>
-                            <div className="course__content">
-                                <h2>{activeSection.toUpperCase()}</h2>
-                                <p>{sections[activeSection]}</p>
+                            <h2>{sections[activeSection].title}</h2>
+                            <div className="course__submenu">
+                                {Object.entries(sections[activeSection].subsections).map(([subKey, subTitle]) => (
+                                    <button
+                                        key={subKey}
+                                        onClick={() => setActiveSubsection(subKey)}
+                                        className="course__menu-item"
+                                    >
+                                        {subTitle}
+                                    </button>
+                                ))}
                             </div>
+                        </div>
+                    )}
+
+                    {activeSection && activeSubsection && (
+                        <div className="course__section">
+                            <button onClick={handleBack} className="course__back">⇦ Назад</button>
+                            <h2>{sections[activeSection].subsections[activeSubsection]}</h2>
+                            <p>
+                                Тут буде контент для підсекції <strong>{activeSubsection}</strong> з розділу <strong>{sections[activeSection].title}</strong>.
+                            </p>
                         </div>
                     )}
                 </div>
             );
         }
 
-        const root = ReactDOM.createRoot(document.getElementById('course-root'));
-        root.render(<CourseApp />);
+        const rootElement = document.getElementById('course-root');
+        ReactDOM.createRoot(rootElement).render(<CourseApp />);
     </script>
+
 
     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script type="text/babel" src="./src/js/CourseApp.jsx"></script>
     <script src="./src/js/upArrow.js"></script>
     <script src="./src/js/modal.js"></script>
     <script src="./src/js/hideSection.js"></script>
