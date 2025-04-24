@@ -57,16 +57,6 @@
 
     <main class="main">
         <section class="course">
-            <div id="course-info" class="course__info">
-                <h2 class="course__title">Ваш відділ знань</h2>
-                <h3 class="course__subtitle">
-                    Тут ми вчимо англійську крок за кроком, легко та з задоволенням. У кожному
-                    розділі — нові теми, практичні завдання та інструменти для закріплення знань. Обирай: вивчай слова,
-                    граматику, тренуй аудіювання чи розвивай навички мовлення. Усе, що потрібно для впевненого
-                    спілкування
-                    англійською — вже тут!
-                </h3>
-            </div>
             <div id="course-root"></div>
         </section>
     </main>
@@ -131,227 +121,134 @@
         function CourseApp() {
             const [activeSection, setActiveSection] = useState(null);
             const [activeSubsection, setActiveSubsection] = useState(null);
-            const [activeTopic, setActiveTopic] = useState(null); // нове: обрана тема словника
+            const [activeTopic, setActiveTopic] = useState(null);
+            const [quizMode, setQuizMode] = useState(false);
+            const [quizIndex, setQuizIndex] = useState(0);
+            const [quizQuestions, setQuizQuestions] = useState([]);
+            const [score, setScore] = useState(0);
+            const [selectedAnswer, setSelectedAnswer] = useState(null);
+            const [results, setResults] = useState(() => {
+                const raw = JSON.parse(localStorage.getItem("quizResults")) || {};
+                if (!raw.words && Object.values(raw).every(val => typeof val === "number")) {
+                    return { words: raw };
+                }
+                return raw;
+            });
 
             const vocabularyData = {
-                "Фрукти": [
-                    { en: "apple", ua: "яблуко" },
-                    { en: "banana", ua: "банан" },
-                    { en: "orange", ua: "апельсин" },
-                    { en: "grape", ua: "виноград" },
-                    { en: "pear", ua: "груша" },
-                    { en: "cherry", ua: "вишня" },
-                    { en: "peach", ua: "персик" },
-                    { en: "plum", ua: "слива" },
-                    { en: "watermelon", ua: "кавун" },
-                    { en: "melon", ua: "диня" },
-                    { en: "strawberry", ua: "полуниця" },
-                    { en: "blueberry", ua: "чорниця" },
-                    { en: "pineapple", ua: "ананас" },
-                    { en: "kiwi", ua: "ківі" },
-                    { en: "apricot", ua: "абрикос" },
-                    { en: "pomegranate", ua: "гранат" },
-                    { en: "fig", ua: "інжир" },
-                    { en: "lime", ua: "лайм" },
-                    { en: "lemon", ua: "лимон" },
-                    { en: "coconut", ua: "кокос" }
-                ],
-                "Тварини": [
-                    { en: "cat", ua: "кіт" },
-                    { en: "dog", ua: "пес" },
-                    { en: "elephant", ua: "слон" },
-                    { en: "lion", ua: "лев" },
-                    { en: "tiger", ua: "тигр" },
-                    { en: "rabbit", ua: "кролик" },
-                    { en: "horse", ua: "кінь" },
-                    { en: "cow", ua: "корова" },
-                    { en: "sheep", ua: "вівця" },
-                    { en: "goat", ua: "коза" },
-                    { en: "monkey", ua: "мавпа" },
-                    { en: "bear", ua: "ведмідь" },
-                    { en: "wolf", ua: "вовк" },
-                    { en: "fox", ua: "лисиця" },
-                    { en: "duck", ua: "качка" },
-                    { en: "chicken", ua: "курка" },
-                    { en: "camel", ua: "верблюд" },
-                    { en: "kangaroo", ua: "кенгуру" },
-                    { en: "zebra", ua: "зебра" },
-                    { en: "penguin", ua: "пінгвін" }
-                ],
-                "Професії": [
-                    { en: "doctor", ua: "лікар" },
-                    { en: "teacher", ua: "вчитель" },
-                    { en: "engineer", ua: "інженер" },
-                    { en: "nurse", ua: "медсестра" },
-                    { en: "police officer", ua: "поліцейський" },
-                    { en: "driver", ua: "водій" },
-                    { en: "chef", ua: "шеф-кухар" },
-                    { en: "actor", ua: "актор" },
-                    { en: "actress", ua: "актриса" },
-                    { en: "scientist", ua: "вчений" },
-                    { en: "artist", ua: "художник" },
-                    { en: "musician", ua: "музикант" },
-                    { en: "writer", ua: "письменник" },
-                    { en: "journalist", ua: "журналіст" },
-                    { en: "photographer", ua: "фотограф" },
-                    { en: "architect", ua: "архітектор" },
-                    { en: "mechanic", ua: "механік" },
-                    { en: "plumber", ua: "слюсар" },
-                    { en: "electrician", ua: "електрик" },
-                    { en: "librarian", ua: "бібліотекар" }
-                ],
-                "Кольори": [
-                    { en: "red", ua: "червоний" },
-                    { en: "blue", ua: "синій" },
-                    { en: "green", ua: "зелений" },
-                    { en: "yellow", ua: "жовтий" },
-                    { en: "black", ua: "чорний" },
-                    { en: "white", ua: "білий" },
-                    { en: "pink", ua: "рожевий" },
-                    { en: "purple", ua: "фіолетовий" },
-                    { en: "orange", ua: "помаранчевий" },
-                    { en: "brown", ua: "коричневий" },
-                    { en: "gray", ua: "сірий" },
-                    { en: "violet", ua: "бузковий" },
-                    { en: "beige", ua: "бежевий" },
-                    { en: "turquoise", ua: "бірюзовий" },
-                    { en: "gold", ua: "золотий" },
-                    { en: "silver", ua: "срібний" },
-                    { en: "indigo", ua: "індиго" },
-                    { en: "cream", ua: "кремовий" },
-                    { en: "chocolate", ua: "шоколадний" },
-                    { en: "mint", ua: "м'ятний" }
-                ],
-                "Частини тіла": [
-                    { en: "head", ua: "голова" },
-                    { en: "hand", ua: "рука" },
-                    { en: "leg", ua: "нога" },
-                    { en: "eye", ua: "око" },
-                    { en: "ear", ua: "вухо" },
-                    { en: "mouth", ua: "рот" },
-                    { en: "nose", ua: "ніс" },
-                    { en: "neck", ua: "шия" },
-                    { en: "shoulder", ua: "плече" },
-                    { en: "arm", ua: "права рука" },
-                    { en: "knee", ua: "коліно" },
-                    { en: "foot", ua: "стопа" },
-                    { en: "toe", ua: "палець ноги" },
-                    { en: "finger", ua: "палець" },
-                    { en: "back", ua: "спина" },
-                    { en: "chest", ua: "грудна клітка" },
-                    { en: "stomach", ua: "живіт" },
-                    { en: "waist", ua: "талія" },
-                    { en: "hip", ua: "стегно" },
-                    { en: "ankle", ua: "кульшовий суглоб" }
-                ],
-                "Одяг": [
-                    { en: "shirt", ua: "сорочка" },
-                    { en: "pants", ua: "штани" },
-                    { en: "jacket", ua: "куртка" },
-                    { en: "dress", ua: "сукня" },
-                    { en: "shoes", ua: "взуття" },
-                    { en: "coat", ua: "пальто" },
-                    { en: "scarf", ua: "шарф" },
-                    { en: "hat", ua: "капелюх" },
-                    { en: "gloves", ua: "рукавички" },
-                    { en: "socks", ua: "носки" },
-                    { en: "t-shirt", ua: "футболка" },
-                    { en: "skirt", ua: "спідниця" },
-                    { en: "suit", ua: "костюм" },
-                    { en: "tie", ua: "метелик" },
-                    { en: "shorts", ua: "шорти" },
-                    { en: "sweater", ua: "светр" },
-                    { en: "boots", ua: "черевики" },
-                    { en: "sunglasses", ua: "окуляри" },
-                    { en: "belt", ua: "пояс" },
-                    { en: "underwear", ua: "білизна" }
-                ]
+                "Фрукти": [{ en: "apple", ua: "яблуко" }, { en: "banana", ua: "банан" }, { en: "orange", ua: "апельсин" }, { en: "grape", ua: "виноград" }, { en: "pear", ua: "груша" }, { en: "cherry", ua: "вишня" }, { en: "peach", ua: "персик" }, { en: "plum", ua: "слива" }, { en: "watermelon", ua: "кавун" }, { en: "melon", ua: "диня" }],
+                "Тварини": [{ en: "cat", ua: "кіт" }, { en: "dog", ua: "пес" }, { en: "elephant", ua: "слон" }, { en: "lion", ua: "лев" }, { en: "tiger", ua: "тигр" }, { en: "rabbit", ua: "кролик" }, { en: "horse", ua: "кінь" }, { en: "cow", ua: "корова" }, { en: "sheep", ua: "вівця" }, { en: "goat", ua: "коза" }],
+                "Професії": [{ en: "doctor", ua: "лікар" }, { en: "teacher", ua: "вчитель" }, { en: "engineer", ua: "інженер" }, { en: "nurse", ua: "медсестра" }, { en: "driver", ua: "водій" }, { en: "chef", ua: "шеф-кухар" }, { en: "actor", ua: "актор" }, { en: "artist", ua: "художник" }, { en: "musician", ua: "музикант" }, { en: "writer", ua: "письменник" }],
+                "Кольори": [{ en: "red", ua: "червоний" }, { en: "blue", ua: "синій" }, { en: "green", ua: "зелений" }, { en: "yellow", ua: "жовтий" }, { en: "black", ua: "чорний" }, { en: "white", ua: "білий" }, { en: "pink", ua: "рожевий" }, { en: "purple", ua: "фіолетовий" }, { en: "orange", ua: "помаранчевий" }, { en: "brown", ua: "коричневий" }],
+                "Частини тіла": [{ en: "head", ua: "голова" }, { en: "hand", ua: "рука" }, { en: "leg", ua: "нога" }, { en: "eye", ua: "око" }, { en: "ear", ua: "вухо" }, { en: "mouth", ua: "рот" }, { en: "nose", ua: "ніс" }, { en: "neck", ua: "шия" }, { en: "shoulder", ua: "плече" }, { en: "foot", ua: "стопа" }],
+                "Одяг": [{ en: "shirt", ua: "сорочка" }, { en: "pants", ua: "штани" }, { en: "jacket", ua: "куртка" }, { en: "dress", ua: "сукня" }, { en: "shoes", ua: "взуття" }, { en: "coat", ua: "пальто" }, { en: "scarf", ua: "шарф" }, { en: "hat", ua: "капелюх" }, { en: "gloves", ua: "рукавички" }, { en: "socks", ua: "носки" }]
             };
 
             const sections = {
-                words: {
-                    title: 'Vocabulary',
-                    subsections: {
-                        vocabulary: 'Список слів',
-                        flashcards: 'Посилання для навчання',
-                    }
-                },
-                grammar: {
-                    title: 'Grammar',
-                    subsections: {
-                        tenses: 'Часи англійської мови',
-                        articles: 'Артиклі',
-                        conditionals: 'Умовні речення'
-                    }
-                },
-                listening: {
-                    title: 'Listening',
-                    subsections: {
-                        beginner: 'Аудіо для початківців',
-                        advanced: 'Аудіо для просунутих'
-                    }
-                },
-                speaking: {
-                    title: 'Speaking',
-                    subsections: {
-                        pronunciation: 'Вправи на вимову',
-                        dialogue: 'Практика діалогів'
-                    }
-                }
+                words: { title: 'Vocabulary', subsections: { vocabulary: 'Список тем', flashcards: 'Посилання для навчання' } },
+                grammar: { title: 'Grammar', subsections: { tenses: 'Часи англійської мови', articles: 'Артиклі', conditionals: 'Умовні речення' } },
+                listening: { title: 'Listening', subsections: { beginner: 'Аудіо для початківців', advanced: 'Аудіо для просунутих' } },
+                speaking: { title: 'Speaking', subsections: { pronunciation: 'Вправи на вимову', dialogue: 'Практика діалогів' } },
+                grades: { title: 'Оцінки', subsections: {} }
             };
-
-            useEffect(() => {
-                const infoBlock = document.getElementById('course-info');
-                if (infoBlock) {
-                    if (activeSection) {
-                        infoBlock.classList.add('hidden');
-                    } else {
-                        infoBlock.classList.remove('hidden');
-                    }
-                }
-            }, [activeSection]);
 
             const handleBack = () => {
-                if (activeTopic) {
-                    setActiveTopic(null);
-                } else if (activeSubsection) {
-                    setActiveSubsection(null);
-                } else {
-                    setActiveSection(null);
-                }
+                if (quizMode) return setQuizMode(false);
+                if (activeTopic) setActiveTopic(null);
+                else if (activeSubsection) setActiveSubsection(null);
+                else setActiveSection(null);
             };
 
-            const handleTopicSelection = (topic) => {
-                setActiveTopic(topic);
-            }
+            const startQuiz = () => {
+                const words = vocabularyData[activeTopic];
+                const shuffled = [...words].sort(() => 0.5 - Math.random()).slice(0, 10);
+                const questions = shuffled.map(word => {
+                    const incorrect = words.filter(w => w.en !== word.en).sort(() => 0.5 - Math.random()).slice(0, 5);
+                    const options = [...incorrect.map(w => w.en), word.en].sort(() => 0.5 - Math.random());
+                    return { question: word.ua, correct: word.en, options };
+                });
+                setQuizQuestions(questions);
+                setQuizIndex(0);
+                setScore(0);
+                setSelectedAnswer(null);
+                setQuizMode(true);
+            };
+
+            const handleAnswer = (selected) => {
+                if (selectedAnswer) return;
+                setSelectedAnswer(selected);
+                setTimeout(() => {
+                    const correct = quizQuestions[quizIndex].correct;
+                    const isCorrect = selected === correct;
+                    if (isCorrect) setScore(prev => prev + 1);
+
+                    if (quizIndex + 1 < quizQuestions.length) {
+                        setQuizIndex(prev => prev + 1);
+                        setSelectedAnswer(null);
+                    } else {
+                        const finalScore = score + (isCorrect ? 1 : 0);
+                        const updatedResults = {
+                            ...results,
+                            words: { ...(results.words || {}), [activeTopic]: finalScore }
+                        };
+                        setResults(updatedResults);
+                        localStorage.setItem("quizResults", JSON.stringify(updatedResults));
+                        alert(`Тест завершено! Ваш результат: ${finalScore} з 10`);
+                        setQuizMode(false);
+                        setActiveTopic(null);
+                        setSelectedAnswer(null);
+                    }
+                }, 1000);
+            };
 
             return (
                 <div className="course">
                     {!activeSection && (
                         <div className="course__menu">
+                            <h1 className="course__main-title">Ваш відділ знань</h1>
+                            <p>Тут ми вчимо англійську крок за кроком, легко та з задоволенням. У кожному
+                                розділі — нові теми, практичні завдання та інструменти для закріплення знань. Обирай: вивчай слова,
+                                граматику, тренуй аудіювання чи розвивай навички мовлення. Усе, що потрібно для впевненого
+                                спілкування
+                                англійською — вже тут!</p>
                             {Object.entries(sections).map(([key, value]) => (
-                                <button
-                                    key={key}
-                                    onClick={() => setActiveSection(key)}
-                                    className="course__menu-item"
-                                >
+                                <button key={key} onClick={() => setActiveSection(key)} className="course__menu-item">
                                     {value.title}
                                 </button>
                             ))}
                         </div>
                     )}
 
-                    {activeSection && !activeSubsection && (
+                    {activeSection === "grades" && (
+                        <div className="course__section">
+                            <button onClick={handleBack} className="course__back">⇦ Назад</button>
+                            <h2>Оцінки</h2>
+                            {Object.keys(results).length > 0 ? (
+                                <ul>
+                                    {Object.entries(results).map(([category, topics]) => (
+                                        <li key={category}>
+                                            <strong>{sections[category]?.title || category}</strong>
+                                            <ul>
+                                                {Object.entries(topics).map(([topic, score]) => (
+                                                    <li key={topic}>Тема: {topic} — Оцінка: {score} / 10</li>
+                                                ))}
+                                            </ul>
+                                        </li>
+                                    ))}
+                                </ul>
+                            ) : (
+                                <p>Ще немає результатів тестів.</p>
+                            )}
+                        </div>
+                    )}
+
+                    {activeSection && activeSection !== "grades" && !activeSubsection && (
                         <div className="course__section">
                             <button onClick={handleBack} className="course__back">⇦ Назад</button>
                             <h2>{sections[activeSection].title}</h2>
                             <div className="course__submenu">
                                 {Object.entries(sections[activeSection].subsections).map(([subKey, subTitle]) => (
-                                    <button
-                                        key={subKey}
-                                        onClick={() => setActiveSubsection(subKey)}
-                                        className="course__menu-item"
-                                    >
+                                    <button key={subKey} onClick={() => setActiveSubsection(subKey)} className="course__submenu-item">
                                         {subTitle}
                                     </button>
                                 ))}
@@ -359,52 +256,75 @@
                         </div>
                     )}
 
-                    {activeSection && activeSubsection && !activeTopic && (
+                    {activeSubsection && !activeTopic && (
                         <div className="course__section">
                             <button onClick={handleBack} className="course__back">⇦ Назад</button>
                             <h2>{sections[activeSection].subsections[activeSubsection]}</h2>
-
                             {activeSubsection === "vocabulary" ? (
                                 <div className="course__submenu">
-                                    {Object.keys(vocabularyData).map((topic) => (
+                                    {Object.keys(vocabularyData).map(topic => (
                                         <button
                                             key={topic}
                                             onClick={() => setActiveTopic(topic)}
-                                            className="course__menu-item"
+                                            className="course__submenu-item"
                                         >
                                             {topic}
                                         </button>
                                     ))}
                                 </div>
                             ) : (
-                                <p>
-                                    Тут буде контент для підсекції <strong>{activeSubsection}</strong> з розділу <strong>{sections[activeSection].title}</strong>.
-                                </p>
+                                <p>Посилання для навчання буде доступне найближчим часом.</p>
                             )}
                         </div>
                     )}
 
-                    {activeTopic && (
+                    {activeTopic && !quizMode && (
                         <div className="course__section">
                             <button onClick={handleBack} className="course__back">⇦ Назад</button>
                             <h2>{activeTopic}</h2>
                             <ul className="vocabulary-list">
                                 {vocabularyData[activeTopic].map((word, index) => (
-                                    <li key={index}>
-                                        <strong>{word.en}</strong> — {word.ua}
-                                    </li>
+                                    <li key={index}><strong>{word.en}</strong> — {word.ua}</li>
                                 ))}
                             </ul>
+                            {!(results.words && results.words[activeTopic]) && (
+                                <button onClick={startQuiz} className="course__quiz-button">Пройти тест</button>
+                            )}
+                        </div>
+                    )}
+
+                    {quizMode && (
+                        <div className="course__section">
+                            <h2>Питання {quizIndex + 1} з {quizQuestions.length}</h2>
+                            <p><strong>Перекладіть:</strong> {quizQuestions[quizIndex].question}</p>
+                            <div className="quiz-options">
+                                {quizQuestions[quizIndex].options.map((opt, idx) => {
+                                    let className = "quiz__option-button";
+                                    if (selectedAnswer) {
+                                        if (opt === quizQuestions[quizIndex].correct) className += " correct";
+                                        else if (opt === selectedAnswer) className += " incorrect";
+                                        else className += " disabled";
+                                    }
+                                    return (
+                                        <button
+                                            key={idx}
+                                            onClick={() => handleAnswer(opt)}
+                                            className={className}
+                                            disabled={!!selectedAnswer}
+                                        >
+                                            {opt}
+                                        </button>
+                                    );
+                                })}
+                            </div>
                         </div>
                     )}
                 </div>
             );
         }
 
-        const rootElement = document.getElementById('course-root');
-        ReactDOM.createRoot(rootElement).render(<CourseApp />);
+        ReactDOM.createRoot(document.getElementById('course-root')).render(<CourseApp />);
     </script>
-
 
 
     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>

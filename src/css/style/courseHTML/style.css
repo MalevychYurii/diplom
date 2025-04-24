@@ -15,7 +15,7 @@ body {
 button {
   transition: background-color 0.5s ease-in-out, transform 1s ease-in-out;
 }
-button:not(.header__button--signup, .modal__button--lower, .course__menu-item, .course__back) {
+button:not(.header__button--signup, .modal__button--lower, .course__back, .quiz__option-button) {
   box-shadow: #0387FC 0px 5px 15px;
 }
 button:hover {
@@ -501,6 +501,64 @@ a:hover {
   background: #000080;
 }
 
+.course__main-title {
+  font-weight: 700;
+  font-size: 40px;
+}
+.course__menu p {
+  font-size: 19px;
+  line-height: 1.2em;
+  max-width: 50%;
+}
+.course__quiz-button {
+  margin: 0 auto;
+  padding: 5px 15px;
+  max-width: 100%;
+  background-color: #0387FC;
+  border-radius: 30px;
+  color: #FFFFFF;
+  font-size: 20px;
+}
+.course .quiz-options {
+  display: flex;
+  flex-direction: column;
+}
+.course .quiz__option-button {
+  box-sizing: border-box;
+  padding: 20px;
+  font-size: 20px;
+  background-color: #0387FC;
+  border-radius: 10px;
+  cursor: pointer;
+  min-width: 35%;
+  transition: 0.5s ease;
+  color: #FFFFFF;
+  margin-top: 20px;
+}
+.course .quiz__option-button:hover {
+  cursor: pointer;
+  background-color: #000080;
+  border: 0;
+  transform: translateY(0);
+}
+.course .quiz__option-button:hover:not(:disabled) {
+  background-color: #e6f0ff;
+  border-color: #0387FC;
+}
+.course .quiz__option-button.correct {
+  background-color: #d4edda;
+  border-color: #28a745;
+  color: #155724;
+}
+.course .quiz__option-button.incorrect {
+  background-color: #f8d7da;
+  border-color: #dc3545;
+  color: #721c24;
+}
+.course .quiz__option-button.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 .course .course__info.hidden {
   display: none;
 }
@@ -523,7 +581,7 @@ a:hover {
   display: flex;
   margin-top: 20px;
   flex-direction: column;
-  gap: 20px;
+  gap: 30px;
   align-items: center;
 }
 .course__menu-item {
@@ -531,7 +589,6 @@ a:hover {
   padding: 20px;
   font-size: 20px;
   background-color: #0387FC;
-  border: 2px solid transparent;
   border-radius: 10px;
   cursor: pointer;
   min-width: 35%;
@@ -539,8 +596,9 @@ a:hover {
   color: #FFFFFF;
 }
 .course__menu-item:hover {
-  background-color: #000080;
-  border-color: #FFFFFF;
+  border: 0;
+  margin: 0;
+  transform: scale(0.95);
   color: #FFFFFF;
   font-weight: 700;
 }
@@ -548,10 +606,22 @@ a:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 30px;
 }
-.course__submenu button {
-  margin: 20px 0;
-  min-width: 300px;
+.course__submenu-item {
+  background-color: #0387FC;
+  border: none;
+  padding: 20px;
+  color: #FFFFFF;
+  min-width: 200px;
+  font-weight: 700;
+  font-size: 19px;
+  border-radius: 20px;
+  transition: 0.5s ease;
+}
+.course__submenu-item:hover {
+  border: none;
+  transform: scale(0.95);
 }
 .course__section {
   padding: 20px;
@@ -565,10 +635,17 @@ a:hover {
 .course__section h2 {
   font-weight: 700;
   font-size: 24px;
+  margin-bottom: 20px;
 }
 .course__section p {
   margin-top: 20px;
   font-size: 19px;
+}
+.course__section ul li {
+  margin-top: 20px;
+}
+.course__section ul li strong {
+  font-weight: 700;
 }
 .course__back {
   margin-bottom: 20px;
@@ -584,8 +661,8 @@ a:hover {
   transition: 0.5s ease;
 }
 .course__back:hover {
-  border: 1px solid #FFFFFF;
-  transform: translateY(-5) !important;
+  border: none;
+  transform: translateY(0) !important;
   margin-top: 0;
   color: #FFFFFF;
   background-color: #000080;
