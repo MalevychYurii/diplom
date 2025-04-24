@@ -131,17 +131,153 @@
         function CourseApp() {
             const [activeSection, setActiveSection] = useState(null);
             const [activeSubsection, setActiveSubsection] = useState(null);
+            const [activeTopic, setActiveTopic] = useState(null); // нове: обрана тема словника
+
+            const vocabularyData = {
+                "Фрукти": [
+                    { en: "apple", ua: "яблуко" },
+                    { en: "banana", ua: "банан" },
+                    { en: "orange", ua: "апельсин" },
+                    { en: "grape", ua: "виноград" },
+                    { en: "pear", ua: "груша" },
+                    { en: "cherry", ua: "вишня" },
+                    { en: "peach", ua: "персик" },
+                    { en: "plum", ua: "слива" },
+                    { en: "watermelon", ua: "кавун" },
+                    { en: "melon", ua: "диня" },
+                    { en: "strawberry", ua: "полуниця" },
+                    { en: "blueberry", ua: "чорниця" },
+                    { en: "pineapple", ua: "ананас" },
+                    { en: "kiwi", ua: "ківі" },
+                    { en: "apricot", ua: "абрикос" },
+                    { en: "pomegranate", ua: "гранат" },
+                    { en: "fig", ua: "інжир" },
+                    { en: "lime", ua: "лайм" },
+                    { en: "lemon", ua: "лимон" },
+                    { en: "coconut", ua: "кокос" }
+                ],
+                "Тварини": [
+                    { en: "cat", ua: "кіт" },
+                    { en: "dog", ua: "пес" },
+                    { en: "elephant", ua: "слон" },
+                    { en: "lion", ua: "лев" },
+                    { en: "tiger", ua: "тигр" },
+                    { en: "rabbit", ua: "кролик" },
+                    { en: "horse", ua: "кінь" },
+                    { en: "cow", ua: "корова" },
+                    { en: "sheep", ua: "вівця" },
+                    { en: "goat", ua: "коза" },
+                    { en: "monkey", ua: "мавпа" },
+                    { en: "bear", ua: "ведмідь" },
+                    { en: "wolf", ua: "вовк" },
+                    { en: "fox", ua: "лисиця" },
+                    { en: "duck", ua: "качка" },
+                    { en: "chicken", ua: "курка" },
+                    { en: "camel", ua: "верблюд" },
+                    { en: "kangaroo", ua: "кенгуру" },
+                    { en: "zebra", ua: "зебра" },
+                    { en: "penguin", ua: "пінгвін" }
+                ],
+                "Професії": [
+                    { en: "doctor", ua: "лікар" },
+                    { en: "teacher", ua: "вчитель" },
+                    { en: "engineer", ua: "інженер" },
+                    { en: "nurse", ua: "медсестра" },
+                    { en: "police officer", ua: "поліцейський" },
+                    { en: "driver", ua: "водій" },
+                    { en: "chef", ua: "шеф-кухар" },
+                    { en: "actor", ua: "актор" },
+                    { en: "actress", ua: "актриса" },
+                    { en: "scientist", ua: "вчений" },
+                    { en: "artist", ua: "художник" },
+                    { en: "musician", ua: "музикант" },
+                    { en: "writer", ua: "письменник" },
+                    { en: "journalist", ua: "журналіст" },
+                    { en: "photographer", ua: "фотограф" },
+                    { en: "architect", ua: "архітектор" },
+                    { en: "mechanic", ua: "механік" },
+                    { en: "plumber", ua: "слюсар" },
+                    { en: "electrician", ua: "електрик" },
+                    { en: "librarian", ua: "бібліотекар" }
+                ],
+                "Кольори": [
+                    { en: "red", ua: "червоний" },
+                    { en: "blue", ua: "синій" },
+                    { en: "green", ua: "зелений" },
+                    { en: "yellow", ua: "жовтий" },
+                    { en: "black", ua: "чорний" },
+                    { en: "white", ua: "білий" },
+                    { en: "pink", ua: "рожевий" },
+                    { en: "purple", ua: "фіолетовий" },
+                    { en: "orange", ua: "помаранчевий" },
+                    { en: "brown", ua: "коричневий" },
+                    { en: "gray", ua: "сірий" },
+                    { en: "violet", ua: "бузковий" },
+                    { en: "beige", ua: "бежевий" },
+                    { en: "turquoise", ua: "бірюзовий" },
+                    { en: "gold", ua: "золотий" },
+                    { en: "silver", ua: "срібний" },
+                    { en: "indigo", ua: "індиго" },
+                    { en: "cream", ua: "кремовий" },
+                    { en: "chocolate", ua: "шоколадний" },
+                    { en: "mint", ua: "м'ятний" }
+                ],
+                "Частини тіла": [
+                    { en: "head", ua: "голова" },
+                    { en: "hand", ua: "рука" },
+                    { en: "leg", ua: "нога" },
+                    { en: "eye", ua: "око" },
+                    { en: "ear", ua: "вухо" },
+                    { en: "mouth", ua: "рот" },
+                    { en: "nose", ua: "ніс" },
+                    { en: "neck", ua: "шия" },
+                    { en: "shoulder", ua: "плече" },
+                    { en: "arm", ua: "права рука" },
+                    { en: "knee", ua: "коліно" },
+                    { en: "foot", ua: "стопа" },
+                    { en: "toe", ua: "палець ноги" },
+                    { en: "finger", ua: "палець" },
+                    { en: "back", ua: "спина" },
+                    { en: "chest", ua: "грудна клітка" },
+                    { en: "stomach", ua: "живіт" },
+                    { en: "waist", ua: "талія" },
+                    { en: "hip", ua: "стегно" },
+                    { en: "ankle", ua: "кульшовий суглоб" }
+                ],
+                "Одяг": [
+                    { en: "shirt", ua: "сорочка" },
+                    { en: "pants", ua: "штани" },
+                    { en: "jacket", ua: "куртка" },
+                    { en: "dress", ua: "сукня" },
+                    { en: "shoes", ua: "взуття" },
+                    { en: "coat", ua: "пальто" },
+                    { en: "scarf", ua: "шарф" },
+                    { en: "hat", ua: "капелюх" },
+                    { en: "gloves", ua: "рукавички" },
+                    { en: "socks", ua: "носки" },
+                    { en: "t-shirt", ua: "футболка" },
+                    { en: "skirt", ua: "спідниця" },
+                    { en: "suit", ua: "костюм" },
+                    { en: "tie", ua: "метелик" },
+                    { en: "shorts", ua: "шорти" },
+                    { en: "sweater", ua: "светр" },
+                    { en: "boots", ua: "черевики" },
+                    { en: "sunglasses", ua: "окуляри" },
+                    { en: "belt", ua: "пояс" },
+                    { en: "underwear", ua: "білизна" }
+                ]
+            };
 
             const sections = {
                 words: {
-                    title: 'Слова',
+                    title: 'Vocabulary',
                     subsections: {
-                        vocabulary: 'Список слів і вправи',
-                        flashcards: 'Картки для запам’ятовування'
+                        vocabulary: 'Список слів',
+                        flashcards: 'Посилання для навчання',
                     }
                 },
                 grammar: {
-                    title: 'Граматика',
+                    title: 'Grammar',
                     subsections: {
                         tenses: 'Часи англійської мови',
                         articles: 'Артиклі',
@@ -149,14 +285,14 @@
                     }
                 },
                 listening: {
-                    title: 'Аудіювання',
+                    title: 'Listening',
                     subsections: {
                         beginner: 'Аудіо для початківців',
                         advanced: 'Аудіо для просунутих'
                     }
                 },
                 speaking: {
-                    title: 'Говоріння',
+                    title: 'Speaking',
                     subsections: {
                         pronunciation: 'Вправи на вимову',
                         dialogue: 'Практика діалогів'
@@ -176,12 +312,18 @@
             }, [activeSection]);
 
             const handleBack = () => {
-                if (activeSubsection) {
+                if (activeTopic) {
+                    setActiveTopic(null);
+                } else if (activeSubsection) {
                     setActiveSubsection(null);
                 } else {
                     setActiveSection(null);
                 }
             };
+
+            const handleTopicSelection = (topic) => {
+                setActiveTopic(topic);
+            }
 
             return (
                 <div className="course">
@@ -217,13 +359,42 @@
                         </div>
                     )}
 
-                    {activeSection && activeSubsection && (
+                    {activeSection && activeSubsection && !activeTopic && (
                         <div className="course__section">
                             <button onClick={handleBack} className="course__back">⇦ Назад</button>
                             <h2>{sections[activeSection].subsections[activeSubsection]}</h2>
-                            <p>
-                                Тут буде контент для підсекції <strong>{activeSubsection}</strong> з розділу <strong>{sections[activeSection].title}</strong>.
-                            </p>
+
+                            {activeSubsection === "vocabulary" ? (
+                                <div className="course__submenu">
+                                    {Object.keys(vocabularyData).map((topic) => (
+                                        <button
+                                            key={topic}
+                                            onClick={() => setActiveTopic(topic)}
+                                            className="course__menu-item"
+                                        >
+                                            {topic}
+                                        </button>
+                                    ))}
+                                </div>
+                            ) : (
+                                <p>
+                                    Тут буде контент для підсекції <strong>{activeSubsection}</strong> з розділу <strong>{sections[activeSection].title}</strong>.
+                                </p>
+                            )}
+                        </div>
+                    )}
+
+                    {activeTopic && (
+                        <div className="course__section">
+                            <button onClick={handleBack} className="course__back">⇦ Назад</button>
+                            <h2>{activeTopic}</h2>
+                            <ul className="vocabulary-list">
+                                {vocabularyData[activeTopic].map((word, index) => (
+                                    <li key={index}>
+                                        <strong>{word.en}</strong> — {word.ua}
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
                     )}
                 </div>
@@ -233,6 +404,7 @@
         const rootElement = document.getElementById('course-root');
         ReactDOM.createRoot(rootElement).render(<CourseApp />);
     </script>
+
 
 
     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>

@@ -534,7 +534,7 @@ a:hover {
   border: 2px solid transparent;
   border-radius: 10px;
   cursor: pointer;
-  min-width: 25%;
+  min-width: 35%;
   transition: 0.5s ease;
   color: #FFFFFF;
 }
@@ -547,9 +547,11 @@ a:hover {
 .course__submenu {
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 .course__submenu button {
   margin: 20px 0;
+  min-width: 300px;
 }
 .course__section {
   padding: 20px;
@@ -559,6 +561,14 @@ a:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.course__section h2 {
+  font-weight: 700;
+  font-size: 24px;
+}
+.course__section p {
+  margin-top: 20px;
+  font-size: 19px;
 }
 .course__back {
   margin-bottom: 20px;
@@ -587,4 +597,37 @@ a:hover {
 .course__content p {
   font-size: 18px;
   line-height: 1.5;
+}
+.course .vocabulary-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 2rem;
+  justify-content: center;
+  align-items: start;
+  text-align: left;
+  padding: 2rem;
+}
+.course .vocabulary-list li {
+  text-decoration: underline;
+  margin: 0 auto;
+  font-size: 20px;
+}
+.course .vocabulary-list li strong {
+  font-weight: 700;
+}
+.course .vocabulary-list .vocabulary-topic {
+  margin-bottom: 20px;
+}
+.course .vocabulary-list .vocabulary-topic h3 {
+  font-size: 1.4rem;
+  color: #333;
+  margin-bottom: 8px;
+}
+.course .vocabulary-list .vocabulary-topic ul {
+  list-style: none;
+  padding-left: 20px;
+}
+.course .vocabulary-list .vocabulary-topic ul li {
+  padding: 4px 0;
+  border-bottom: 1px solid #e0e0e0;
 }/*# sourceMappingURL=style.css.map */
