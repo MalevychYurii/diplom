@@ -291,8 +291,9 @@
                     {activeSection === 'grammar' && activeSubsection === 'tenses' && (
                         <div className="course__section">
                             <button onClick={handleBack} className="course__back">⇦ Назад</button>
+
                             {!activeTense ? (
-                                <>  {/* Select Group */}
+                                <>
                                     <h2>{sections.grammar.subsections.tenses}</h2>
                                     <div className="course__submenu">
                                         {Object.keys(grammarTensesContent).map(key => (
@@ -307,7 +308,7 @@
                                     </div>
                                 </>
                             ) : !activeSubtense ? (
-                                <>  {/* Select Tense */}
+                                <>
                                     <h2>{activeTense.charAt(0).toUpperCase() + activeTense.slice(1)}</h2>
                                     <div className="course__submenu">
                                         {grammarTensesContent[activeTense].map(({ name }) => (
@@ -322,9 +323,46 @@
                                     </div>
                                 </>
                             ) : (
-                                <>  {/* Tense Details */}
+                                <>
                                     <h2>{activeSubtense}</h2>
-                                    <p>{grammarTensesContent[activeTense].find(item => item.name === activeSubtense).description}</p>
+
+                                    {activeSubtense === 'Past Simple' ? (
+                                        <>
+                                            <p>
+                                                Past Simple використовується для опису дій, які відбулися та завершилися в певний момент у минулому.<br />
+                                                <strong>Структура:</strong> Підмет + дієслово в минулій формі (V2).<br />
+                                                <strong>Приклади:</strong> I visited Paris last year. They watched a movie yesterday evening.<br />
+                                                <strong>Заперечення:</strong> did not + V1 (She did not (didn't) call me).<br />
+                                                <strong>Питання:</strong> Did + підмет + V1? (Did you finish your homework?).<br />
+                                                <strong>Часові маркери:</strong> yesterday, last week, in 2010, two days ago, when I was a child.
+                                            </p>
+                                            <div className="video-container" style={{ marginTop: '20px' }}>
+                                                <iframe
+                                                    width="560"
+                                                    height="315"
+                                                    src="https://www.youtube.com/embed/MI3S3kdkofo"
+                                                    title="Past Simple Tense Explanation"
+                                                    frameborder="0"
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                    allowfullscreen
+                                                ></iframe>
+                                            </div>
+                                            <p class="course__section-underVideo">
+                                                Корисні посилання по темі:
+                                                <ul>
+                                                    <li><a href="https://cambridge.ua/uk/blog/chto-nuzhno-znat-o-past-simple-v-anglyjskom/" target="_blank">1. Past Simple Tense для новачків</a></li>
+                                                    <li><a href="https://grammarway.com/ua/past-simple" target="_blank">2. Past simple – Form and use</a></li>
+                                                    <li><a href="https://justschool.me/uk/blog/past-simple-shho-cze-take-pravyla-j-tablyczi/" target="_blank">3. Past Simple: що це таке, правила й таблиці</a></li>
+                                                </ul>
+                                            </p>
+                                        </>
+                                    ) : (
+                                        <p>
+                                            {grammarTensesContent[activeTense]
+                                                .find(item => item.name === activeSubtense)
+                                                .description}
+                                        </p>
+                                    )}
                                 </>
                             )}
                         </div>

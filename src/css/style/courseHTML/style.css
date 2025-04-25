@@ -631,6 +631,9 @@ a:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 1160px;
+  width: 100%;
+  margin: 0 auto;
 }
 .course__section h2 {
   font-weight: 700;
@@ -640,12 +643,23 @@ a:hover {
 .course__section p {
   margin-top: 20px;
   font-size: 19px;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+}
+.course__section p strong {
+  font-weight: 700;
+  display: block;
+  margin: 10px 0;
 }
 .course__section ul li {
   margin-top: 20px;
 }
 .course__section ul li strong {
   font-weight: 700;
+}
+.course__section ul li a {
+  color: #0387FC;
 }
 .course__section div ul p {
   font-weight: 700;
