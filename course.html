@@ -172,6 +172,34 @@
                 { question: "He ____ studied for two hours before the test.", options: ["had", "have", "has", "having"], correct: "had" }
             ];
 
+            const grammarPerfectContinuousQuizData = [
+                {
+                    question: "They ____ been waiting for an hour when the bus finally arrived.",
+                    options: ["had", "have", "had been", "has been"],
+                    correct: "had been"
+                },
+                {
+                    question: "She ____ been studying all morning before the exam.",
+                    options: ["had", "had been", "have been", "has been"],
+                    correct: "had been"
+                },
+                {
+                    question: "By noon, we ____ been working since 6 AM.",
+                    options: ["had", "had been", "have been", "has been"],
+                    correct: "had been"
+                },
+                {
+                    question: "I ____ been living here for ten years before I moved.",
+                    options: ["had", "had been", "have been", "has been"],
+                    correct: "had been"
+                },
+                {
+                    question: "He ____ been playing football when it started to rain.",
+                    options: ["had", "had been", "have been", "has been"],
+                    correct: "had been"
+                }
+            ];
+
             const grammarTensesContent = {
                 past: [
                     { name: 'Past Simple', description: 'Use for completed actions in the past. Structure: Subject + V2 (e.g., I walked to the store).' },
@@ -235,6 +263,15 @@
                 setQuizMode(true);
             };
 
+            const startPerfectContinuousQuiz = () => {
+                setQuizType('grammar');
+                setQuizQuestions(grammarPerfectContinuousQuizData);
+                setQuizIndex(0);
+                setScore(0);
+                setSelectedAnswer(null);
+                setQuizMode(true);
+            };
+
             const startPerfectQuiz = () => {
                 setQuizType('grammar');
                 setQuizQuestions(grammarPerfectQuizData);
@@ -267,7 +304,6 @@
                     } else {
                         const finalScore = score + (isCorrect ? 1 : 0);
                         const updatedResults = { ...results };
-                        // Додано: запис результату для grammar-тестів
                         if (quizType === 'words') {
                             updatedResults.words = { ...(results.words || {}), [activeTopic]: finalScore };
                         } else if (quizType === 'grammar') {
@@ -277,7 +313,6 @@
                         localStorage.setItem('quizResults', JSON.stringify(updatedResults));
                         alert(`Тест завершено! Ваш результат: ${finalScore} з ${quizQuestions.length}`);
                         setQuizMode(false);
-                        // Додано: повернення до відповідного екрану після grammar-тесту
                         if (quizType === 'words') setActiveTopic(null);
                         if (quizType === 'grammar') setActiveSubtense(null);
                         setSelectedAnswer(null);
@@ -288,7 +323,6 @@
 
             return (
                 <div className="course">
-                    {/* Main Menu */}
                     {!activeSection && (
                         <div className="course__menu">
                             <h1 className="course__main-title">Ваш відділ знань</h1>
@@ -316,7 +350,6 @@
                             <h2>Оцінки</h2>
                             <ul>
                                 {Object.entries(results).map(([category, topics]) => {
-                                    // для Grammar беремо довжину питання, для Vocabulary — 10
                                     const total = category === 'grammar'
                                         ? grammarQuizData.length
                                         : 10;
@@ -508,7 +541,48 @@
                                                 </button>
                                             )}
                                         </>
-                                    ) : null}
+                                    ) : activeSubtense === 'Past Perfect Continuous' ? (
+                                        <>
+                                            <p>
+                                                Past Perfect Continuous використовується для опису дій, які тривали до певного моменту в минулому.<br />
+                                                <strong>Структура:</strong> Підмет + had been + V-ing.<br />
+                                                <strong>Приклади:</strong> They had been waiting for an hour when the bus arrived.<br />
+                                                <strong>Заперечення:</strong> had not been + V-ing (She hadn’t been sleeping).<br />
+                                                <strong>Питання:</strong> Had + підмет + been + V-ing? (Had you been studying all day?).<br />
+                                                <strong>Часові маркери:</strong> for…, since…, before…, by the time…
+                                            </p>
+                                            <div className="video-container" style={{ marginTop: '20px' }}>
+                                                <iframe
+                                                    width="560"
+                                                    height="315"
+                                                    src="https://www.youtube.com/embed/Y9Pb9TPnhis?si=a19vM2boJY7eNlvy"
+                                                    title="Past Perfect Continuous Explanation"
+                                                    frameBorder="0"
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                    allowFullScreen
+                                                ></iframe>
+                                            </div>
+                                            <p className="course__section-underVideo">
+                                                Корисні посилання по темі:
+                                                <ul>
+                                                    <li><a href="https://cambridge.ua/ua/blog/past-perfect-continuous" target="_blank">1. Past Perfect Continuous для початківців</a></li>
+                                                    <li><a href="https://grammarway.com/ua/past-perfect-continuous" target="_blank">2. Past Perfect Continuous – Form and Use</a></li>
+                                                    <li><a href="https://naurok.com.ua/past-perfect-continuous-408210.html" target="_blank">3. Past Perfect Continuous. Правила й вправи</a></li>
+                                                </ul>
+                                            </p>
+                                            {!results.grammar?.['Past Perfect Continuous'] && (
+                                                <button onClick={startPerfectContinuousQuiz} className="course__quiz-button">
+                                                    Пройти тест
+                                                </button>
+                                            )}
+                                        </>
+                                    ) : (
+                                        <p>
+                                            {grammarTensesContent[activeTense]
+                                                .find(item => item.name === activeSubtense)
+                                                .description}
+                                        </p>
+                                    )}
                                 </>
                             )}
                         </div>
