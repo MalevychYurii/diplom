@@ -164,6 +164,14 @@
                 { question: "He ____ on the phone while I was reading.", options: ["was talking", "talked", "talking", "talks"], correct: "was talking" }
             ];
 
+            const grammarPerfectQuizData = [
+                { question: "They ____ finished the work before I arrived.", options: ["had", "have", "has", "having"], correct: "had" },
+                { question: "She ____ already left when he called.", options: ["had", "have", "has", "having"], correct: "had" },
+                { question: "By the time we got there, the concert ____ started.", options: ["had", "have", "has", "having"], correct: "had" },
+                { question: "I ____ seen that movie before last night.", options: ["had", "have", "has", "having"], correct: "had" },
+                { question: "He ____ studied for two hours before the test.", options: ["had", "have", "has", "having"], correct: "had" }
+            ];
+
             const grammarTensesContent = {
                 past: [
                     { name: 'Past Simple', description: 'Use for completed actions in the past. Structure: Subject + V2 (e.g., I walked to the store).' },
@@ -221,6 +229,15 @@
             const startContinuousQuiz = () => {
                 setQuizType('grammar');
                 setQuizQuestions(grammarContinuousQuizData);
+                setQuizIndex(0);
+                setScore(0);
+                setSelectedAnswer(null);
+                setQuizMode(true);
+            };
+
+            const startPerfectQuiz = () => {
+                setQuizType('grammar');
+                setQuizQuestions(grammarPerfectQuizData);
                 setQuizIndex(0);
                 setScore(0);
                 setSelectedAnswer(null);
@@ -456,14 +473,42 @@
                                                 </button>
                                             )}
                                         </>
-                                    ) : (
-                                        // Всі інші часи
-                                        <p>
-                                            {grammarTensesContent[activeTense]
-                                                .find(item => item.name === activeSubtense)
-                                                .description}
-                                        </p>
-                                    )}
+                                    ) : activeSubtense === 'Past Perfect' ? (
+                                        <>
+                                            <p>
+                                                Past Perfect використовується для позначення дії, яка завершилася перед іншою минулою дією.<br />
+                                                <strong>Структура:</strong> Підмет + had + дієслово в третій формі (V3).<br />
+                                                <strong>Приклади:</strong> They had finished the work before I arrived. She had already left when he called.<br />
+                                                <strong>Заперечення:</strong> had not + V3 (They hadn't seen the film).<br />
+                                                <strong>Питання:</strong> Had + підмет + V3? (Had you ever been to London?).<br />
+                                                <strong>Часові маркери:</strong> by the time, before, after, already, just, never, ever.
+                                            </p>
+                                            <div className="video-container" style={{ marginTop: '20px' }}>
+                                                <iframe
+                                                    width="560"
+                                                    height="315"
+                                                    src="https://www.youtube.com/embed/iqSMm0UGLsI?si=eVmkPXqBec-C0ueP"
+                                                    title="Past Perfect Tense Explanation"
+                                                    frameBorder="0"
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                    allowFullScreen
+                                                ></iframe>
+                                            </div>
+                                            <p className="course__section-underVideo">
+                                                Корисні посилання по темі:
+                                                <ul>
+                                                    <li><a href="https://cambridge.ua/uk/blog/past-perfect" target="_blank">1. Past Perfect для новачків</a></li>
+                                                    <li><a href="https://grammarway.com/ua/past-perfect" target="_blank">2. Past Perfect – Form and Use</a></li>
+                                                    <li><a href="https://bukischool.com.ua/blog/vpravy-na-past-perfect" target="_blank">3. Past Perfect: правила й вправи</a></li>
+                                                </ul>
+                                            </p>
+                                            {!results.grammar?.['Past Perfect'] && (
+                                                <button onClick={startPerfectQuiz} className="course__quiz-button">
+                                                    Пройти тест
+                                                </button>
+                                            )}
+                                        </>
+                                    ) : null}
                                 </>
                             )}
                         </div>
@@ -526,7 +571,17 @@
                     {quizMode && (
                         <div className="course__section">
                             <h2>Питання {quizIndex + 1} з {quizQuestions.length}</h2>
-                            <p><strong>Перекладіть з української на англійську:</strong> {quizQuestions[quizIndex].question}</p>
+                            <p>
+                                {quizType === 'grammar' ? (
+                                    <>
+                                        <strong>Оберіть правильну відповідь:</strong> {quizQuestions[quizIndex].question}
+                                    </>
+                                ) : (
+                                    <>
+                                        <strong>Перекладіть з української на англійську:</strong> {quizQuestions[quizIndex].question}
+                                    </>
+                                )}
+                            </p>
                             <div className="quiz-options">
                                 {quizQuestions[quizIndex].options.map((opt, idx) => {
                                     let className = "quiz__option-button";
