@@ -127,6 +127,8 @@
             const [quizQuestions, setQuizQuestions] = useState([]);
             const [score, setScore] = useState(0);
             const [selectedAnswer, setSelectedAnswer] = useState(null);
+            const [activeTense, setActiveTense] = useState(null);
+
             const [results, setResults] = useState(() => {
                 const raw = JSON.parse(localStorage.getItem("quizResults")) || {};
                 if (!raw.words && Object.values(raw).every(val => typeof val === "number")) {
@@ -144,6 +146,27 @@
                 "Одяг": [{ en: "shirt", ua: "сорочка" }, { en: "pants", ua: "штани" }, { en: "jacket", ua: "куртка" }, { en: "dress", ua: "сукня" }, { en: "shoes", ua: "взуття" }, { en: "coat", ua: "пальто" }, { en: "scarf", ua: "шарф" }, { en: "hat", ua: "капелюх" }, { en: "gloves", ua: "рукавички" }, { en: "socks", ua: "носки" }]
             };
 
+            const grammarTensesContent = {
+                past: [
+                    { name: 'Past Simple', description: 'Use for completed actions in the past. Structure: Subject + V2 (e.g., I walked to the store).' },
+                    { name: 'Past Continuous', description: 'Use for actions in progress at a specific time in the past. Structure: Subject + was/were + V-ing (e.g., They were watching TV).' },
+                    { name: 'Past Perfect', description: 'Use for an action completed before another past action. Structure: Subject + had + V3 (e.g., She had left before I arrived).' },
+                    { name: 'Past Perfect Continuous', description: 'Use for duration of an action up to a point in the past. Structure: Subject + had been + V-ing (e.g., He had been working all day).' }
+                ],
+                present: [
+                    { name: 'Present Simple', description: 'Use for habitual actions or general truths. Structure: Subject + V1(s) (e.g., She speaks English).' },
+                    { name: 'Present Continuous', description: 'Use for actions happening now or around now. Structure: Subject + am/is/are + V-ing (e.g., I am reading a book).' },
+                    { name: 'Present Perfect', description: 'Use for actions with relevance to the present. Structure: Subject + have/has + V3 (e.g., They have visited Paris).' },
+                    { name: 'Present Perfect Continuous', description: 'Use for duration up to now. Structure: Subject + have/has been + V-ing (e.g., We have been waiting here).' }
+                ],
+                future: [
+                    { name: 'Future Simple', description: 'Use for spontaneous decisions or predictions. Structure: Subject + will + V1 (e.g., I will call you later).' },
+                    { name: 'Future Continuous', description: 'Use for actions in progress at a future time. Structure: Subject + will be + V-ing (e.g., She will be traveling tomorrow).' },
+                    { name: 'Future Perfect', description: 'Use for actions that will be completed before a future time. Structure: Subject + will have + V3 (e.g., They will have finished by Monday).' },
+                    { name: 'Future Perfect Continuous', description: 'Use for duration up to a future point. Structure: Subject + will have been + V-ing (e.g., He will have been working here for five years).' }
+                ]
+            };
+
             const sections = {
                 words: { title: 'Vocabulary', subsections: { vocabulary: 'Список тем', flashcards: 'Посилання для навчання' } },
                 grammar: { title: 'Grammar', subsections: { tenses: 'Часи англійської мови', articles: 'Артиклі', conditionals: 'Умовні речення' } },
@@ -153,10 +176,15 @@
             };
 
             const handleBack = () => {
-                if (quizMode) return setQuizMode(false);
-                if (activeTopic) setActiveTopic(null);
-                else if (activeSubsection) setActiveSubsection(null);
-                else setActiveSection(null);
+                if (quizMode)
+                    return setQuizMode(false);
+                if (activeTense)
+                    return setActiveTense(null);
+                if (activeTopic)
+                    return setActiveTopic(null);
+                if (activeSubsection)
+                    return setActiveSubsection(null);
+                setActiveSection(null);
             };
 
             const startQuiz = () => {
@@ -203,6 +231,7 @@
 
             return (
                 <div className="course">
+                    {/* Main Menu */}
                     {!activeSection && (
                         <div className="course__menu">
                             <h1 className="course__main-title">Ваш відділ знань</h1>
@@ -212,12 +241,17 @@
                                 спілкування
                                 англійською — вже тут!</p>
                             {Object.entries(sections).map(([key, value]) => (
-                                <button key={key} onClick={() => setActiveSection(key)} className="course__menu-item">
+                                <button
+                                    key={key}
+                                    onClick={() => setActiveSection(key)}
+                                    className="course__menu-item"
+                                >
                                     {value.title}
                                 </button>
                             ))}
                         </div>
                     )}
+
 
                     {activeSection === "grades" && (
                         <div className="course__section">
@@ -256,7 +290,38 @@
                         </div>
                     )}
 
-                    {activeSubsection && !activeTopic && (
+                    {activeSection === 'grammar' && activeSubsection === 'tenses' && (
+                        <div className="course__section">
+                            <button onClick={handleBack} className="course__back">⇦ Назад</button>
+                            {!activeTense ? (
+                                <>
+                                    <h2>{sections.grammar.subsections.tenses}</h2>
+                                    <div className="course__submenu">
+                                        {Object.keys(grammarTensesContent).map(key => (
+                                            <button
+                                                key={key}
+                                                onClick={() => setActiveTense(key)}
+                                                className="course__submenu-item"
+                                            >
+                                                {key.charAt(0).toUpperCase() + key.slice(1)}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </>
+                            ) : (
+                                <>
+                                    <h2>{activeTense.charAt(0).toUpperCase() + activeTense.slice(1)}</h2>
+                                    <ul className="tenses-list">
+                                        {grammarTensesContent[activeTense].map(({ name, description }) => (
+                                            <li key={name}><strong>{name}</strong>: {description}</li>
+                                        ))}
+                                    </ul>
+                                </>
+                            )}
+                        </div>
+                    )}
+
+                    {activeSubsection && activeSubsection !== 'tenses' && !activeTopic && (
                         <div className="course__section">
                             <button onClick={handleBack} className="course__back">⇦ Назад</button>
                             <h2>{sections[activeSection].subsections[activeSubsection]}</h2>
