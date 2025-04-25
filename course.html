@@ -123,6 +123,7 @@
             const [activeSubsection, setActiveSubsection] = useState(null);
             const [activeTopic, setActiveTopic] = useState(null);
             const [quizMode, setQuizMode] = useState(false);
+            const [quizType, setQuizType] = useState(null);
             const [quizIndex, setQuizIndex] = useState(0);
             const [quizQuestions, setQuizQuestions] = useState([]);
             const [score, setScore] = useState(0);
@@ -146,6 +147,14 @@
                 "Частини тіла": [{ en: "head", ua: "голова" }, { en: "hand", ua: "рука" }, { en: "leg", ua: "нога" }, { en: "eye", ua: "око" }, { en: "ear", ua: "вухо" }, { en: "mouth", ua: "рот" }, { en: "nose", ua: "ніс" }, { en: "neck", ua: "шия" }, { en: "shoulder", ua: "плече" }, { en: "foot", ua: "стопа" }],
                 "Одяг": [{ en: "shirt", ua: "сорочка" }, { en: "pants", ua: "штани" }, { en: "jacket", ua: "куртка" }, { en: "dress", ua: "сукня" }, { en: "shoes", ua: "взуття" }, { en: "coat", ua: "пальто" }, { en: "scarf", ua: "шарф" }, { en: "hat", ua: "капелюх" }, { en: "gloves", ua: "рукавички" }, { en: "socks", ua: "носки" }]
             };
+
+            const grammarQuizData = [
+                { question: "I ____ to the store yesterday.", options: ["went", "go", "gone", "going"], correct: "went" },
+                { question: "They ____ a movie last night.", options: ["watched", "watch", "watching", "watches"], correct: "watched" },
+                { question: "She ____ her homework two hours ago.", options: ["finished", "finishes", "finishing", "finish"], correct: "finished" },
+                { question: "We ____ dinner at 8 PM.", options: ["had", "have", "has", "having"], correct: "had" },
+                { question: "He ____ a book when I called him.", options: ["read", "reads", "reading", "rode"], correct: "read" }
+            ];
 
             const grammarTensesContent = {
                 past: [
@@ -186,13 +195,15 @@
             };
 
             const startQuiz = () => {
-                const words = vocabularyData[activeTopic];
+                // Словниковий тест
+                const words = vocabularyData[activeTopic] || [];
                 const shuffled = [...words].sort(() => 0.5 - Math.random()).slice(0, 10);
                 const questions = shuffled.map(word => {
-                    const incorrect = words.filter(w => w.en !== word.en).sort(() => 0.5 - Math.random()).slice(0, 5);
+                    const incorrect = words.filter(w => w.en !== word.en).sort(() => 0.5 - Math.random()).slice(0, 3);
                     const options = [...incorrect.map(w => w.en), word.en].sort(() => 0.5 - Math.random());
                     return { question: word.ua, correct: word.en, options };
                 });
+                setQuizType('words'); // Додано: встановлення типу тесту
                 setQuizQuestions(questions);
                 setQuizIndex(0);
                 setScore(0);
@@ -200,7 +211,16 @@
                 setQuizMode(true);
             };
 
-            const handleAnswer = (selected) => {
+            const startTenseQuiz = () => {
+                setQuizType('grammar');
+                setQuizQuestions(grammarQuizData);
+                setQuizIndex(0);
+                setScore(0);
+                setSelectedAnswer(null);
+                setQuizMode(true);
+            };
+
+            const handleAnswer = selected => {
                 if (selectedAnswer) return;
                 setSelectedAnswer(selected);
                 setTimeout(() => {
@@ -213,19 +233,25 @@
                         setSelectedAnswer(null);
                     } else {
                         const finalScore = score + (isCorrect ? 1 : 0);
-                        const updatedResults = {
-                            ...results,
-                            words: { ...(results.words || {}), [activeTopic]: finalScore }
-                        };
+                        const updatedResults = { ...results };
+                        // Додано: запис результату для grammar-тестів
+                        if (quizType === 'words') {
+                            updatedResults.words = { ...(results.words || {}), [activeTopic]: finalScore };
+                        } else if (quizType === 'grammar') {
+                            updatedResults.grammar = { ...(results.grammar || {}), [activeSubtense]: finalScore };
+                        }
                         setResults(updatedResults);
-                        localStorage.setItem("quizResults", JSON.stringify(updatedResults));
-                        alert(`Тест завершено! Ваш результат: ${finalScore} з 10`);
+                        localStorage.setItem('quizResults', JSON.stringify(updatedResults));
+                        alert(`Тест завершено! Ваш результат: ${finalScore} з ${quizQuestions.length}`);
                         setQuizMode(false);
-                        setActiveTopic(null);
+                        // Додано: повернення до відповідного екрану після grammar-тесту
+                        if (quizType === 'words') setActiveTopic(null);
+                        if (quizType === 'grammar') setActiveSubtense(null);
                         setSelectedAnswer(null);
                     }
                 }, 1000);
             };
+
 
             return (
                 <div className="course">
@@ -251,28 +277,34 @@
                     )}
 
 
-                    {activeSection === "grades" && (
+                    {activeSection === 'grades' && (
                         <div className="course__section">
                             <button onClick={handleBack} className="course__back">⇦ Назад</button>
                             <h2>Оцінки</h2>
-                            {Object.keys(results).length > 0 ? (
-                                <ul>
-                                    {Object.entries(results).map(([category, topics]) => (
+                            <ul>
+                                {Object.entries(results).map(([category, topics]) => {
+                                    // для Grammar беремо довжину питання, для Vocabulary — 10
+                                    const total = category === 'grammar'
+                                        ? grammarQuizData.length
+                                        : 10;
+
+                                    return (
                                         <li key={category}>
                                             <strong>{sections[category]?.title || category}</strong>
                                             <ul>
                                                 {Object.entries(topics).map(([topic, score]) => (
-                                                    <li key={topic}>Тема: {topic} — Оцінка: {score} / 10</li>
+                                                    <li key={topic}>
+                                                        Тема: {topic} — Оцінка: {score} / {total}
+                                                    </li>
                                                 ))}
                                             </ul>
                                         </li>
-                                    ))}
-                                </ul>
-                            ) : (
-                                <p>Ще немає результатів тестів.</p>
-                            )}
+                                    );
+                                })}
+                            </ul>
                         </div>
                     )}
+
 
                     {activeSection && activeSection !== "grades" && !activeSubsection && (
                         <div className="course__section">
@@ -288,7 +320,7 @@
                         </div>
                     )}
 
-                    {activeSection === 'grammar' && activeSubsection === 'tenses' && (
+                    {activeSection === 'grammar' && activeSubsection === 'tenses' && !quizMode && (
                         <div className="course__section">
                             <button onClick={handleBack} className="course__back">⇦ Назад</button>
 
@@ -355,13 +387,14 @@
                                                     <li><a href="https://justschool.me/uk/blog/past-simple-shho-cze-take-pravyla-j-tablyczi/" target="_blank">3. Past Simple: що це таке, правила й таблиці</a></li>
                                                 </ul>
                                             </p>
+                                            {!results.grammar?.['Past Simple'] && (
+                                                <button onClick={startTenseQuiz} className="course__quiz-button">
+                                                    Пройти тест
+                                                </button>
+                                            )}
                                         </>
                                     ) : (
-                                        <p>
-                                            {grammarTensesContent[activeTense]
-                                                .find(item => item.name === activeSubtense)
-                                                .description}
-                                        </p>
+                                        <p>{grammarTensesContent[activeTense].find(item => item.name === activeSubtense).description}</p>
                                     )}
                                 </>
                             )}
@@ -425,7 +458,7 @@
                     {quizMode && (
                         <div className="course__section">
                             <h2>Питання {quizIndex + 1} з {quizQuestions.length}</h2>
-                            <p><strong>Перекладіть:</strong> {quizQuestions[quizIndex].question}</p>
+                            <p><strong>Перекладіть з української на англійську:</strong> {quizQuestions[quizIndex].question}</p>
                             <div className="quiz-options">
                                 {quizQuestions[quizIndex].options.map((opt, idx) => {
                                     let className = "quiz__option-button";
@@ -435,7 +468,7 @@
                                         else className += " disabled";
                                     }
                                     return (
-                                        <button
+                                        <button type="button"
                                             key={idx}
                                             onClick={() => handleAnswer(opt)}
                                             className={className}

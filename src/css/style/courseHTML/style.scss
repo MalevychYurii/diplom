@@ -717,7 +717,6 @@ a {
 
     &__section {
         padding: 20px;
-        background-color: #fafafa;
         border-radius: 10px;
         min-height: 66vh;
         display: flex;
@@ -734,7 +733,7 @@ a {
         }
 
         p {
-            margin-top: 20px;
+            margin: 20px auto;
             font-size: 19px;
             display: flex;
             flex-direction: column;
