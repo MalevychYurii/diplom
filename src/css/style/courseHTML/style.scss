@@ -744,6 +744,22 @@ a {
                 }
             }
         }
+
+        div {
+            ul {
+                p {
+                    font-weight: 700;
+                }
+
+                li {
+                    color: $blue;
+
+                    &:hover {
+                        color: $darkblue;
+                    }
+                }
+            }
+        }
     }
 
     &__back {

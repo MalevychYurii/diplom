@@ -647,6 +647,15 @@ a:hover {
 .course__section ul li strong {
   font-weight: 700;
 }
+.course__section div ul p {
+  font-weight: 700;
+}
+.course__section div ul li {
+  color: #0387FC;
+}
+.course__section div ul li:hover {
+  color: #000080;
+}
 .course__back {
   margin-bottom: 20px;
   background: none;

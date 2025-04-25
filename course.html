@@ -260,7 +260,8 @@
                         <div className="course__section">
                             <button onClick={handleBack} className="course__back">⇦ Назад</button>
                             <h2>{sections[activeSection].subsections[activeSubsection]}</h2>
-                            {activeSubsection === "vocabulary" ? (
+
+                            {activeSubsection === "vocabulary" && (
                                 <div className="course__submenu">
                                     {Object.keys(vocabularyData).map(topic => (
                                         <button
@@ -272,11 +273,27 @@
                                         </button>
                                     ))}
                                 </div>
-                            ) : (
-                                <p>Посилання для навчання буде доступне найближчим часом.</p>
+                            )}
+
+                            {activeSubsection === "flashcards" && (
+                                <div>
+                                    <ul>
+                                        <p>1. Розвиваємо пам'ять:</p>
+                                        <li><a href="https://happymonday.ua/jak-pokrashhyty-pamjat" target="_blank">Посилання</a></li>
+                                        <p>2. Тренування на вимову:</p>
+                                        <li><a href="https://youglish.com/" target="_blank">Посилання</a></li>
+                                        <p>3. Реальні аудіоуроки з життя:</p>
+                                        <li><a href="https://www.eslpod.com/" target="_blank">Посилання</a></li>
+                                        <p>4. Вправи на граматику:</p>
+                                        <li><a href="https://agendaweb.org/" target="_blank">Посилання</a></li>
+                                        <p>5. Збірка вправ для початківців:</p>
+                                        <li><a href="https://happymonday.ua/jak-pokrashhyty-pamjat" target="_blank">Посилання</a></li>
+                                    </ul>
+                                </div>
                             )}
                         </div>
                     )}
+
 
                     {activeTopic && !quizMode && (
                         <div className="course__section">
@@ -325,7 +342,6 @@
 
         ReactDOM.createRoot(document.getElementById('course-root')).render(<CourseApp />);
     </script>
-
 
     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
