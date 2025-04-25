@@ -156,6 +156,14 @@
                 { question: "He ____ a book when I called him.", options: ["read", "reads", "reading", "rode"], correct: "read" }
             ];
 
+            const grammarContinuousQuizData = [
+                { question: "They ____ TV when I called.", options: ["were watching", "watched", "watch", "watching"], correct: "were watching" },
+                { question: "She ____ dinner at 7 PM.", options: ["was cooking", "cooked", "cooking", "cook"], correct: "was cooking" },
+                { question: "We ____ football at this time yesterday.", options: ["were playing", "played", "play", "are playing"], correct: "were playing" },
+                { question: "It ____ when I looked out the window.", options: ["was raining", "rained", "raining", "rains"], correct: "was raining" },
+                { question: "He ____ on the phone while I was reading.", options: ["was talking", "talked", "talking", "talks"], correct: "was talking" }
+            ];
+
             const grammarTensesContent = {
                 past: [
                     { name: 'Past Simple', description: 'Use for completed actions in the past. Structure: Subject + V2 (e.g., I walked to the store).' },
@@ -195,7 +203,6 @@
             };
 
             const startQuiz = () => {
-                // Словниковий тест
                 const words = vocabularyData[activeTopic] || [];
                 const shuffled = [...words].sort(() => 0.5 - Math.random()).slice(0, 10);
                 const questions = shuffled.map(word => {
@@ -203,8 +210,17 @@
                     const options = [...incorrect.map(w => w.en), word.en].sort(() => 0.5 - Math.random());
                     return { question: word.ua, correct: word.en, options };
                 });
-                setQuizType('words'); // Додано: встановлення типу тесту
+                setQuizType('words');
                 setQuizQuestions(questions);
+                setQuizIndex(0);
+                setScore(0);
+                setSelectedAnswer(null);
+                setQuizMode(true);
+            };
+
+            const startContinuousQuiz = () => {
+                setQuizType('grammar');
+                setQuizQuestions(grammarContinuousQuizData);
                 setQuizIndex(0);
                 setScore(0);
                 setSelectedAnswer(null);
@@ -393,8 +409,60 @@
                                                 </button>
                                             )}
                                         </>
+                                    ) : activeSubtense === 'Past Continuous' ? (
+                                        <>
+                                            <p>
+                                                Past Continuous використовується для опису дій, які перебували в процесі в певний момент у минулому.<br />
+                                                <strong>Структура:</strong> Підмет + was/were + дієслово з закінченням -ing (V-ing).<br />
+                                                <strong>Приклади:</strong> I was reading a book at 8 PM yesterday. They were playing football when it started raining.<br />
+                                                <strong>Заперечення:</strong> was not / were not + V-ing (He wasn’t watching TV).<br />
+                                                <strong>Питання:</strong> Was / Were + підмет + V-ing? (Were you listening to music?).<br />
+                                                <strong>Часові маркери:</strong> at 7 o’clock, while, when, all day yesterday, at that moment.
+                                            </p>
+                                            <div className="video-container" style={{ marginTop: '20px' }}>
+                                                <iframe
+                                                    width="560"
+                                                    height="315"
+                                                    src="https://www.youtube.com/embed/1iCRD593nu4?si=Jmn4ka2N69gcTjXx"
+                                                    title="Past Continuous Tense Explanation"
+                                                    frameBorder="0"
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                    allowFullScreen
+                                                ></iframe>
+                                            </div>
+                                            <p className="course__section-underVideo">
+                                                Корисні посилання по темі:
+                                                <ul>
+                                                    <li>
+                                                        <a href="https://cambridge.ua/ua/blog/past-continuous" target="_blank">
+                                                            1. Past Continuous для початківців
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="https://grammarway.com/ua/past-continuous" target="_blank">
+                                                            2. Past Continuous – Form and Use
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="https://bukischool.com.ua/blog/vpravy-na-past-continuous" target="_blank">
+                                                            3. Past Continuous: правила й вправи
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </p>
+                                            {!results.grammar?.['Past Continuous'] && (
+                                                <button onClick={startContinuousQuiz} className="course__quiz-button">
+                                                    Пройти тест
+                                                </button>
+                                            )}
+                                        </>
                                     ) : (
-                                        <p>{grammarTensesContent[activeTense].find(item => item.name === activeSubtense).description}</p>
+                                        // Всі інші часи
+                                        <p>
+                                            {grammarTensesContent[activeTense]
+                                                .find(item => item.name === activeSubtense)
+                                                .description}
+                                        </p>
                                     )}
                                 </>
                             )}
