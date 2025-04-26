@@ -293,6 +293,14 @@
                 { question: "We saw ___ movie you recommended.", options: ["a", "an", "the", "–"], correct: "the" },
             ];
 
+            const grammarConditionalsQuizData = [
+                { question: "If you heat ice, it ____.", options: ["melts", "melted", "will melt", "would melt"], correct: "melts" },           // zero
+                { question: "If it rains tomorrow, we ____ at home.", options: ["will stay", "stay", "would stay", "stayed"], correct: "will stay" }, // first
+                { question: "If I had a million dollars, I ____ a yacht.", options: ["would buy", "will buy", "buy", "bought"], correct: "would buy" }, // second
+                { question: "If she had known, she ____ you.", options: ["would have called", "called", "will call", "would call"], correct: "would have called" }, // third
+                { question: "If I were you, I ____ ask for help.", options: ["would", "will", "am", "was"], correct: "would" }                    // mixed
+            ];
+
             const sections = {
                 words: { title: 'Vocabulary', subsections: { vocabulary: 'Список тем', flashcards: 'Посилання для навчання' } },
                 grammar: { title: 'Grammar', subsections: { tenses: 'Часи англійської мови', articles: 'Артиклі', conditionals: 'Умовні речення' } },
@@ -436,6 +444,15 @@
             const startArticlesQuiz = () => {
                 setQuizType('grammar');
                 setQuizQuestions(articlesQuizData);
+                setQuizIndex(0);
+                setScore(0);
+                setSelectedAnswer(null);
+                setQuizMode(true);
+            };
+
+            const startConditionalsQuiz = () => {
+                setQuizType("grammar");
+                setQuizQuestions(grammarConditionalsQuizData);
                 setQuizIndex(0);
                 setScore(0);
                 setSelectedAnswer(null);
@@ -1010,7 +1027,7 @@
                         </div>
                     )}
 
-                    {activeSubsection && activeSubsection !== 'tenses' && activeSubsection !== 'articles' && !activeTopic && (
+                    {activeSubsection && activeSubsection !== 'tenses' && activeSubsection !== 'articles' && activeSubsection !== 'conditionals' && !activeTopic && (
                         <div className="course__section">
                             <button onClick={handleBack} className="course__back">⇦ Назад</button>
                             <h2>{sections[activeSection].subsections[activeSubsection]}</h2>
@@ -1101,6 +1118,63 @@
                             </p>
                             {!results.grammar?.['Articles'] && (
                                 <button onClick={startArticlesQuiz} className="course__quiz-button">
+                                    Пройти тест
+                                </button>
+                            )}
+                        </div>
+                    )}
+
+                    {activeSection === 'grammar' && activeSubsection === 'conditionals' && !quizMode && (
+                        <div className="course__section">
+                            <button onClick={handleBack} className="course__back">⇦ Назад</button>
+                            <h2>Умовні речення</h2>
+                            <ul>
+                                <li>
+                                    <p>
+                                        В англійській є чотири основні типи умовних речень:
+                                    </p>
+                                </li>
+                                <li>
+                                    <strong>Zero Conditional</strong> (загальні істини):
+                                    If + Present Simple, Present Simple
+                                    (<em>If you heat ice, it melts.</em>).
+                                </li>
+                                <li>
+                                    <strong>First Conditional</strong> (реальні майбутні умови):
+                                    If + Present Simple, will + V1
+                                    (<em>If it rains tomorrow, we will stay at home.</em>).
+                                </li>
+                                <li>
+                                    <strong>Second Conditional</strong> (нереальні теперішні):
+                                    If + Past Simple, would + V1
+                                    (<em>If I had a million dollars, I would buy a yacht.</em>).
+                                </li>
+                                <li>
+                                    <strong>Third Conditional</strong> (нереальні минулі):
+                                    If + Past Perfect, would have + V3
+                                    (<em>If she had known, she would have called you.</em>).
+                                </li>
+                            </ul>
+                            <div className="video-container" style={{ marginTop: '20px' }}>
+                                <iframe
+                                    width="560"
+                                    height="315"
+                                    src="https://www.youtube.com/embed/UJWFIAf5Ew8?si=vD8DwVfVn7F7datj"
+                                    title="Conditionals in English"
+                                    frameBorder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowFullScreen
+                                ></iframe>
+                            </div>
+                            <p className="course__section-underVideo">
+                                Корисні посилання:
+                                <ul>
+                                    <li><a href="https://grammarway.com/ua/conditionals" target="_blank">1. Conditionals – правила</a></li>
+                                    <li><a href="https://naurok.com.ua/conditional-sentences-umovni-rechennya-trenuvalni-vpravi-356543.html" target="_blank">2. Conditionals. Інтерактивні вправи</a></li>
+                                </ul>
+                            </p>
+                            {!results.grammar?.['Conditionals'] && (
+                                <button onClick={startConditionalsQuiz} className="course__quiz-button">
                                     Пройти тест
                                 </button>
                             )}
