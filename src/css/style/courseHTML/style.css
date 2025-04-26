@@ -651,6 +651,11 @@ a:hover {
   display: block;
   margin: 15px 0;
 }
+.course__section ul {
+  align-self: flex-start;
+  margin-left: 45px;
+  font-size: 19px;
+}
 .course__section ul li {
   margin-top: 20px;
 }

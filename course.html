@@ -285,6 +285,14 @@
                 { question: "By this weekend, he ____ been training all month.", options: ["will have been", "will be", "has been", "will have"], correct: "will have been" }
             ];
 
+            const articlesQuizData = [
+                { question: "I bought ___ apple yesterday.", options: ["a", "an", "the", "–"], correct: "an" },
+                { question: "She read ___ book you gave her.", options: ["a", "an", "–", "the"], correct: "the" },
+                { question: "___ cats are friendly pets.", options: ["A", "The", "–", "An"], correct: "–" },
+                { question: "He wants to be ___ engineer when he grows up.", options: ["an", "a", "the", "–"], correct: "an" },
+                { question: "We saw ___ movie you recommended.", options: ["a", "an", "the", "–"], correct: "the" },
+            ];
+
             const sections = {
                 words: { title: 'Vocabulary', subsections: { vocabulary: 'Список тем', flashcards: 'Посилання для навчання' } },
                 grammar: { title: 'Grammar', subsections: { tenses: 'Часи англійської мови', articles: 'Артиклі', conditionals: 'Умовні речення' } },
@@ -425,6 +433,15 @@
                 setQuizMode(true);
             };
 
+            const startArticlesQuiz = () => {
+                setQuizType('grammar');
+                setQuizQuestions(articlesQuizData);
+                setQuizIndex(0);
+                setScore(0);
+                setSelectedAnswer(null);
+                setQuizMode(true);
+            };
+
             const handleAnswer = selected => {
                 if (selectedAnswer) return;
                 setSelectedAnswer(selected);
@@ -455,7 +472,6 @@
                 }, 1000);
             };
 
-
             return (
                 <div className="course">
                     {!activeSection && (
@@ -477,7 +493,6 @@
                             ))}
                         </div>
                     )}
-
 
                     {activeSection === 'grades' && (
                         <div className="course__section">
@@ -505,7 +520,6 @@
                             </ul>
                         </div>
                     )}
-
 
                     {activeSection && activeSection !== "grades" && !activeSubsection && (
                         <div className="course__section">
@@ -996,7 +1010,7 @@
                         </div>
                     )}
 
-                    {activeSubsection && activeSubsection !== 'tenses' && !activeTopic && (
+                    {activeSubsection && activeSubsection !== 'tenses' && activeSubsection !== 'articles' && !activeTopic && (
                         <div className="course__section">
                             <button onClick={handleBack} className="course__back">⇦ Назад</button>
                             <h2>{sections[activeSection].subsections[activeSubsection]}</h2>
@@ -1034,7 +1048,6 @@
                         </div>
                     )}
 
-
                     {activeTopic && !quizMode && (
                         <div className="course__section">
                             <button onClick={handleBack} className="course__back">⇦ Назад</button>
@@ -1046,6 +1059,50 @@
                             </ul>
                             {!(results.words && results.words[activeTopic]) && (
                                 <button onClick={startQuiz} className="course__quiz-button">Пройти тест</button>
+                            )}
+                        </div>
+                    )}
+
+                    {activeSection === 'grammar' && activeSubsection === 'articles' && !quizMode && (
+                        <div className="course__section">
+                            <button onClick={handleBack} className="course__back">⇦ Назад</button>
+                            <h2>Артиклі</h2>
+                            <p>
+                                В англійській є три основні варіанти артиклів:
+                                <strong> a / an</strong> (неозначений) – коли ми говоримо про щось вперше, про один із багатьох
+                                (“a book”, “an apple”);<br />
+                                <strong>the</strong> (означений) – коли ми маємо на увазі конкретний об’єкт, вже відомий співрозмовнику
+                                (“the book I told you about”);<br />
+                                <strong>—</strong> (відсутність артикля) – перед незлічуваними або іменниками у множині без конкретизації
+                                (“water”, “books”).
+                            </p>
+                            <ul>
+                                <li><strong>Неозначений артикль:</strong> a перед приголосним звуком; an перед голосним (“a car”, “an hour”).</li>
+                                <li><strong>Означений артикль:</strong> the вживаємо, коли об’єкт вже згаданий або унікальний (“the sun”, “the first time”).</li>
+                                <li><strong>Без артикля:</strong> з незлічуваними (“information”) і з іменниками у множині без уточнення (“cars are fast”).</li>
+                            </ul>
+                            <div className="video-container" style={{ marginTop: '20px' }}>
+                                <iframe
+                                    width="560"
+                                    height="315"
+                                    src="https://www.youtube.com/embed/sA6tXGCdG34?si=40eoTKV4gL64XSyR"
+                                    title="Articles in English"
+                                    frameBorder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowFullScreen
+                                ></iframe>
+                            </div>
+                            <p className="course__section-underVideo">
+                                Корисні посилання:
+                                <ul>
+                                    <li><a href="https://vseosvita.ua/library/vpravi-z-gramatiki-anglijskoi-movi-articles-the-a-an-160994.html" target="_blank">1. Articles – правила та вправи</a></li>
+                                    <li><a href="https://justschool.me/uk/blog/artykli-v-anglijskij-movi-pravyla-vykorystannya-vpravy/" target="_blank">2. Articles. Що? Де? Як?</a></li>
+                                </ul>
+                            </p>
+                            {!results.grammar?.['Articles'] && (
+                                <button onClick={startArticlesQuiz} className="course__quiz-button">
+                                    Пройти тест
+                                </button>
                             )}
                         </div>
                     )}
