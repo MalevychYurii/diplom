@@ -221,6 +221,38 @@
                 ]
             };
 
+            const presentSimpleQuizData = [
+                { question: "She ____ to school every day.", options: ["goes", "go", "gone", "going"], correct: "goes" },
+                { question: "I usually ____ coffee in the morning.", options: ["drink", "drinks", "drank", "drinking"], correct: "drink" },
+                { question: "They ____ tennis on Sundays.", options: ["play", "plays", "playing", "played"], correct: "play" },
+                { question: "He ____ the guitar well.", options: ["plays", "play", "played", "playing"], correct: "plays" },
+                { question: "We ____ English at school.", options: ["study", "studies", "studying", "studied"], correct: "study" }
+            ];
+
+            const presentContinuousQuizData = [
+                { question: "I ____ lunch right now.", options: ["am eating", "eat", "eating", "was eating"], correct: "am eating" },
+                { question: "They ____ football at the moment.", options: ["are playing", "play", "playing", "played"], correct: "are playing" },
+                { question: "She ____ a book now.", options: ["is reading", "reads", "reading", "read"], correct: "is reading" },
+                { question: "We ____ to music at the party.", options: ["are listening", "listen", "listening", "listened"], correct: "are listening" },
+                { question: "He ____ TV this evening.", options: ["is watching", "watches", "watching", "watched"], correct: "is watching" }
+            ];
+
+            const presentPerfectQuizData = [
+                { question: "I ____ visited France twice.", options: ["have", "has", "had", "having"], correct: "have" },
+                { question: "She ____ already finished her work.", options: ["has", "have", "had", "having"], correct: "has" },
+                { question: "They ____ lived here since 2010.", options: ["have", "has", "had", "having"], correct: "have" },
+                { question: "He ____ just eaten breakfast.", options: ["has", "have", "had", "having"], correct: "has" },
+                { question: "We ____ never seen that movie.", options: ["have", "has", "had", "having"], correct: "have" }
+            ];
+
+            const presentPerfectContinuousQuizData = [
+                { question: "She ____ been working all day.", options: ["has", "have", "had", "having"], correct: "has" },
+                { question: "I ____ been waiting for two hours.", options: ["have", "has", "had", "having"], correct: "have" },
+                { question: "They ____ been playing since morning.", options: ["have", "has", "have been", "has been"], correct: "have been" },
+                { question: "He ____ been studying for three hours.", options: ["has been", "have been", "had been", "having been"], correct: "has been" },
+                { question: "We ____ been learning English since January.", options: ["have", "has", "have been", "has been"], correct: "have been" }
+            ];
+
             const sections = {
                 words: { title: 'Vocabulary', subsections: { vocabulary: 'Список тем', flashcards: 'Посилання для навчання' } },
                 grammar: { title: 'Grammar', subsections: { tenses: 'Часи англійської мови', articles: 'Артиклі', conditionals: 'Умовні речення' } },
@@ -284,6 +316,42 @@
             const startTenseQuiz = () => {
                 setQuizType('grammar');
                 setQuizQuestions(grammarQuizData);
+                setQuizIndex(0);
+                setScore(0);
+                setSelectedAnswer(null);
+                setQuizMode(true);
+            };
+
+            const startPresentSimpleQuiz = () => {
+                setQuizType('grammar');
+                setQuizQuestions(presentSimpleQuizData);
+                setQuizIndex(0);
+                setScore(0);
+                setSelectedAnswer(null);
+                setQuizMode(true);
+            };
+
+            const startPresentContinuousQuiz = () => {
+                setQuizType('grammar');
+                setQuizQuestions(presentContinuousQuizData);
+                setQuizIndex(0);
+                setScore(0);
+                setSelectedAnswer(null);
+                setQuizMode(true);
+            };
+
+            const startPresentPerfectQuiz = () => {
+                setQuizType('grammar');
+                setQuizQuestions(presentPerfectQuizData);
+                setQuizIndex(0);
+                setScore(0);
+                setSelectedAnswer(null);
+                setQuizMode(true);
+            };
+
+            const startPresentPerfectContinuousQuiz = () => {
+                setQuizType('grammar');
+                setQuizQuestions(presentPerfectContinuousQuizData);
                 setQuizIndex(0);
                 setScore(0);
                 setSelectedAnswer(null);
@@ -576,13 +644,151 @@
                                                 </button>
                                             )}
                                         </>
+                                    ) : activeSubtense === 'Present Simple' ? (
+                                        <>
+                                            <p>
+                                                Present Simple використовується для опису регулярних дій, звичок і загальних фактів.<br />
+                                                <strong>Структура:</strong> Підмет + дієслово в першій формі (для 3-ї особи однини додається закінчення -s).<br />
+                                                <strong>Приклади:</strong> She speaks English every day. I go to school on weekdays.<br />
+                                                <strong>Заперечення:</strong> do not / does not + V1 (He doesn’t like tea.)<br />
+                                                <strong>Питання:</strong> Do / Does + підмет + V1? (Do you play tennis?).<br />
+                                                <strong>Часові маркери:</strong> always, usually, often, sometimes, never, every day, on Mondays, twice a week
+                                            </p>
+                                            <div className="video-container" style={{ marginTop: '20px' }}>
+                                                <iframe
+                                                    width="560"
+                                                    height="315"
+                                                    src="https://www.youtube.com/embed/CK7ofUo1dw8?si=68NIT2huaEt-6XXz"
+                                                    title="Present Simple Explanation"
+                                                    frameBorder="0"
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                    allowFullScreen
+                                                ></iframe>
+                                            </div>
+                                            <p className="course__section-underVideo">
+                                                Корисні посилання по темі:
+                                                <ul>
+                                                    <li><a href="https://grammarway.com/ua/present-simple" target="_blank">1. Present Simple для початківців</a></li>
+                                                    <li><a href="https://bukischool.com.ua/blog/present-simple" target="_blank">2. Present Simple – Form and Use</a></li>
+                                                    <li><a href="https://naurok.com.ua/vpravi-present-simple-247787.html" target="_blank">3. Present Simple. Правила й вправи</a></li>
+                                                </ul>
+                                            </p>
+                                            {!results.grammar?.['Past Perfect Continuous'] && (
+                                                <button onClick={startPerfectContinuousQuiz} className="course__quiz-button">
+                                                    Пройти тест
+                                                </button>
+                                            )}
+                                        </>
+                                    ) : activeSubtense === 'Present Continuous' ? (
+                                        <>
+                                            <p>
+                                                Present Continuous використовується для опису дій, які відбуваються в момент мовлення або навколо нього.<br />
+                                                <strong>Структура:</strong> Підмет + am/is/are + V-ing.<br />
+                                                <strong>Приклади:</strong> I am reading a book now. They are playing football at the moment.<br />
+                                                <strong>Заперечення:</strong> am not / is not / are not + V-ing (She isn’t listening).<br />
+                                                <strong>Питання:</strong> Am/Is/Are + підмет + V-ing? (Are you watching TV?).<br />
+                                                <strong>Часові маркери:</strong> now, right now, at the moment, today, this week.
+                                            </p>
+                                            <div className="video-container" style={{ marginTop: '20px' }}>
+                                                <iframe
+                                                    width="560"
+                                                    height="315"
+                                                    src="https://www.youtube.com/embed/AikDr9_BDro?si=3U6Im5gq9Wh2nDgJ"
+                                                    title="Present Continuous Explanation"
+                                                    frameBorder="0"
+                                                    allowFullScreen
+                                                ></iframe>
+                                            </div>
+                                            <p className="course__section-underVideo">
+                                                Корисні посилання:
+                                                <ul>
+                                                    <li><a href="https://justschool.me/uk/blog/present-continuous-pravyla-pryklady-vpravy/" target="_blank">1. Present Continuous – правила</a></li>
+                                                    <li><a href="https://grammarway.com/ua/present-continuous" target="_blank">2. Present Continuous. Form and Use</a></li>
+                                                    <li><a href="https://naurok.com.ua/trenuvalni-vpravi-present-continuous-tense-252941.html" target="_blank">3. Present Continuous. Вправи</a></li>
+                                                </ul>
+                                            </p>
+                                            {!results.grammar?.['Present Continuous'] && (
+                                                <button onClick={startPresentContinuousQuiz} className="course__quiz-button">
+                                                    Пройти тест
+                                                </button>
+                                            )}
+                                        </>
+                                    ) : activeSubtense === 'Present Perfect' ? (
+                                        <>
+                                            <p>
+                                                Present Perfect використовується, щоб сказати про досвід, завершені дії з результатом зараз, або дії, що почалися в минулому та тривають.<br />
+                                                <strong>Структура:</strong> Підмет + have/has + V3.<br />
+                                                <strong>Приклади:</strong> I have visited Paris twice. She has already finished her work.<br />
+                                                <strong>Заперечення:</strong> have not / has not + V3 (They haven’t seen that film).<br />
+                                                <strong>Питання:</strong> Have/Has + підмет + V3? (Have you ever been to London?).<br />
+                                                <strong>Часові маркери:</strong> already, yet, just, never, ever, since, for.
+                                            </p>
+                                            <div className="video-container" style={{ marginTop: '20px' }}>
+                                                <iframe
+                                                    width="560"
+                                                    height="315"
+                                                    src="https://www.youtube.com/embed/VjG95ZVW8YA?si=wAZWPLhsp1H7D-4Z"
+                                                    title="Present Perfect Explanation"
+                                                    frameBorder="0"
+                                                    allowFullScreen
+                                                ></iframe>
+                                            </div>
+                                            <p className="course__section-underVideo">
+                                                Корисні посилання:
+                                                <ul>
+                                                    <li><a href="https://justschool.me/uk/blog/shho-take-present-perfect-pravyla-vzhyvannya-justschool/" target="_blank">1. Present Perfect – правила</a></li>
+                                                    <li><a href="https://grammarway.com/ua/present-perfect" target="_blank">2. Present Perfect. Form and Use</a></li>
+                                                    <li><a href="https://naurok.com.ua/the-present-perfect-tense-teperishniy-dokonaniy-chas-trenuvalni-vpravi-356549.html" target="_blank">3. Present Perfect. Вправи</a></li>
+                                                </ul>
+                                            </p>
+                                            {!results.grammar?.['Present Perfect'] && (
+                                                <button onClick={startPresentPerfectQuiz} className="course__quiz-button">
+                                                    Пройти тест
+                                                </button>
+                                            )}
+                                        </>
+                                    ) : activeSubtense === 'Present Perfect Continuous' ? (
+                                        <>
+                                            <p>
+                                                Present Perfect Continuous використовується, щоб підкреслити тривалість дії, яка почалася в минулому і триває досі або щойно закінчилася.<br />
+                                                <strong>Структура:</strong> Підмет + have/has been + V-ing.<br />
+                                                <strong>Приклади:</strong> I have been studying for two hours. She has been working here since 2015.<br />
+                                                <strong>Заперечення:</strong> have not been / has not been + V-ing (They haven’t been waiting).<br />
+                                                <strong>Питання:</strong> Have/Has + підмет + been + V-ing? (Have you been learning English?).<br />
+                                                <strong>Часові маркери:</strong> for…, since…, all day, recently.
+                                            </p>
+                                            <div className="video-container" style={{ marginTop: '20px' }}>
+                                                <iframe
+                                                    width="560"
+                                                    height="315"
+                                                    src="https://www.youtube.com/embed/jo61vDJJMbQ?si=o6YQ5y-61KeZi9h7"
+                                                    title="Present Perfect Continuous Explanation"
+                                                    frameBorder="0"
+                                                    allowFullScreen
+                                                ></iframe>
+                                            </div>
+                                            <p className="course__section-underVideo">
+                                                Корисні посилання:
+                                                <ul>
+                                                    <li><a href="https://www.englishdom.com/ua/blog/present-perfect-continuous-osoblivosti-vzhivannya/" target="_blank">1. Present Perfect Continuous – правила</a></li>
+                                                    <li><a href="https://grammarway.com/ua/present-perfect-continuous" target="_blank">2. Present Perfect Continuous. Form and Use</a></li>
+                                                    <li><a href="https://vseosvita.ua/library/dobirka-vprav-z-gramatiki-present-perfect-continuous-154939.html" target="_blank">3. Present Perfect Continuous. Вправи</a></li>
+                                                </ul>
+                                            </p>
+                                            {!results.grammar?.['Present Perfect Continuous'] && (
+                                                <button onClick={startPresentPerfectContinuousQuiz} className="course__quiz-button">
+                                                    Пройти тест
+                                                </button>
+                                            )}
+                                        </>
                                     ) : (
                                         <p>
                                             {grammarTensesContent[activeTense]
                                                 .find(item => item.name === activeSubtense)
                                                 .description}
                                         </p>
-                                    )}
+                                    )
+                                    }
                                 </>
                             )}
                         </div>
