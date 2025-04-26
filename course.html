@@ -253,11 +253,42 @@
                 { question: "We ____ been learning English since January.", options: ["have", "has", "have been", "has been"], correct: "have been" }
             ];
 
+            const grammarFutureSimpleQuizData = [
+                { question: "I ____ call you tomorrow.", options: ["will", "am", "are", "do"], correct: "will" },
+                { question: "She ____ finish her homework later.", options: ["will", "is", "does", "can"], correct: "will" },
+                { question: "They ____ arrive next week.", options: ["will", "are", "have", "do"], correct: "will" },
+                { question: "We ____ see each other soon.", options: ["will", "am", "are", "have"], correct: "will" },
+                { question: "He ____ help you with that task.", options: ["will", "can", "do", "has"], correct: "will" }
+            ];
+
+            const grammarFutureContinuousQuizData = [
+                { question: "At 8 PM tonight, I ____ cooking dinner.", options: ["will be", "will", "am", "been"], correct: "will be" },
+                { question: "This time tomorrow, she ____ flying to Paris.", options: ["will be", "will", "is", "has"], correct: "will be" },
+                { question: "They ____ playing cards when you arrive.", options: ["will be", "will", "are", "were"], correct: "will be" },
+                { question: "He ____ be working at midnight.", options: ["will be", "will", "is", "was"], correct: "will be" },
+                { question: "We ____ be having lunch at noon.", options: ["will be", "will", "are", "have"], correct: "will be" }
+            ];
+
+            const grammarFuturePerfectQuizData = [
+                { question: "By 6 o'clock, I ____ finished my report.", options: ["will have", "will", "have", "had"], correct: "will have" },
+                { question: "She ____ already left by the time we got there.", options: ["will have", "will", "has", "had"], correct: "will have" },
+                { question: "By next week, they ____ completed the project.", options: ["will have", "will", "have", "had"], correct: "will have" },
+                { question: "We ____ eaten dinner before the movie starts.", options: ["will have", "will", "have", "had"], correct: "will have" },
+                { question: "He ____ written the email by this afternoon.", options: ["will have", "will", "has", "had"], correct: "will have" }
+            ];
+
+            const grammarFuturePerfectContinuousQuizData = [
+                { question: "By next year, she ____ been working here for five years.", options: ["will have been", "will be", "has been", "will have"], correct: "will have been" },
+                { question: "By 9 PM, I ____ been studying for three hours.", options: ["will have been", "will be", "have been", "will have"], correct: "will have been" },
+                { question: "At that time tomorrow, they ____ been living in London for a decade.", options: ["will have been", "will be", "have been", "will have"], correct: "will have been" },
+                { question: "By the time you arrive, we ____ been waiting for an hour.", options: ["will have been", "will be", "have been", "will have"], correct: "will have been" },
+                { question: "By this weekend, he ____ been training all month.", options: ["will have been", "will be", "has been", "will have"], correct: "will have been" }
+            ];
+
             const sections = {
                 words: { title: 'Vocabulary', subsections: { vocabulary: 'Список тем', flashcards: 'Посилання для навчання' } },
                 grammar: { title: 'Grammar', subsections: { tenses: 'Часи англійської мови', articles: 'Артиклі', conditionals: 'Умовні речення' } },
                 listening: { title: 'Listening', subsections: { beginner: 'Аудіо для початківців', advanced: 'Аудіо для просунутих' } },
-                speaking: { title: 'Speaking', subsections: { pronunciation: 'Вправи на вимову', dialogue: 'Практика діалогів' } },
                 grades: { title: 'Оцінки', subsections: {} }
             };
 
@@ -352,6 +383,42 @@
             const startPresentPerfectContinuousQuiz = () => {
                 setQuizType('grammar');
                 setQuizQuestions(presentPerfectContinuousQuizData);
+                setQuizIndex(0);
+                setScore(0);
+                setSelectedAnswer(null);
+                setQuizMode(true);
+            };
+
+            const startFutureSimpleQuiz = () => {
+                setQuizType("grammar");
+                setQuizQuestions(grammarFutureSimpleQuizData);
+                setQuizIndex(0);
+                setScore(0);
+                setSelectedAnswer(null);
+                setQuizMode(true);
+            };
+
+            const startFutureContinuousQuiz = () => {
+                setQuizType("grammar");
+                setQuizQuestions(grammarFutureContinuousQuizData);
+                setQuizIndex(0);
+                setScore(0);
+                setSelectedAnswer(null);
+                setQuizMode(true);
+            };
+
+            const startFuturePerfectQuiz = () => {
+                setQuizType("grammar");
+                setQuizQuestions(grammarFuturePerfectQuizData);
+                setQuizIndex(0);
+                setScore(0);
+                setSelectedAnswer(null);
+                setQuizMode(true);
+            };
+
+            const startFuturePerfectContinuousQuiz = () => {
+                setQuizType("grammar");
+                setQuizQuestions(grammarFuturePerfectContinuousQuizData);
                 setQuizIndex(0);
                 setScore(0);
                 setSelectedAnswer(null);
@@ -781,14 +848,149 @@
                                                 </button>
                                             )}
                                         </>
+                                    ) : activeSubtense === 'Future Simple' ? (
+                                        <>
+                                            <p>
+                                                Future Simple використовується для спонтанних рішень, прогнозів та обіцянок у майбутньому, коли ми виражаємо особисті наміри та короткострокові плани.<br />
+                                                <strong>Структура:</strong> Підмет + will + V1.<br />
+                                                <strong>Приклади:</strong> I will call you later. They will arrive tomorrow.<br />
+                                                <strong>Заперечення:</strong> will not + V1 (He won’t be late).<br />
+                                                <strong>Питання:</strong> Will + підмет + V1? (Will you help me?).<br />
+                                                <strong>Часові маркери:</strong> tomorrow, next week, in an hour, soon.
+                                            </p>
+                                            <div className="video-container" style={{ marginTop: '20px' }}>
+                                                <iframe
+                                                    width="560"
+                                                    height="315"
+                                                    src="https://www.youtube.com/embed/xu0NQtJEEuc?si=qDiggJVqLtIwuRzW"
+                                                    title="Future Simple Explanation"
+                                                    frameBorder="0"
+                                                    allowFullScreen
+                                                ></iframe>
+                                            </div>
+                                            <p className="course__section-underVideo">
+                                                Корисні посилання:
+                                                <ul>
+                                                    <li><a href="https://cambridge.ua/ua/blog/future-simple" target="_blank">1. Future Simple – правила</a></li>
+                                                    <li><a href="https://grammarway.com/ua/future-simple" target="_blank">2. Future Simple. Form and Use</a></li>
+                                                    <li><a href="https://naurok.com.ua/vpravi-na-vidpracyuvannya-maybutnogo-chasu-90826.html" target="_blank">3. Future Simple. Вправи</a></li>
+                                                </ul>
+                                            </p>
+                                            {!results.grammar?.['Future Simple'] && (
+                                                <button onClick={startFutureSimpleQuiz} className="course__quiz-button">
+                                                    Пройти тест
+                                                </button>
+                                            )}
+                                        </>
+                                    ) : activeSubtense === 'Future Continuous' ? (
+                                        <>
+                                            <p>
+                                                Future Continuous використовується для дій, які будуть тривати в певний момент у майбутньому.<br />
+                                                <strong>Структура:</strong> Підмет + will be + V-ing.<br />
+                                                <strong>Приклади:</strong> I will be working at 8 PM. They will be traveling next week.<br />
+                                                <strong>Заперечення:</strong> will not be + V-ing (She won’t be waiting).<br />
+                                                <strong>Питання:</strong> Will + підмет + be + V-ing? (Will you be joining us?).<br />
+                                                <strong>Часові маркери:</strong> at 7 o’clock tomorrow, this time next week.
+                                            </p>
+                                            <div className="video-container" style={{ marginTop: '20px' }}>
+                                                <iframe
+                                                    width="560"
+                                                    height="315"
+                                                    src="https://www.youtube.com/embed/iwy3s3Z-vLA?si=FKuJMC0tCUTfk2kL"
+                                                    title="Future Continuous Explanation"
+                                                    frameBorder="0"
+                                                    allowFullScreen
+                                                ></iframe>
+                                            </div>
+                                            <p className="course__section-underVideo">
+                                                Корисні посилання:
+                                                <ul>
+                                                    <li><a href="https://grammarway.com/ua/future-continuous" target="_blank">1. Future Continuous – правила</a></li>
+                                                    <li><a href="https://dictionary.cambridge.org/grammar/british-grammar/future-continuous-i-will-be-working" target="_blank">2. Future Continuous. Form and Use</a></li>
+                                                    <li><a href="https://naurok.com.ua/vpravi-na-zakriplennya-chasovo-formi-future-continuous-90912.html" target="_blank">3. Future Continuous. Вправи</a></li>
+                                                </ul>
+                                            </p>
+                                            {!results.grammar?.['Future Continuous'] && (
+                                                <button onClick={startFutureContinuousQuiz} className="course__quiz-button">
+                                                    Пройти тест
+                                                </button>
+                                            )}
+                                        </>
+                                    ) : activeSubtense === 'Future Perfect' ? (
+                                        <>
+                                            <p>
+                                                Future Perfect використовується для позначення дії, яка завершиться до певного моменту в майбутньому.<br />
+                                                <strong>Структура:</strong> Підмет + will have + V3.<br />
+                                                <strong>Приклади:</strong> By next month, I will have finished the project.<br />
+                                                <strong>Заперечення:</strong> will not have + V3 (They won’t have arrived).<br />
+                                                <strong>Питання:</strong> Will + підмет + have + V3? (Will you have completed it by then?).<br />
+                                                <strong>Часові маркери:</strong> by tomorrow, by the time, before next week.
+                                            </p>
+                                            <div className="video-container" style={{ marginTop: '20px' }}>
+                                                <iframe
+                                                    width="560"
+                                                    height="315"
+                                                    src="https://www.youtube.com/embed/MbJulVjnu2g?si=y6-ECRlL1hM1vG0D"
+                                                    title="Future Perfect Explanation"
+                                                    frameBorder="0"
+                                                    allowFullScreen
+                                                ></iframe>
+                                            </div>
+                                            <p className="course__section-underVideo">
+                                                Корисні посилання:
+                                                <ul>
+                                                    <li><a href="https://grammarway.com/ua/future-perfect" target="_blank">1. Future Perfect – правила</a></li>
+                                                    <li><a href="https://cambridge.ua/ua/blog/future-perfect" target="_blank">2. Future Perfect. Form and Use</a></li>
+                                                    <li><a href="https://bukischool.com.ua/blog/vpravy-na-future-perfect" target="_blank">3. Future Perfect. Вправи</a></li>
+                                                </ul>
+                                            </p>
+                                            {!results.grammar?.['Future Perfect'] && (
+                                                <button onClick={startFuturePerfectQuiz} className="course__quiz-button">
+                                                    Пройти тест
+                                                </button>
+                                            )}
+                                        </>
+                                    ) : activeSubtense === 'Future Perfect Continuous' ? (
+                                        <>
+                                            <p>
+                                                Future Perfect Continuous використовується для підкреслення тривалості дії до певного моменту в майбутньому.<br />
+                                                <strong>Структура:</strong> Підмет + will have been + V-ing.<br />
+                                                <strong>Приклади:</strong> By next year, I will have been teaching here for five years.<br />
+                                                <strong>Заперечення:</strong> will not have been + V-ing (She won’t have been waiting).<br />
+                                                <strong>Питання:</strong> Will + підмет + have been + V-ing? (Will you have been working by then?).<br />
+                                                <strong>Часові маркери:</strong> for…, by then, before next month.
+                                            </p>
+                                            <div className="video-container" style={{ marginTop: '20px' }}>
+                                                <iframe
+                                                    width="560"
+                                                    height="315"
+                                                    src="https://www.youtube.com/embed/Tqj1wcweBgI?si=hcgVN0We16hc-WB3"
+                                                    title="Future Perfect Continuous Explanation"
+                                                    frameBorder="0"
+                                                    allowFullScreen
+                                                ></iframe>
+                                            </div>
+                                            <p className="course__section-underVideo">
+                                                Корисні посилання:
+                                                <ul>
+                                                    <li><a href="https://grammarway.com/ua/future-perfect-continuous" target="_blank">1. Future Perfect Continuous – правила</a></li>
+                                                    <li><a href="https://dictionary.cambridge.org/grammar/british-grammar/future-perfect-continuous-i-will-have-been-working-here-ten-years" target="_blank">2. Future Perfect Continuous. Form and Use</a></li>
+                                                    <li><a href="https://bukischool.com.ua/blog/vpravy-na-future-perfect-continuous" target="_blank">3. Future Perfect Continuous. Вправи</a></li>
+                                                </ul>
+                                            </p>
+                                            {!results.grammar?.['Future Perfect Continuous'] && (
+                                                <button onClick={startFuturePerfectContinuousQuiz} className="course__quiz-button">
+                                                    Пройти тест
+                                                </button>
+                                            )}
+                                        </>
                                     ) : (
                                         <p>
                                             {grammarTensesContent[activeTense]
                                                 .find(item => item.name === activeSubtense)
                                                 .description}
                                         </p>
-                                    )
-                                    }
+                                    )}
                                 </>
                             )}
                         </div>
