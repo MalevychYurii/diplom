@@ -572,6 +572,27 @@ a {
 
 .course {
 
+    &__audio-lesson {
+        margin-bottom: 10px;
+
+        h3 {
+            font-weight: 700;
+            font-size: 22px;
+        }
+
+        p {
+            margin: 20px;
+        }
+
+        button {
+            display: flex;
+        }
+
+        audio {
+            margin: 20px 0;
+        }
+    }
+
     &__main-title {
         font-weight: 700;
         font-size: 40px;
@@ -820,8 +841,9 @@ a {
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
         gap: 2rem;
         justify-content: center;
-        align-items: start;
-        text-align: left;
+        align-items: center;
+        text-align: center;
+        margin: 0 auto;
         padding: 2rem;
 
         li {

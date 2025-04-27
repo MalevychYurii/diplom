@@ -501,6 +501,22 @@ a:hover {
   background: #000080;
 }
 
+.course__audio-lesson {
+  margin-bottom: 10px;
+}
+.course__audio-lesson h3 {
+  font-weight: 700;
+  font-size: 22px;
+}
+.course__audio-lesson p {
+  margin: 20px;
+}
+.course__audio-lesson button {
+  display: flex;
+}
+.course__audio-lesson audio {
+  margin: 20px 0;
+}
 .course__main-title {
   font-weight: 700;
   font-size: 40px;
@@ -707,8 +723,9 @@ a:hover {
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 2rem;
   justify-content: center;
-  align-items: start;
-  text-align: left;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
   padding: 2rem;
 }
 .course .vocabulary-list li {

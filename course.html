@@ -114,6 +114,10 @@
     </footer>
 
     <a href="#" class="scroll-to-top" id="scrollToTop">&#8679;</a>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
     <!-- React та Babel через CDN -->
     <script type="text/babel">
         const { useState, useEffect } = React;
@@ -125,6 +129,7 @@
             const [quizMode, setQuizMode] = useState(false);
             const [quizType, setQuizType] = useState(null);
             const [quizIndex, setQuizIndex] = useState(0);
+            const [activeListeningQuiz, setActiveListeningQuiz] = useState(null);
             const [quizQuestions, setQuizQuestions] = useState([]);
             const [score, setScore] = useState(0);
             const [selectedAnswer, setSelectedAnswer] = useState(null);
@@ -301,6 +306,85 @@
                 { question: "If I were you, I ____ ask for help.", options: ["would", "will", "am", "was"], correct: "would" }                    // mixed
             ];
 
+            const listeningData = {
+                beginner: [
+                    {
+                        title: "At the Supermarket",
+                        description: "Діалог покупця та касира в супермаркеті. Практикуємо лексику покупок і фрази для спілкування в магазині.",
+                        audioUrl: "./src/audio/beginner/1.mp3",
+                        quiz: [
+                            { question: "Що купує покупець?", options: ["Молоко", "Хліб", "Фрукти", "Овочі"], correct: "Фрукти" },
+                            { question: "Який напій він бере?", options: ["Сік", "Газована вода", "Кава", "Чай"], correct: "Сік" },
+                            { question: "Чи користується він знижкою?", options: ["Так", "Ні"], correct: "Так" },
+                            { question: "Якою картою він платить?", options: ["Кредитною", "Дебетовою", "Готівкою", "Подарунковою"], correct: "Дебетовою" },
+                            { question: "Чи бере він пакет?", options: ["Так", "Ні"], correct: "Так" }
+                        ]
+                    },
+                    {
+                        title: "At the Bus Stop",
+                        description: "Діалог між двома людьми, які чекають на автобус. Практикуємо лексику подорожей та громадського транспорту.",
+                        audioUrl: "./src/audio/beginner/2.mp3",
+                        quiz: [
+                            { question: "Куди їде співрозмовник?", options: ["На роботу", "До школи", "У магазин", "У лікарню"], correct: "На роботу" },
+                            { question: "Який номер автобуса вони чекають?", options: ["5", "7", "10", "12"], correct: "7" },
+                            { question: "Як довго вже чекають?", options: ["5 хвилин", "10 хвилин", "15 хвилин", "20 хвилин"], correct: "10 хвилин" },
+                            { question: "Чи запізнюється автобус?", options: ["Так", "Ні"], correct: "Так" },
+                            { question: "Як співрозмовники планують їхати, якщо автобус не приїде?", options: ["На таксі", "Пішки", "На велосипеді", "На іншому автобусі"], correct: "На таксі" }
+                        ]
+                    },
+                    {
+                        title: "Weekend Plans",
+                        description: "Розмова двох друзів про плани на вихідні. Практикуємо лексику вільного часу, планів і погодних умов.",
+                        audioUrl: "./src/audio/beginner/3.mp3",
+                        quiz: [
+                            { question: "Що планують друзі робити у вихідні?", options: ["Їхати за місто", "Піти в кіно", "Залишитися вдома", "Працювати"], correct: "Їхати за місто" },
+                            { question: "Яка буде погода за прогнозом?", options: ["Сонячна", "Дощова", "Хмарна", "Сніжна"], correct: "Сонячна" },
+                            { question: "Яким видом транспорту вони планують користуватись?", options: ["Автобусом", "Поїздом", "Автомобілем", "Метро"], correct: "Автомобілем" },
+                            { question: "Чи планують вони робити пікнік?", options: ["Так", "Ні"], correct: "Так" },
+                            { question: "Коли вони збираються зустрітися?", options: ["У суботу вранці", "У неділю ввечері", "У суботу ввечері", "У п’ятницю ввечері"], correct: "У суботу вранці" }
+                        ]
+                    }
+                ],
+                advanced: [
+                    {
+                        title: "Healthy Lifestyle",
+                        description: "Розмова про важливість здорового способу життя. Вивчаємо лексику про харчування, фізичну активність і здоров'я.",
+                        audioUrl: "./src/audio/advanced/1.mp3",
+                        quiz: [
+                            { question: "Про що переважно йде мова?", options: ["Про спорт", "Про харчування", "Про навчання", "Про подорожі"], correct: "Про харчування" },
+                            { question: "Скільки разів на тиждень радять займатися спортом?", options: ["2-3 рази", "5-6 разів", "Щодня", "Раз на тиждень"], correct: "2-3 рази" },
+                            { question: "Що згадують як джерело вітамінів?", options: ["Фрукти та овочі", "М'ясо", "Хліб", "Молочні продукти"], correct: "Фрукти та овочі" },
+                            { question: "Яку пораду дають щодо сну?", options: ["Спати мінімум 7 годин", "Спати не більше 5 годин", "Спати вдень", "Спати раз на два дні"], correct: "Спати мінімум 7 годин" },
+                            { question: "Що є важливою частиною здорового способу життя?", options: ["Фізична активність", "Перегляд серіалів", "Використання гаджетів", "Відпочинок без руху"], correct: "Фізична активність" }
+                        ]
+                    },
+                    {
+                        title: "Job Interview Tips",
+                        description: "Розмова про поради для успішного проходження співбесіди. Вивчаємо лексику професійного розвитку та техніки самопрезентації.",
+                        audioUrl: "./src/audio/advanced/2.mp3",
+                        quiz: [
+                            { question: "Який перший крок рекомендують перед співбесідою?", options: ["Вивчити інформацію про компанію", "Одразу прийти без підготовки", "Запитати знайомих", "Прочитати новини"], correct: "Вивчити інформацію про компанію" },
+                            { question: "Що радять одягнути на співбесіду?", options: ["Офіційний одяг", "Спортивний костюм", "Повсякденний одяг", "Джинси і футболку"], correct: "Офіційний одяг" },
+                            { question: "Яку пораду дають щодо відповідей на запитання?", options: ["Бути чесним", "Говорити багато зайвого", "Уникати складних питань", "Відповідати коротко й несерйозно"], correct: "Бути чесним" },
+                            { question: "Що потрібно зробити після співбесіди?", options: ["Надіслати лист подяки", "Забути про співбесіду", "Подзвонити другу", "Нічого не робити"], correct: "Надіслати лист подяки" },
+                            { question: "Як потрібно поводитись під час співбесіди?", options: ["Бути впевненим і ввічливим", "Говорити агресивно", "Мовчати", "Перебивати співрозмовника"], correct: "Бути впевненим і ввічливим" }
+                        ]
+                    },
+                    {
+                        title: "Online Learning",
+                        description: "Обговорення переваг та викликів онлайн-освіти. Вивчаємо лексику сучасних технологій та дистанційного навчання.",
+                        audioUrl: "./src/audio/advanced/3.mp3",
+                        quiz: [
+                            { question: "Яку головну перевагу онлайн-навчання згадують?", options: ["Гнучкий графік", "Безкоштовне навчання", "Менше домашніх завдань", "Можливість уникати іспитів"], correct: "Гнучкий графік" },
+                            { question: "Яку проблему в онлайн-навчанні обговорюють?", options: ["Брак мотивації", "Нестачу підручників", "Високі витрати", "Проблеми з транспортом"], correct: "Брак мотивації" },
+                            { question: "Що допомагає бути успішним у дистанційному навчанні?", options: ["Самодисципліна", "Реклама курсів", "Гарне підключення до інтернету", "Вчитися тільки вночі"], correct: "Самодисципліна" },
+                            { question: "Який інструмент найчастіше використовують для онлайн-уроків?", options: ["Відеоконференції", "Телефонні дзвінки", "Поштові листи", "Особисті зустрічі"], correct: "Відеоконференції" },
+                            { question: "Яка порада надається для ефективного навчання вдома?", options: ["Планувати час", "Не використовувати розклад", "Навчатися без перерв", "Не записувати нотатки"], correct: "Планувати час" }
+                        ]
+                    }
+                ]
+            };
+
             const sections = {
                 words: { title: 'Vocabulary', subsections: { vocabulary: 'Список тем', flashcards: 'Посилання для навчання' } },
                 grammar: { title: 'Grammar', subsections: { tenses: 'Часи англійської мови', articles: 'Артиклі', conditionals: 'Умовні речення' } },
@@ -459,6 +543,16 @@
                 setQuizMode(true);
             };
 
+            const startListeningQuiz = (level, index) => {
+                setQuizType('listening');
+                setQuizQuestions(listeningData[level][index].quiz);
+                setQuizIndex(0);
+                setScore(0);
+                setSelectedAnswer(null);
+                setQuizMode(true);
+                setActiveListeningQuiz(`${level}-${index}`); // запам'ятати який саме трек відкрив тест
+            };
+
             const handleAnswer = selected => {
                 if (selectedAnswer) return;
                 setSelectedAnswer(selected);
@@ -477,6 +571,8 @@
                             updatedResults.words = { ...(results.words || {}), [activeTopic]: finalScore };
                         } else if (quizType === 'grammar') {
                             updatedResults.grammar = { ...(results.grammar || {}), [activeSubtense]: finalScore };
+                        } else if (quizType === 'listening') {
+                            updatedResults.listening = { ...(results.listening || {}), [activeListeningQuiz]: finalScore };
                         }
                         setResults(updatedResults);
                         localStorage.setItem('quizResults', JSON.stringify(updatedResults));
@@ -484,10 +580,22 @@
                         setQuizMode(false);
                         if (quizType === 'words') setActiveTopic(null);
                         if (quizType === 'grammar') setActiveSubtense(null);
+                        if (quizType === 'listening') setActiveListeningQuiz(null);
                         setSelectedAnswer(null);
                     }
                 }, 1000);
             };
+
+            const getListeningTitle = (key) => {
+                const [level, indexStr] = key.split('-');
+                const index = parseInt(indexStr, 10);
+
+                if (listeningData[level] && listeningData[level][index]) {
+                    return listeningData[level][index].title;
+                }
+                return key;
+            };
+
 
             return (
                 <div className="course">
@@ -511,23 +619,30 @@
                         </div>
                     )}
 
+
                     {activeSection === 'grades' && (
                         <div className="course__section">
                             <button onClick={handleBack} className="course__back">⇦ Назад</button>
                             <h2>Оцінки</h2>
                             <ul>
                                 {Object.entries(results).map(([category, topics]) => {
-                                    const total = category === 'grammar'
-                                        ? grammarQuizData.length
-                                        : 10;
+                                    let total;
+
+                                    if (category === 'grammar') {
+                                        total = 5;
+                                    } else if (category === 'listening') {
+                                        total = 5;
+                                    } else {
+                                        total = 10;
+                                    }
 
                                     return (
                                         <li key={category}>
-                                            <strong>{sections[category]?.title || category}</strong>
+                                            <strong>{sections[category]?.title || (category === 'listening' ? 'Listening' : category)}</strong>
                                             <ul>
                                                 {Object.entries(topics).map(([topic, score]) => (
                                                     <li key={topic}>
-                                                        Тема: {topic} — Оцінка: {score} / {total}
+                                                        Тема: {category === 'listening' ? getListeningTitle(topic) : topic} — Оцінка: {score} / {total}
                                                     </li>
                                                 ))}
                                             </ul>
@@ -1027,7 +1142,7 @@
                         </div>
                     )}
 
-                    {activeSubsection && activeSubsection !== 'tenses' && activeSubsection !== 'articles' && activeSubsection !== 'conditionals' && !activeTopic && (
+                    {activeSubsection && activeSubsection !== 'tenses' && activeSubsection !== 'articles' && activeSubsection !== 'conditionals' && activeSubsection !== 'beginner' && activeSubsection !== 'advanced' && !activeTopic && (
                         <div className="course__section">
                             <button onClick={handleBack} className="course__back">⇦ Назад</button>
                             <h2>{sections[activeSection].subsections[activeSubsection]}</h2>
@@ -1077,6 +1192,67 @@
                             {!(results.words && results.words[activeTopic]) && (
                                 <button onClick={startQuiz} className="course__quiz-button">Пройти тест</button>
                             )}
+                        </div>
+                    )}
+
+                    {(activeSubsection === 'beginner' || activeSubsection === 'advanced') && (
+                        <div className="course__section">
+                            <button onClick={handleBack} className="course__back">⇦ Назад</button>
+                            <h2>{sections.listening.subsections[activeSubsection]}</h2>
+
+                            <div className="course__audio-wrapper">
+                                {listeningData[activeSubsection].map((lesson, index) => {
+                                    const currentKey = `${activeSubsection}-${index}`;
+                                    const isQuizActive = activeListeningQuiz === currentKey;
+
+                                    return (
+                                        <div key={index} className="course__audio-lesson">
+                                            <h3>{lesson.title}</h3>
+                                            <p>{lesson.description}</p>
+                                            <audio controls src={lesson.audioUrl} style={{ width: '100%' }}></audio>
+
+                                            {!results.listening?.[currentKey] ? (
+                                                <button
+                                                    onClick={() => startListeningQuiz(activeSubsection, index)}
+                                                    className="course__quiz-button"
+                                                >
+                                                    Пройти тест
+                                                </button>
+                                            ) : (
+                                                <p>Тест пройдено ✔️</p>
+                                            )}
+
+                                            {/* Якщо цей трек зараз активний для тесту — показати питання */}
+                                            {isQuizActive && quizMode && (
+                                                <div className="course__quiz-block">
+                                                    <h2>Питання {quizIndex + 1} з {quizQuestions.length}</h2>
+                                                    <p><strong>Оберіть правильну відповідь:</strong> {quizQuestions[quizIndex].question}</p>
+                                                    <div className="quiz-options">
+                                                        {quizQuestions[quizIndex].options.map((opt, idx) => {
+                                                            let className = "quiz__option-button";
+                                                            if (selectedAnswer) {
+                                                                if (opt === quizQuestions[quizIndex].correct) className += " correct";
+                                                                else if (opt === selectedAnswer) className += " incorrect";
+                                                                else className += " disabled";
+                                                            }
+                                                            return (
+                                                                <button
+                                                                    key={idx}
+                                                                    onClick={() => handleAnswer(opt)}
+                                                                    className={className}
+                                                                    disabled={!!selectedAnswer}
+                                                                >
+                                                                    {opt}
+                                                                </button>
+                                                            );
+                                                        })}
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
+                                    );
+                                })}
+                            </div>
                         </div>
                     )}
 
@@ -1181,20 +1357,10 @@
                         </div>
                     )}
 
-                    {quizMode && (
+                    {quizMode && quizType !== 'listening' && (
                         <div className="course__section">
                             <h2>Питання {quizIndex + 1} з {quizQuestions.length}</h2>
-                            <p>
-                                {quizType === 'grammar' ? (
-                                    <>
-                                        <strong>Оберіть правильну відповідь:</strong> {quizQuestions[quizIndex].question}
-                                    </>
-                                ) : (
-                                    <>
-                                        <strong>Перекладіть з української на англійську:</strong> {quizQuestions[quizIndex].question}
-                                    </>
-                                )}
-                            </p>
+                            <p><strong>Оберіть правильну відповідь:</strong> {quizQuestions[quizIndex].question}</p>
                             <div className="quiz-options">
                                 {quizQuestions[quizIndex].options.map((opt, idx) => {
                                     let className = "quiz__option-button";
@@ -1204,7 +1370,7 @@
                                         else className += " disabled";
                                     }
                                     return (
-                                        <button type="button"
+                                        <button
                                             key={idx}
                                             onClick={() => handleAnswer(opt)}
                                             className={className}
@@ -1217,16 +1383,13 @@
                             </div>
                         </div>
                     )}
+
                 </div>
             );
         }
 
         ReactDOM.createRoot(document.getElementById('course-root')).render(<CourseApp />);
     </script>
-
-    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="./src/js/upArrow.js"></script>
     <script src="./src/js/modal.js"></script>
     <script src="./src/js/hideSection.js"></script>
