@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             try {
-                const res = await fetch("https://diplom-0101.onrender.com/login", {
+                const res = await fetch("/login", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ email, password }),
@@ -150,10 +150,10 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             try {
-                const res = await fetch("https://diplom-0101.onrender.com/register", {
+                const res = await fetch("/register", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ username, email, password }),
+                    body: JSON.stringify({ email, password }),
                 });
 
                 const data = await res.json();
