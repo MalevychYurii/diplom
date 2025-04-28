@@ -88,6 +88,13 @@ a {
     opacity: 1;
     visibility: visible;
 
+    @media (max-width: 576px) {
+        bottom: 50px;
+        height: 50px;
+        width: 50px;
+        right: 50px;
+    }
+
     &:hover {
         transform: translateY(10px);
         border: 1px solid $white;
@@ -596,6 +603,10 @@ a {
     &__main-title {
         font-weight: 700;
         font-size: 40px;
+
+        @media (max-width: 576px) {
+            font-size: 24px;
+        }
     }
 
     &__menu {
@@ -603,6 +614,10 @@ a {
             font-size: 19px;
             line-height: 1.2em;
             max-width: 50%;
+
+            @media (max-width: 576px) {
+                display: none;
+            }
         }
     }
 
@@ -703,6 +718,10 @@ a {
         transition: 0.5s ease;
         color: $white;
 
+        @media (max-width: 425px) {
+            max-width: 150px;
+        }
+
         &:hover {
             border: 0;
             margin: 0;
@@ -746,6 +765,10 @@ a {
         max-width: 1160px;
         width: 100%;
         margin: 0 auto;
+
+        @media (max-width: 576px) {
+            min-height: 10vh;
+        }
 
         h2 {
             font-weight: 700;
@@ -879,6 +902,24 @@ a {
 
 }
 
+.video-container {
+
+    iframe {
+        width: 560px;
+        height: 310px;
+
+        @media (max-width: 768px) {
+            width: 500px;
+            height: 250px;
+        }
+
+        @media (max-width: 576px) {
+            width: 300px;
+            height: 150px;
+        }
+    }
+}
+
 #certificate {
     width: 800px;
     height: 600px;
@@ -895,6 +936,12 @@ a {
     font-size: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     margin: 0 auto;
+
+
+    @media (max-width: 768px) {
+        height: 15vh;
+        width: 10px;
+    }
 }
 
 

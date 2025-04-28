@@ -77,6 +77,14 @@ a:hover {
   opacity: 1;
   visibility: visible;
 }
+@media (max-width: 576px) {
+  .scroll-to-top.show {
+    bottom: 50px;
+    height: 50px;
+    width: 50px;
+    right: 50px;
+  }
+}
 .scroll-to-top.show:hover {
   transform: translateY(10px);
   border: 1px solid #FFFFFF;
@@ -521,10 +529,20 @@ a:hover {
   font-weight: 700;
   font-size: 40px;
 }
+@media (max-width: 576px) {
+  .course__main-title {
+    font-size: 24px;
+  }
+}
 .course__menu p {
   font-size: 19px;
   line-height: 1.2em;
   max-width: 50%;
+}
+@media (max-width: 576px) {
+  .course__menu p {
+    display: none;
+  }
 }
 .course__quiz-button {
   margin: 0 auto;
@@ -611,6 +629,11 @@ a:hover {
   transition: 0.5s ease;
   color: #FFFFFF;
 }
+@media (max-width: 425px) {
+  .course__menu-item {
+    max-width: 150px;
+  }
+}
 .course__menu-item:hover {
   border: 0;
   margin: 0;
@@ -649,6 +672,11 @@ a:hover {
   max-width: 1160px;
   width: 100%;
   margin: 0 auto;
+}
+@media (max-width: 576px) {
+  .course__section {
+    min-height: 10vh;
+  }
 }
 .course__section h2 {
   font-weight: 700;
@@ -753,6 +781,23 @@ a:hover {
   border-bottom: 1px solid #e0e0e0;
 }
 
+.video-container iframe {
+  width: 560px;
+  height: 310px;
+}
+@media (max-width: 768px) {
+  .video-container iframe {
+    width: 500px;
+    height: 250px;
+  }
+}
+@media (max-width: 576px) {
+  .video-container iframe {
+    width: 300px;
+    height: 150px;
+  }
+}
+
 #certificate {
   width: 800px;
   height: 600px;
@@ -768,6 +813,12 @@ a:hover {
   font-size: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   margin: 0 auto;
+}
+@media (max-width: 768px) {
+  #certificate {
+    height: 15vh;
+    width: 10px;
+  }
 }
 
 #certificate h1 {
