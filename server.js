@@ -93,64 +93,6 @@ app.post("/login", async (req, res) => {
     }
 });
 
-// Отримання всіх користувачів
-app.get("/users", async (req, res) => {
-    try {
-        const users = await User.findAll();
-        res.status(200).json(users);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "Помилка сервера" });
-    }
-});
-
-// Видалення користувача
-app.delete("/users/:id", async (req, res) => {
-    try {
-        const user = await User.findByPk(req.params.id);
-        if (!user) {
-            return res.status(404).json({ error: "Користувача не знайдено" });
-        }
-
-        await user.destroy();
-        res.status(200).json({ message: "Користувача успішно видалено" });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "Помилка сервера" });
-    }
-});
-
-// Відправка повідомлення з форми
-app.post("/send-message", async (req, res) => {
-    const { name, email, phone, topic, message } = req.body;
-    if (!name || !email || !phone || !topic || !message) {
-        return res.status(400).json({ error: "Всі поля обов'язкові!" });
-    }
-
-    try {
-        const transporter = nodemailer.createTransport({
-            service: "gmail",
-            auth: {
-                user: process.env.EMAIL_USER,
-                pass: process.env.EMAIL_PASS
-            }
-        });
-
-        const mailOptions = {
-            from: process.env.EMAIL_USER,
-            to: "testfordiplom2025@gmail.com",
-            subject: `Нове повідомлення від ${name}`,
-            text: `Ім'я: ${name}\nEmail: ${email}\nТелефон: ${phone}\nТема: ${topic}\nПовідомлення: ${message}`
-        };
-
-        await transporter.sendMail(mailOptions);
-        res.status(200).json({ message: "Повідомлення надіслано успішно!" });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "Помилка сервера" });
-    }
-});
-
 // ====== Статичні файли (після всіх API) ======
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -161,6 +103,7 @@ app.get('*', (req, res, next) => {
     }
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
+
 // ====== Запуск сервера ======
 sequelize.sync()
     .then(() => {
