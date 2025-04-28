@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const res = await fetch("/register", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ email, password }),
+                    body: JSON.stringify({ username, email, password }),
                 });
 
                 const data = await res.json();
