@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             try {
-                const res = await fetch("http://localhost:5000/login", {
+                const res = await fetch("https://diplom-0101.onrender.com/login", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ email, password }),
@@ -150,7 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             try {
-                const res = await fetch("http://localhost:5000/register", {
+                const res = await fetch("https://diplom-0101.onrender.com/register", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ username, email, password }),

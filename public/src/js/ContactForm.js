@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const formData = { name, email, phone, topic, message };
 
         try {
-            const response = await fetch("http://localhost:5000/send-message", {
+            const response = await fetch("https://diplom-0101.onrender.com/send-message", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
