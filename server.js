@@ -22,6 +22,12 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, {
     }
 });
 
+// Налаштування CORS
+app.use(cors(corsOptions));
+
+// Middleware для парсингу JSON
+app.use(express.json());
+
 // Підключаємо папку з готовим фронтендом
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -55,10 +61,6 @@ sequelize.sync()
     .catch(error => {
         console.error("Не вдалося синхронізувати з базою даних:", error);
     });
-
-// Middleware
-app.use(cors(corsOptions));
-app.use(express.json());
 
 // Реєстрація користувача
 app.post("/register", async (req, res) => {
