@@ -10,8 +10,10 @@ const PORT = process.env.PORT || 3000;
 
 // Налаштування CORS
 const corsOptions = {
-    origin: 'https://diplom-0101.onrender.com', // твій фронтенд
+    origin: 'https://diplom-0101.onrender.com',
     credentials: true,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    allowedHeaders: "Origin, X-Requested-With, Content-Type, Accept, Authorization"
 };
 
 // Підключення до бази PostgreSQL
