@@ -5,12 +5,16 @@ const path = require('path');
 const app = express();
 const nodemailer = require("nodemailer");
 const { Sequelize, DataTypes } = require("sequelize");
+
 const PORT = process.env.PORT || 3000;
+
+// Налаштування CORS
 const corsOptions = {
-    origin: 'https://diplom-0101.onrender.com',  // дозволяємо тільки твій фронтенд
-    credentials: true,  // дозволяємо cookies/headers, якщо потрібно
+    origin: 'https://diplom-0101.onrender.com', // твій фронтенд
+    credentials: true,
 };
-// Підключення до SQLite
+
+// Підключення до бази PostgreSQL
 const sequelize = new Sequelize(process.env.DATABASE_URL, {
     dialect: 'postgres',
     protocol: 'postgres',
@@ -22,24 +26,12 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, {
     }
 });
 
-// Налаштування CORS
+// ===== Middleware =====
 app.use(cors(corsOptions));
-
-// Дозволити обробку preflight-запитів (OPTIONS)
-app.options('*', cors(corsOptions));
-
-// Middleware для парсингу JSON
+app.options('*', cors(corsOptions)); // Для preflight-запитів
 app.use(express.json());
 
-// Підключаємо папку з готовим фронтендом
-app.use(express.static(path.join(__dirname, 'public')));
-
-// Всі запити ведуть на головну сторінку
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
-// Оголошення моделі для користувача
+// ===== Модель користувача =====
 const User = sequelize.define("User", {
     username: {
         type: DataTypes.STRING,
@@ -56,19 +48,11 @@ const User = sequelize.define("User", {
     }
 });
 
-// Синхронізація з базою даних
-sequelize.sync()
-    .then(() => {
-        console.log("Таблиця користувачів створена або вже існує.");
-    })
-    .catch(error => {
-        console.error("Не вдалося синхронізувати з базою даних:", error);
-    });
+// ====== API ======
 
 // Реєстрація користувача
 app.post("/register", async (req, res) => {
     const { username, email, password } = req.body;
-
     if (!username || !email || !password) {
         return res.status(400).json({ error: "Всі поля обов'язкові!" });
     }
@@ -80,11 +64,9 @@ app.post("/register", async (req, res) => {
         }
 
         const newUser = await User.create({ username, email, password });
-        console.log("Новий користувач:", newUser);
-
         res.status(200).json({ message: "Реєстрація успішна!" });
     } catch (error) {
-        console.error("Помилка реєстрації:", error);
+        console.error(error);
         res.status(500).json({ error: "Помилка сервера" });
     }
 });
@@ -92,29 +74,19 @@ app.post("/register", async (req, res) => {
 // Логін користувача
 app.post("/login", async (req, res) => {
     const { email, password } = req.body;
-
-    // Перевірка на заповнення полів
     if (!email || !password) {
         return res.status(400).json({ error: "Всі поля обов'язкові!" });
     }
 
     try {
-        // Знаходимо користувача по email
         const user = await User.findOne({ where: { email } });
-
-        if (!user) {
-            return res.status(400).json({ error: "Користувача з таким email не знайдено." });
+        if (!user || user.password !== password) {
+            return res.status(400).json({ error: "Невірний email або пароль." });
         }
 
-        // Перевірка пароля (для цього треба буде використовувати хешування паролів, згодом додамо bcrypt)
-        if (user.password !== password) {
-            return res.status(400).json({ error: "Невірний пароль." });
-        }
-
-        // Успішний логін
         res.status(200).json({ message: "Успішний логін!" });
     } catch (error) {
-        console.error("Помилка логіну:", error);
+        console.error(error);
         res.status(500).json({ error: "Помилка сервера" });
     }
 });
@@ -125,18 +97,15 @@ app.get("/users", async (req, res) => {
         const users = await User.findAll();
         res.status(200).json(users);
     } catch (error) {
-        console.error("Помилка при отриманні користувачів:", error);
+        console.error(error);
         res.status(500).json({ error: "Помилка сервера" });
     }
 });
 
-// Видалення користувача за ID
+// Видалення користувача
 app.delete("/users/:id", async (req, res) => {
-    const { id } = req.params;
-
     try {
-        const user = await User.findByPk(id);
-
+        const user = await User.findByPk(req.params.id);
         if (!user) {
             return res.status(404).json({ error: "Користувача не знайдено" });
         }
@@ -144,7 +113,7 @@ app.delete("/users/:id", async (req, res) => {
         await user.destroy();
         res.status(200).json({ message: "Користувача успішно видалено" });
     } catch (error) {
-        console.error("Помилка при видаленні користувача:", error);
+        console.error(error);
         res.status(500).json({ error: "Помилка сервера" });
     }
 });
@@ -152,7 +121,6 @@ app.delete("/users/:id", async (req, res) => {
 // Відправка повідомлення з форми
 app.post("/send-message", async (req, res) => {
     const { name, email, phone, topic, message } = req.body;
-
     if (!name || !email || !phone || !topic || !message) {
         return res.status(400).json({ error: "Всі поля обов'язкові!" });
     }
@@ -176,11 +144,27 @@ app.post("/send-message", async (req, res) => {
         await transporter.sendMail(mailOptions);
         res.status(200).json({ message: "Повідомлення надіслано успішно!" });
     } catch (error) {
-        res.status(500).json({ error: "Помилка сервера: " + error.message });
+        console.error(error);
+        res.status(500).json({ error: "Помилка сервера" });
     }
 });
 
-// Запуск сервера
-app.listen(PORT, () => {
-    console.log(`Сервер працює на порту ${PORT}`);
+// ====== Статичні файли (після всіх API) ======
+app.use(express.static(path.join(__dirname, 'public')));
+
+// ====== Фронтенд для всіх інших маршрутів ======
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
+
+// ====== Запуск сервера ======
+sequelize.sync()
+    .then(() => {
+        console.log("Таблиця користувачів створена або вже існує.");
+        app.listen(PORT, () => {
+            console.log(`Сервер працює на порту ${PORT}`);
+        });
+    })
+    .catch(error => {
+        console.error("Не вдалося синхронізувати з базою даних:", error);
+    });
