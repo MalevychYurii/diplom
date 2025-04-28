@@ -25,6 +25,9 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, {
 // Налаштування CORS
 app.use(cors(corsOptions));
 
+// Дозволити обробку preflight-запитів (OPTIONS)
+app.options('*', cors(corsOptions));
+
 // Middleware для парсингу JSON
 app.use(express.json());
 
