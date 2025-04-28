@@ -8,10 +8,17 @@ const { Sequelize, DataTypes } = require("sequelize");
 const PORT = process.env.PORT || 3000;
 
 // Підключення до SQLite
-const sequelize = new Sequelize({
-    dialect: 'sqlite',
-    storage: 'database.sqlite'
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
+    dialect: 'postgres',
+    protocol: 'postgres',
+    dialectOptions: {
+        ssl: {
+            require: true,
+            rejectUnauthorized: false
+        }
+    }
 });
+
 
 
 // Підключаємо папку з готовим фронтендом
