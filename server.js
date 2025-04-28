@@ -6,7 +6,10 @@ const app = express();
 const nodemailer = require("nodemailer");
 const { Sequelize, DataTypes } = require("sequelize");
 const PORT = process.env.PORT || 3000;
-
+const corsOptions = {
+    origin: 'https://diplom-0101.onrender.com',  // дозволяємо тільки твій фронтенд
+    credentials: true,  // дозволяємо cookies/headers, якщо потрібно
+};
 // Підключення до SQLite
 const sequelize = new Sequelize(process.env.DATABASE_URL, {
     dialect: 'postgres',
@@ -18,8 +21,6 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, {
         }
     }
 });
-
-
 
 // Підключаємо папку з готовим фронтендом
 app.use(express.static(path.join(__dirname, 'public')));
@@ -56,7 +57,7 @@ sequelize.sync()
     });
 
 // Middleware
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Реєстрація користувача
