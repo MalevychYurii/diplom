@@ -2,3 +2,4 @@
 2. Використовуємо ОРМ Sequelize для підключення до SQLite.
 3. Postman
 4. Express JS
+5. PostCSS CLI

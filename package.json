@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:css": "sass src/css/style/courseHTML/style.scss src/css/output.css && postcss src/css/output.css -o dist/style.css",
+    "watch:sass": "sass --watch src/css/style/courseHTML/style.scss:src/css/output.css",
+    "watch:postcss": "postcss src/css/output.css -o dist/style.css --watch",
+    "dev": "npm-run-all --parallel watch:sass watch:postcss"
   },
   "keywords": [],
   "author": "",
@@ -16,5 +20,15 @@
     "nodemailer": "^6.10.0",
     "sequelize": "^6.37.7",
     "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.4",
+    "autoprefixer": "^10.4.21",
+    "cssnano": "^7.0.6",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.5.3",
+    "postcss-cli": "^11.0.1",
+    "sass": "^1.87.0",
+    "tailwindcss": "^4.1.4"
   }
 }
