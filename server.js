@@ -155,10 +155,12 @@ app.post("/send-message", async (req, res) => {
 app.use(express.static(path.join(__dirname, 'public')));
 
 // ====== Фронтенд для всіх інших маршрутів ======
-app.get('*', (req, res) => {
+app.get('*', (req, res, next) => {
+    if (req.originalUrl.startsWith('/register') || req.originalUrl.startsWith('/login') || req.originalUrl.startsWith('/users') || req.originalUrl.startsWith('/send-message')) {
+        return next(); // не віддавати HTML для API
+    }
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
-
 // ====== Запуск сервера ======
 sequelize.sync()
     .then(() => {
