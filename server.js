@@ -4,15 +4,13 @@ const cors = require("cors");
 const path = require('path');
 const app = express();
 const nodemailer = require("nodemailer");
-const Database = require('better-sqlite3');
 const { Sequelize, DataTypes } = require("sequelize");
 const PORT = process.env.PORT || 3000;
 
 // Підключення до SQLite
 const sequelize = new Sequelize({
     dialect: 'sqlite',
-    storage: 'database.sqlite',
-    dialectModule: Database
+    storage: 'database.sqlite'
 });
 
 

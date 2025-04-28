@@ -15,12 +15,12 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "better-sqlite3": "^11.9.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "nodemailer": "^6.10.0",
-    "sequelize": "^6.37.7"
+    "sequelize": "^6.37.7",
+    "sqlite3": "^5.1.7"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.4",
