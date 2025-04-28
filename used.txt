@@ -3,3 +3,8 @@
 3. Postman
 4. Express JS
 5. PostCSS CLI
+6. TailwindCSS 4	Використовуєш TailwindCSS через PostCSS для класової верстки (utility-first стиль).
+7. PostCSS	Інструмент для обробки CSS після компіляції SCSS: додає префікси, очищає, мінімізує.
+8. Autoprefixer	Додає вендорні префікси для сумісності CSS у всіх браузерах.
+9. cssnano	Мінімізує фінальний CSS-файл (dist/style.css) для швидкого завантаження.
+10. PurgeCSS (через Tailwind content)	Очищає непотрібні Tailwind класи, залишаючи тільки ті, що реально використовуються.
