@@ -7,11 +7,18 @@ const nodemailer = require("nodemailer");
 const { Sequelize, DataTypes } = require("sequelize");
 const PORT = process.env.PORT || 3000;
 
-// Підключення до SQLite
-const sequelize = new Sequelize({
-    dialect: "sqlite",
-    storage: "./database.sqlite"
+// Підключення до SQL
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
+    dialect: 'mysql',
+    logging: false,
+    dialectOptions: {
+        ssl: {
+            rejectUnauthorized: false
+        }
+    }
 });
+
+module.exports = sequelize;
 
 // Підключаємо папку з готовим фронтендом
 app.use(express.static(path.join(__dirname, 'public')));
